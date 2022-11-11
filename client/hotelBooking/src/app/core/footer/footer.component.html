@@ -2,19 +2,19 @@
     <div class="row">
         <div class="col">
             <div class="logo">Hotel <span>Booking</span></div>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+            <p class="description">Lorem ipsum dolor sit amet consectetur adipisicing elit. 
                 Consectetur consequatur repellat culpa laborum in! 
                 Iste rem similique molestiae vel soluta.</p>
         </div>
         <div class="col">
-            <h3>Office</h3>
+            <h3>Office <div class="underline"><span></span></div> </h3>
             <p>ITPL Road</p>
             <p>Kirchstr 31, 08064,Zwickau</p>
             <p class="email-id">hasanovh14@gmail.com</p>
             <h4>+359 - 894366008</h4>
         </div>
         <div class="col">
-            <h3>Links</h3>
+            <h3>Links <div class="underline"><span></span></div></h3>
             <ul>
                <li><a href="#">Home</a></li>
                <li><a href="#">Hotels</a></li>
@@ -24,11 +24,20 @@
             </ul>
         </div>
         <div class="col">
-            <h3>Newsletter</h3>
+            <h3>Newsletter <div class="underline"><span></span></div></h3>
             <form action="">
+                <fa-icon [icon]="faEnvelope" class="envelope"></fa-icon>
                 <input type="email" placeholder="Your Email" required>
-                <button type="submit">Send</button>
+                <button type="submit"><fa-icon [icon]="faArrow" class="fas"></fa-icon></button>
             </form>
+           <div class="social-icons">
+            <fa-icon [icon]="faFacebook" class="fab"></fa-icon>
+            <fa-icon [icon]="faInstagram" class="fab"></fa-icon>
+            <fa-icon [icon]="faYoutube" class="fab"></fa-icon>
+            <fa-icon [icon]="faPinterest" class="fab"></fa-icon>
+           </div>
         </div>
     </div>
+    <hr>
+    <p class="coppy">CoppyRight.All rights reserved.HasnaovH</p>
 </footer>

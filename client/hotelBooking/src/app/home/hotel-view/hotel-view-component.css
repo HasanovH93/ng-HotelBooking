@@ -7,7 +7,6 @@
     text-align: center;
 }
 
-
 .flex {
     display: flex;
 }
@@ -29,18 +28,14 @@ h4 {
     color:#241a71;
 }
 
-
 .rate  {
     margin: 10px 10px 20px 0;
-  }
+}
 
-
-  .i {
+.i {
     margin-left: 5px;
     color: white
-  }
-
-
+}
 
 button {
     background: #f6685e;
@@ -56,17 +51,10 @@ button i {
     font-size: 20px;
 }
 
-
-.top {
-    margin-top: 80px;
-}
-
 .mtop {
     margin-top: 40px;
+    margin-bottom: 50px;
 }
-
-
-
 
 .left,
 .right {
@@ -88,7 +76,6 @@ p {
     font-size: 12px;
     line-height: 20px;
 }
-
 
 .grid2 {
     display: grid;
