@@ -1,19 +1,15 @@
-const { verifyToken } = require("../services/userService");
+const { parseToken } = require("../services/user");
 
 module.exports = () => (req, res, next) => {
-    const token = req.cookies.token
-
-    if(token){
-        try {
-            const userData = verifyToken(token);
-            req.user = userData
-        }catch(error){
-            console.log("invalid token")
-            res.clearCookie('token');
-            res.redirect('/auth/login');
-            return;
-        }
- 
+  const token = req.headers["x-authorization"];
+  if (token) {
+    try {
+      const payload = parseToken(token);
+      req.user = payload;
+      req.token = token;
+    } catch (error) {
+       return res.status(401).json({message: 'Invalid authorization token'})
     }
-    next()
-}
+  }
+  next()
+};

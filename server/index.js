@@ -1,16 +1,30 @@
 const express = require('express');
-const expressConfig = require('./config/express');
-const databaseConfig = require('./config/database');
-const routesConfig = require('./config/routes')
+const mongoose  = require('mongoose');
+const authController = require('./controllers/auth');
+const dataController = require('./controllers/data');
+const cors = require('./middlewares/cors');
+const session = require('./middlewares/session');
+const trimBody = require('./middlewares/trimBody');
 
-start()
+const CONNECTION_STRING = 'mongodb://localhost:27017/furniture';
+
+start();
 async function start(){
- //... execute config
     const app = express();
-    expressConfig(app);
-    await databaseConfig(app);
-    routesConfig(app)
+    
+   await mongoose.connect(CONNECTION_STRING);
+   console.log('DATABASE connected!')
 
-app.listen(3000, () => console.log('App is running...'))
-
+    app.use(express.json());
+    app.use(cors());
+    app.use(trimBody());
+    app.use(session());
+    
+    app.get('/', (req, res) => {
+        res.json({ message: 'REST Service opereational'});
+    })
+    
+    app.use('/users', authController);
+    app.use('/data/catalog', dataController);
+    app.listen(3030, () => console.log('REST Service started!'))
 }
