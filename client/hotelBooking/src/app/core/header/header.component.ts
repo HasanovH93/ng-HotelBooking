@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
+import { MatDialog } from '@angular/material/dialog'
+import { RegisterComponent } from 'src/app/user/register/register.component';
+
 
 
 
@@ -11,8 +14,11 @@ import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 export class HeaderComponent implements OnInit {
  
   search = faMagnifyingGlass
-  constructor() { }
-
+  constructor(private dialogRef : MatDialog) {}
+  
+  openDialog(){
+    this.dialogRef.open(RegisterComponent)
+  }
   ngOnInit(): void {
   }
 

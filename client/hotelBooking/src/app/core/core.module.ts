@@ -3,7 +3,8 @@ import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './header/header.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { FooterComponent } from './footer/footer.component';
-
+import { BrowserAnimationsModule} from '@angular/platform-browser/animations'
+import { MatDialogModule} from '@angular/material/dialog'
 
 
 @NgModule({
@@ -13,7 +14,9 @@ import { FooterComponent } from './footer/footer.component';
   ],
   imports: [
     CommonModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    MatDialogModule,
+    BrowserAnimationsModule
   ],
   exports: [
     HeaderComponent,
