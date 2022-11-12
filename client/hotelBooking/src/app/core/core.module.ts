@@ -5,6 +5,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { FooterComponent } from './footer/footer.component';
 import { BrowserAnimationsModule} from '@angular/platform-browser/animations'
 import { MatDialogModule} from '@angular/material/dialog'
+import { FormsModule } from '@angular/forms'
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { MatDialogModule} from '@angular/material/dialog'
     CommonModule,
     FontAwesomeModule,
     MatDialogModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    FormsModule
   ],
   exports: [
     HeaderComponent,

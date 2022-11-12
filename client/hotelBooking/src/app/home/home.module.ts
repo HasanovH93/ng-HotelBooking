@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { HotelViewComponent } from './hotel-view/hotel-view.component';
 import { MatCardModule } from '@angular/material/card';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { FormsModule } from '@angular/forms'
 
 
 
@@ -14,7 +15,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
   imports: [
     CommonModule,
     MatCardModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    FormsModule
   ],
   exports: [
     HotelViewComponent
