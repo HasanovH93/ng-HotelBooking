@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ApiServiceService } from '../../api-service.service';
 
 import { faStar,faArrowAltCircleRight  } from '@fortawesome/free-regular-svg-icons'
 
@@ -11,14 +10,9 @@ import { faStar,faArrowAltCircleRight  } from '@fortawesome/free-regular-svg-ico
 export class HotelViewComponent implements OnInit {
    faStar = faStar
    faArrow = faArrowAltCircleRight
-  constructor(private apiService: ApiServiceService) { }
+  constructor() { }
 
   ngOnInit(): void {
-    this.apiService.loadFlights().subscribe({
-      next: (value) => {
-        console.log(value)
-      }
-    })
   }
 
 }

@@ -6,9 +6,7 @@ import { HttpClient } from '@angular/common/http'
 })
 export class UserService {
   
-  getToken(){
-    throw new Error('Method not Implementded');
-  }
+
   private _registerUrl = 'http://localhost:3030/users/register'
   constructor(private http: HttpClient) { }
 
