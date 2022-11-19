@@ -13,7 +13,7 @@ body('password').isLength({ min: 3}).withMessage('Password must be at least 3 ch
     if(errors.length > 0){
         throw errors;
     }
-   const token =  await register(req.body.email, req.body.password);
+   const token =  await register(req.body.email,req.body.username, req.body.password);
    res.json(token)
   } catch (error) {
     const message = parseError(error)
