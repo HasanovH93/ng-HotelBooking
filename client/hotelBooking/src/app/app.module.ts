@@ -22,7 +22,7 @@ import { FormsModule } from '@angular/forms'
     UserModule,
     FontAwesomeModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

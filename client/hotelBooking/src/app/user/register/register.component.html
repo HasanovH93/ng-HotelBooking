@@ -8,11 +8,15 @@
             <img src="../../../assets/user/gp.png" alt="">
             <img src="../../../assets/user/tw.png" alt="">
         </div>
-        <form action="" id="login"  class="inputGroup">
-            <input [(ngModel)]="registerUserData.email" name="email" type="text" class="input-field" placeholder="Enter Your email" required>
-            <input [(ngModel)]="registerUserData.password" name="password" type="password" class="input-field" placeholder="Enter Your Password" required>
+        <form [formGroup]="signUpForm" action="post" id="login"  class="inputGroup">
+            <input  formControlName="email" type="text" class="input-field" placeholder="Enter Your email" required>
+            <input  formControlName="username" type="text" class="input-field" placeholder="Enter Your username" required>
+            <input  formControlName="password" type="password" class="input-field" placeholder="Enter Your Password" required>
+            <input  formControlName="rePass" type="password" class="input-field" placeholder="Repeat Password" required>
+            
+        
             <input type="checkbox" class="check-box"><span>Remember password</span>
-            <button (click)="registerUser()" type="button" class="submit-btn">Sign Up</button>
+            <button (click)="onRegister()" type="button" class="submit-btn">Sign Up</button>
         </form>
     </div>
    
