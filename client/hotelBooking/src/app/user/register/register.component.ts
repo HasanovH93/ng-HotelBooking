@@ -11,34 +11,29 @@ export class RegisterComponent implements OnInit {
 
       
   constructor(private _auth: UserService,private formBuilder: FormBuilder) { }
+  signUpForm: FormGroup
   errorMessage = '';
 
-  signUpForm: FormGroup = this.formBuilder.group (
-    {
-      email: new FormControl(null, [Validators.required, Validators.minLength(5)]),
-      username: new FormControl(null, [Validators.required, Validators.email]),
-      password: new FormControl(null, [Validators.required, Validators.minLength(5)]),
-      rePass: new FormControl(null,  [Validators.required, Validators.minLength(5)]),
-      
-    }
-  )
+
   
 
   ngOnInit(): void {
-    
+    this.signUpForm = new FormGroup ({
+      email: new FormControl(null, [Validators.required, Validators.email]),
+      username: new FormControl(null, [Validators.required, Validators.minLength(5)]),
+      password: new FormControl(null, [Validators.required, Validators.minLength(5)]),
+      rePass: new FormControl(null,  [Validators.required, Validators.minLength(5)]),
+    })
   }
 
   onRegister(){
+    console.log(this.signUpForm.controls)
     const {username,email,password,rePass} = this.signUpForm.value;
     if(password !== rePass){
       this.errorMessage = 'Passwords Don\'t Match';
       return;
     }
     this._auth.registerUser(this.signUpForm.value)
-    .subscribe(
-      res => {
-        localStorage.setItem('token', res.accessToken)
-      })
   }
 
   

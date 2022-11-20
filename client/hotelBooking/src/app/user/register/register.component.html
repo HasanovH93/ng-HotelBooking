@@ -10,9 +10,18 @@
         </div>
         <form [formGroup]="signUpForm" action="post" id="login"  class="inputGroup">
             <input  formControlName="email" type="text" class="input-field" placeholder="Enter Your email" required>
+            <span *ngIf="!signUpForm.get('email')?.valid && signUpForm.get('email')?.touched" class="error-block">Please Enter a Valid Email</span>
             <input  formControlName="username" type="text" class="input-field" placeholder="Enter Your username" required>
+            <span  *ngIf="!signUpForm.get('username')!.valid && signUpForm.get('username')!.touched" class="error-block">Please enter a valid Username</span>
             <input  formControlName="password" type="password" class="input-field" placeholder="Enter Your Password" required>
             <input  formControlName="rePass" type="password" class="input-field" placeholder="Repeat Password" required>
+            <p *ngIf="
+            signUpForm.controls['rePass']?.errors &&
+            signUpForm.get('password')?.touched &&
+            signUpForm.get('password')?.valid">
+            <span class="error-block">Password dont match</span>
+
+            </p>
             
         
             <input type="checkbox" class="check-box"><span>Remember password</span>
