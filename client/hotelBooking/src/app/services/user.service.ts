@@ -17,10 +17,9 @@ export class UserService {
   private _registerUrl = 'http://localhost:3030/users/register'
   constructor(private http: HttpClient) { }
 
-  registerUser(user:User,ressponse:any){
+  registerUser(user:User){
     return this.http.post<IUser>(this._registerUrl,user).subscribe({
       next: (res) => {
-        ressponse = res
         this.setUser(res);
       },
       error: (err) => {

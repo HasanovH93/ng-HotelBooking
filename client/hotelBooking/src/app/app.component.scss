@@ -1,0 +1,14 @@
+.container{
+    width:100%;
+    height:100vh;
+    display:flex;
+    position:relative;
+    overflow: hidden;
+    background-image: linear-gradient(to bottom, #03a9f43b, white,white);
+    transform-style: preserve-3d;
+    flex-direction: column;
+    img{
+        perspective: 1000px;
+        transform-style: preserve-3d;
+    }
+}

@@ -9,12 +9,16 @@ import { UserModule } from './user/user.module'
 import { HttpClientModule } from '@angular/common/http'
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { FormsModule } from '@angular/forms'
+import { HotelsRoutingModule } from './hotels/hotels-routing.module';
+import { DropdownDirective } from './shared/dropdown.directive';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    DropdownDirective
   ],
   imports: [
+    HotelsRoutingModule,
     BrowserModule,
     AppRoutingModule,
     CoreModule,

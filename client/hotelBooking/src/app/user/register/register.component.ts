@@ -34,6 +34,7 @@ export class RegisterComponent implements OnInit {
       return;
     }
     this._auth.registerUser(this.signUpForm.value)
+    
   }
 
   
