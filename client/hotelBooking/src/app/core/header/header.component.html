@@ -1,42 +1,48 @@
-<header (scroll)="onScroll()" [ngClass]="navbarFixed ? 'fixed' : 'noFixed'">
-  <nav>
-   
-    <div class="menu">
-      <div class="logo">Hotel <span>Booking</span></div>
-      <ul>
-        <li>Room</li>
-        <li>Flight</li>
-        <li>Today's Deal</li>
+<header (scroll)="onScroll()" [ngClass]="navbarFixed ? 'fixed' : 'noFixed'" class="header">
+
+  <nav class="nav">
+    <div class="nav-menu">
+      <div class="nav-menu-logo">Hotel <span class="nav-menu-logo-title">Booking</span></div>
+      <ul class="nav-menu-links">
+        <li class="nav-menu-links-items">Room</li>
+        <li class="nav-menu-links-items">Flight</li>
+        <li class="nav-menu-links-items">Today's Deal</li>
       </ul>
     </div>
     <div class="search">
-      <button (click)="openDialog()">Anywhere</button>
-      <span></span>
-      <button>Any week</button>
-      <span></span>
-      <button class="guests">
+      <button class="search-button" (click)="openDialog()">Anywhere</button>
+      <span class="search-divider"></span>
+      <button class="search-button">Any week</button>
+      <span class="search-divider"></span>
+      <button class="search-button-guests">
         Add guests
-        <div class="searchIcon">
-         
-          <img src="/assets/icons/searchIcon.svg" alt="Search Icon" />
-          
+        <div class="search-button-guests-icon">
+
+          <img class="search-button-guests-icon-icon" src="/assets/icons/searchIcon.svg" alt="Search Icon" />
+
         </div>
       </button>
     </div>
-    <ul class="right-menu">
-      <a href="" class="nav_button  greyHover">Become a host</a>
-      <button class="nav_button greyHover language ">
+    <div class="right-menu">
+      <a href="" class="right-menu-menu">Become a host</a>
+      <button class="right-menu-mode">
         <mat-slide-toggle>Light Mode</mat-slide-toggle>
       </button>
-    
-      <button class="nav_button account dropBtn"   appDropdown>
-       <img src="/assets/icons/hamburger.svg" alt="Hamburger" />
-       <img src="/assets/icons/account.svg" alt="Account" />
-        
-       
-      </button>
-   
-    
-    </ul>
+
+      <div class="right-menu-icons" appDropdown>
+        <img class="right-menu-icons-dropdown" src="/assets/icons/hamburger.svg" alt="Hamburger" />
+        <img class="right-menu-icons-user" src="/assets/icons/account.svg" alt="Account" />
+        <ul class="dropdown-menu">
+          <li class="dropdown-item">Profile</li>
+          <li class="dropdown-item" style="font-weight: 500">Register</li>
+          <li class="dropdown-item">Login</li>
+          <span class="divider"></span>
+          <br>
+          <li class="dropdown-item">Logout</li>
+        </ul>
+      </div>
+
+
+    </div>
   </nav>
 </header>
