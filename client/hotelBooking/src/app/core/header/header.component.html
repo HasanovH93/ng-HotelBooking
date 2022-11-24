@@ -10,7 +10,7 @@
       </ul>
     </div>
     <div class="search">
-      <button class="search-button" (click)="openDialog()">Anywhere</button>
+      <button class="search-button" >Anywhere</button>
       <span class="search-divider"></span>
       <button class="search-button">Any week</button>
       <span class="search-divider"></span>
@@ -34,7 +34,7 @@
         <img class="right-menu-icons-user" src="/assets/icons/account.svg" alt="Account" />
         <ul class="dropdown-menu">
           <li class="dropdown-item">Profile</li>
-          <li class="dropdown-item" style="font-weight: 500">Register</li>
+          <li class="dropdown-item"  (click)="openDialog()" style="font-weight: 600">Register</li>
           <li class="dropdown-item">Login</li>
           <span class="divider"></span>
           <br>

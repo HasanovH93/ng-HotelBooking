@@ -17,13 +17,7 @@ export class HeaderComponent implements OnInit {
   constructor(private dialogRef : MatDialog) {}
 
   openDialog(){
-    this.dialogRef.open(UserMenuComponent, {
-      width: '250px',
-      position: {
-        top: '70px',
-        right: '50px'
-      }
-    });
+    this.dialogRef.open(RegisterComponent);
   }
   ngOnInit(): void {
   }
