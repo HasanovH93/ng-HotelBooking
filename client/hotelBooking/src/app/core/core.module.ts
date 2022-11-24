@@ -5,26 +5,31 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { FooterComponent } from './footer/footer.component';
 import { BrowserAnimationsModule} from '@angular/platform-browser/animations'
 import { MatDialogModule} from '@angular/material/dialog'
-import { FormsModule } from '@angular/forms'
+import  {MatSlideToggleModule} from '@angular/material/slide-toggle'
 import { RouterModule } from '@angular/router';
+import { DropdownDirective } from '../shared/dropdown.directive';
+import { UserMenuComponent } from './header/user-menu/user-menu.component';
 
 
 @NgModule({
   declarations: [
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    DropdownDirective,
+    UserMenuComponent
   ],
   imports: [
     CommonModule,
-    FontAwesomeModule,
     MatDialogModule,
     BrowserAnimationsModule,
-    FormsModule,
-    RouterModule
+    RouterModule,
+    MatSlideToggleModule,
+    FontAwesomeModule
   ],
   exports: [
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    UserMenuComponent
   ]
 })
 export class CoreModule { }

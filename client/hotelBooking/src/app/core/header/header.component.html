@@ -1,5 +1,6 @@
-<header>
+<header (scroll)="onScroll()" [ngClass]="navbarFixed ? 'fixed' : 'noFixed'">
   <nav>
+   
     <div class="menu">
       <div class="logo">Hotel <span>Booking</span></div>
       <ul>
@@ -9,28 +10,33 @@
       </ul>
     </div>
     <div class="search">
-      <button>Anywhere</button>
+      <button (click)="openDialog()">Anywhere</button>
       <span></span>
       <button>Any week</button>
       <span></span>
       <button class="guests">
         Add guests
         <div class="searchIcon">
+         
           <img src="/assets/icons/searchIcon.svg" alt="Search Icon" />
           
         </div>
       </button>
     </div>
-    <div class="right-menu">
+    <ul class="right-menu">
       <a href="" class="nav_button  greyHover">Become a host</a>
       <button class="nav_button greyHover language ">
-        <img src="/assets/icons/globe.svg" alt="Globe" />
-      </button>
-      <button class="nav_button account dropdown" appDropDown>
-       <img src="/assets/icons/hamburger.svg" alt="Hamburger" />
-        <img src="/assets/icons/account.svg" alt="Account" />
+        <mat-slide-toggle>Light Mode</mat-slide-toggle>
       </button>
     
-    </div>
+      <button class="nav_button account dropBtn"   appDropdown>
+       <img src="/assets/icons/hamburger.svg" alt="Hamburger" />
+       <img src="/assets/icons/account.svg" alt="Account" />
+        
+       
+      </button>
+   
+    
+    </ul>
   </nav>
 </header>

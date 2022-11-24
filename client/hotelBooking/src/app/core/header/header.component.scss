@@ -1,6 +1,6 @@
 @font-face {
-	font-family: 'Circular Medium';
-	src: url(/assets/fonts/circular/circular-medium.ttf);
+  font-family: "Circular Medium";
+  src: url(/assets/fonts/circular/circular-medium.ttf);
 }
 
 $Raleway: "Raleway", sans-serif;
@@ -76,10 +76,10 @@ header {
       box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.18);
 
       button {
-		font-size:14px;
-		font-weight: 600;
-		line-height: 18px;
-		font-family:Arial, Helvetica, sans-serif ;
+        font-size: 14px;
+        font-weight: 600;
+        line-height: 18px;
+        font-family: Arial, Helvetica, sans-serif;
         background: transparent;
         height: 48px;
         padding: 0 16px;
@@ -89,17 +89,17 @@ header {
         cursor: pointer;
 
         &:first-of-type {
-			padding-left: 24px;
-		  }
-  
-		  &:last-of-type {
-			padding-right: 7px;
-		  }
+          padding-left: 24px;
+        }
+
+        &:last-of-type {
+          padding-right: 7px;
+        }
       }
-	   .guests {
-		font-weight: normal;
-		color:$grey
-	  }
+      .guests {
+        font-weight: normal;
+        color: $grey;
+      }
 
       span {
         width: 1px;
@@ -119,55 +119,72 @@ header {
       margin-left: 16px;
 
       img {
-        color: black;
         width: 12px;
         height: 12px;
       }
     }
 
-	.right-menu{
-		display: flex;
-		justify-content: flex-end;
-	
-		.nav_button{
-			background: transparent;
-			border: none;
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			padding: 10px 16px;
-			border-radius: 22px;
-			cursor: pointer;
-			text-decoration: none;
-			color:rgb(34,34,34);
-			height: 48px;
+    .right-menu {
+      display: flex;
+      justify-content: flex-end;
+
+      .nav_button {
+        background: transparent;
+        border: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 10px 16px;
+        border-radius: 22px;
+        cursor: pointer;
+        text-decoration: none;
+        height: 48px;
+
+        .greyHover {
+          &:hover {
+            background: red
           }
-		.account{
-			    border: 1px solid $grey-med;
-				box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.18);
-				height: 42px;
-				border-radius: 22px;
-				padding: 5px 5px 5px 12px;
-			
-				img{
-					&:first-child {
-						height: 16px;
-						width: 16px;
-					}
-					&:last-child {
-						width: 30px;
-						height: 30px;
-						margin-left: 12px;
-					}
-				}
-		}
-		.language {
-			img {
-				width: 16px;
-				height: 16px;
-			}
-		}
-	}
-	
+        }
+      }
+      .account {
+        border: 1px solid $grey-med;
+        box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.18);
+        height: 42px;
+        border-radius: 22px;
+        padding: 5px 5px 5px 12px;
+
+        img {
+          &:first-child {
+            height: 16px;
+            width: 16px;
+          }
+          &:last-child {
+            width: 30px;
+            height: 30px;
+            margin-left: 12px;
+          }
+        }
+      }
+      .language {
+        img {
+          width: 16px;
+          height: 16px;
+        }
+      }
+    }
   }
+}
+
+.fixed {
+  position: fixed;
+  width: 100%;
+  transition: 0.2s linear;
+  top: 0px;
+  background-color: white;
+  z-index: 1;
+}
+.noFixed {
+  position: static;
+  transition: 0.2s linear;
+  top: -50px;
 }
