@@ -1,31 +1,32 @@
 import { Component, HostListener, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog'
+import { MatDialog } from '@angular/material/dialog';
+import { UserService } from 'src/app/services/user.service';
 import { RegisterComponent } from 'src/app/user/register/register.component';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss']
+  styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
-  navbarFixed:boolean = false;
-  
-  constructor(private dialogRef : MatDialog) {}
+  navbarFixed: boolean = false;
 
-  
-  ngOnInit(): void {
-  }
+  constructor(private dialogRef: MatDialog, private userService: UserService) {}
 
-  @HostListener('window:scroll', ['$event']) onScroll(){
-    if(window.scrollY > 50){
-      this.navbarFixed = true
-    }else {
-      this.navbarFixed = false
+  ngOnInit(): void {}
+
+  @HostListener('window:scroll', ['$event']) onScroll() {
+    if (window.scrollY > 50) {
+      this.navbarFixed = true;
+    } else {
+      this.navbarFixed = false;
     }
   }
 
-
-  openDialog(){
+  openDialog() {
     this.dialogRef.open(RegisterComponent);
   }
 
+  onLogout() {
+    this.userService.logout();
+  }
 }

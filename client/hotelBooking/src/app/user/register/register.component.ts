@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
+
 
 @Component({
   selector: 'app-register',
@@ -11,7 +11,7 @@ import { UserService } from 'src/app/services/user.service';
 export class RegisterComponent implements OnInit {
 
       
-  constructor(private _auth: UserService,private formBuilder: FormBuilder, private router: Router) { }
+  constructor(private _auth: UserService,private formBuilder: FormBuilder) { }
   signUpForm: FormGroup
   errorMessage = '';
 
@@ -35,7 +35,7 @@ export class RegisterComponent implements OnInit {
       return;
     }
     this._auth.registerUser(this.signUpForm.value)
-    this.router.navigate([''])
+
     
   }
 

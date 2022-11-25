@@ -4,7 +4,6 @@ import { HotelViewComponent } from './hotel-view/hotel-view.component';
 import { MatCardModule } from '@angular/material/card';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { FormsModule } from '@angular/forms';
-import { SearchComponent } from './search/search.component';
 import { HomeComponent } from './home/home.component'
 
 
@@ -13,7 +12,6 @@ import { HomeComponent } from './home/home.component'
 @NgModule({
   declarations: [
     HotelViewComponent,
-    SearchComponent,
     HomeComponent
   ],
   imports: [
@@ -24,7 +22,6 @@ import { HomeComponent } from './home/home.component'
   ],
   exports: [
     HotelViewComponent,
-    SearchComponent,
     HomeComponent
   ]
 })

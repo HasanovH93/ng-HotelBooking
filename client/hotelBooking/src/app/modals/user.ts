@@ -1,9 +1,13 @@
 export interface IUser{
-    userId: string;
-    email: string;
-    username: string;
-    password: string;
-    accessToken: string;
+    token: string;
+    expiresIn: number;
+    userData: {
+        id: string;
+        email: string;
+        username: string;
+        password: string;
+    };
+   
 }
 
 export type User = {
