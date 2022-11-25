@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Subscription } from 'rxjs';
 import { UserService } from 'src/app/services/user.service';
+import { LoginComponent } from 'src/app/user/login/login.component';
 import { RegisterComponent } from 'src/app/user/register/register.component';
 @Component({
   selector: 'app-header',
@@ -26,8 +27,12 @@ export class HeaderComponent implements OnInit {
 
 
 
-  openDialog() {
+  openDialogRegister() {
     this.dialogRef.open(RegisterComponent);
+  }
+
+  openDialogLogin(){
+    this.dialogRef.open(LoginComponent)
   }
 
   onLogout() {

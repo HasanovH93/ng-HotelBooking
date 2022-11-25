@@ -34,8 +34,8 @@
         <img class="right-menu-icons-user" src="/assets/icons/account.svg" alt="Account" />
         <ul class="dropdown-menu">
           <li class="dropdown-item">Profile</li>
-          <li class="dropdown-item"  (click)="openDialog()" style="font-weight: 600">Register</li>
-          <li   class="dropdown-item">Login</li>
+          <li class="dropdown-item"  (click)="openDialogRegister()" style="font-weight: 600">Register</li>
+          <li   class="dropdown-item" (click)="openDialogLogin()">Login</li>
           <span class="divider"></span>
           <br>
           <li class="dropdown-item" *ngIf="userLoggedIn" (click)="onLogout()">Logout</li>
