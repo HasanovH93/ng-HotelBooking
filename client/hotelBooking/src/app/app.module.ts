@@ -10,6 +10,7 @@ import { HttpClientModule } from '@angular/common/http'
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { FormsModule } from '@angular/forms'
 import { HotelsRoutingModule } from './hotels/hotels-routing.module';
+import { userRoutingModule } from './user/user-routing.module';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { HotelsRoutingModule } from './hotels/hotels-routing.module';
   ],
   imports: [
     HotelsRoutingModule,
+    userRoutingModule,
     BrowserModule,
     AppRoutingModule,
     CoreModule,

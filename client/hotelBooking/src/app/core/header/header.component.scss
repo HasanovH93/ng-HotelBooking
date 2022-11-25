@@ -33,6 +33,8 @@ $pink: #ff385c;
   top: -50px;
 }
 
+
+
 .header {
   @extend .dFlex;
   width: 100%;
@@ -42,6 +44,7 @@ $pink: #ff385c;
   color: $blue_bg;
   box-sizing: border-box;
   box-shadow: rgba(0, 0, 0, 0.08) 0px 1px 12px;
+  display: flex;
 
   .nav {
     @extend .dFlex;
@@ -118,9 +121,7 @@ $pink: #ff385c;
           height: 32px;
           border-radius: 50%;
           background: $pink;
-          display: flex;
-          align-items: center;
-          justify-content: center;
+          @extend .dFlex;
           margin-left: 16px;
 
           &-icon {
@@ -138,9 +139,7 @@ $pink: #ff385c;
     }
 
     .right-menu {
-      display: flex;
-      justify-content: flex-end;
-
+       @extend .dFlex;
       &-menu {
         @extend .dFlex;
         text-decoration: none;
