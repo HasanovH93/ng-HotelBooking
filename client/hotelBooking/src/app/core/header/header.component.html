@@ -1,4 +1,4 @@
-<header  appStickyMenu [ngClass]="navbarFixed ? 'fixed' : 'noFixed'" class="header">
+<header   appStickyMenu class="header">
 
   <nav class="nav ">
     <div class="nav-menu">
@@ -24,7 +24,7 @@
       </button>
     </div>
     <div class="right-menu">
-      <a href="" class="right-menu-menu">Become a host</a>
+      <a href="" class="right-menu-menu" *ngIf="userLoggedIn">Become a host</a>
       <button class="right-menu-mode">
         <mat-slide-toggle>Light Mode</mat-slide-toggle>
       </button>
@@ -35,10 +35,10 @@
         <ul class="dropdown-menu">
           <li class="dropdown-item">Profile</li>
           <li class="dropdown-item"  (click)="openDialog()" style="font-weight: 600">Register</li>
-          <li class="dropdown-item">Login</li>
+          <li   class="dropdown-item">Login</li>
           <span class="divider"></span>
           <br>
-          <li class="dropdown-item" (click)="onLogout()">Logout</li>
+          <li class="dropdown-item" *ngIf="userLoggedIn" (click)="onLogout()">Logout</li>
         </ul>
       </div>
 

@@ -33,6 +33,14 @@ $pink: #ff385c;
   top: -50px;
 }
 
+// .header:has:not(.fixed){
+//   .noFixed {
+//     position: static;
+//     transition: 0.2s linear;
+//     top: -50px;
+//   }
+// }
+
 
 
 .header {
@@ -186,6 +194,7 @@ $pink: #ff385c;
         margin-top: 280px;
         margin-right: 120px;
         padding: 10px 150px 10px 10px;
+        width: 200px;
         background-color: white;
         color:black;
         border-radius: 7px;
@@ -201,6 +210,7 @@ $pink: #ff385c;
           font-weight: 400;
           margin:14px 0;
           line-height: 18px;
+          width: 100%;
         }
 
         .divider{
