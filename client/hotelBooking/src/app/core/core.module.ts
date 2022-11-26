@@ -10,7 +10,7 @@ import  {MatSlideToggleModule} from '@angular/material/slide-toggle'
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { DropdownDirective } from '../shared/directives/dropdown.directive';
-import { StickyMenuDirective } from './sticky-menu.directive';
+import { StickyMenuDirective } from '../shared/directives/sticky-menu.directive';
 
 
 @NgModule({

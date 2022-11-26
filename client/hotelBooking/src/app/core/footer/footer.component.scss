@@ -1,10 +1,10 @@
 
-
+$pink: #ff385c;
 
 footer {
     width: 100%;
     position: absolute;
-    background: linear-gradient(to right, #241a71, #f6685e);
+    background: linear-gradient(to right, #241a71, $pink);
     border-top-left-radius: 125px;
     color:white;
     padding: 100px 0 30px;

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Subscription } from 'rxjs';
 import { UserService } from 'src/app/services/user.service';
@@ -9,7 +9,7 @@ import { RegisterComponent } from 'src/app/user/register/register.component';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit, OnDestroy {
   userLoggedIn: boolean = false;
   userServiceSub!: Subscription;
   
@@ -24,8 +24,11 @@ export class HeaderComponent implements OnInit {
     this.userServiceSub = this.userService.getAuthStatusListener().subscribe((isAuthenticated) => {
       this.userLoggedIn = isAuthenticated;
     })
-  }
 
+  }
+ngOnDestroy(): void {
+  this.userServiceSub.unsubscribe()
+}
 
 
   openDialogRegister() {

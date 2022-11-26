@@ -1,4 +1,4 @@
-import { StickyMenuDirective } from '../../core/sticky-menu.directive';
+import { StickyMenuDirective } from './sticky-menu.directive';
 
 describe('StickyMenuDirective', () => {
   it('should create an instance', () => {

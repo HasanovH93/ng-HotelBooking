@@ -1,0 +1,62 @@
+$pink: #ff385c;
+
+.spinner {
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+   
+   
+}
+
+.loader {
+    width: 4rem;
+    height: 4rem;
+    position: relative;
+    background: $pink;
+
+}
+.loader-ball-1, .loader-ball-2{
+    top:0;
+    left: 0;
+    position: absolute;
+    background-color: $pink;
+    border-radius: 50%;
+    width: 4rem;
+    height: 4rem;
+    animation: moveAnimation 4s infinite;
+}
+
+
+p {
+    margin-top:20px;
+    color:black;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 0.4rem;
+    font-size: 1rem;
+}
+
+
+
+
+@keyframes moveAnimation {
+   0% {
+        transform: translateX(-300%) scale(1);
+    }
+    25% {
+        transform: translateX(0) scale(0.5);
+    }
+    
+    50%{
+        transform: translateX(300%) scale(1);
+    }
+    75% {
+        transform: translateX(0) scale(0.5);
+    }
+    100%{
+     transform: translateX(-300%) scale(1);
+    }
+
+}
