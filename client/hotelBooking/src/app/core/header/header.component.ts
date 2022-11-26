@@ -10,7 +10,6 @@ import { RegisterComponent } from 'src/app/user/register/register.component';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
-  // navbarFixed: boolean = false;
   userLoggedIn: boolean = false;
   userServiceSub!: Subscription;
   
@@ -20,6 +19,8 @@ export class HeaderComponent implements OnInit {
   
 
   ngOnInit(): void {
+    this.userLoggedIn = this.userService.getIsLoggedIn()
+
     this.userServiceSub = this.userService.getAuthStatusListener().subscribe((isAuthenticated) => {
       this.userLoggedIn = isAuthenticated;
     })

@@ -33,12 +33,20 @@
         <img class="right-menu-icons-dropdown" src="/assets/icons/hamburger.svg" alt="Hamburger" />
         <img class="right-menu-icons-user" src="/assets/icons/account.svg" alt="Account" />
         <ul class="dropdown-menu">
-          <li class="dropdown-item">Profile</li>
+        
+          <ng-container *ngIf="!userLoggedIn">
           <li class="dropdown-item"  (click)="openDialogRegister()" style="font-weight: 600">Register</li>
-          <li   class="dropdown-item" (click)="openDialogLogin()">Login</li>
           <span class="divider"></span>
-          <br>
-          <li class="dropdown-item" *ngIf="userLoggedIn" (click)="onLogout()">Logout</li>
+          <li class="dropdown-item" (click)="openDialogLogin()">Login</li>
+          </ng-container>  
+          <ng-container *ngIf="userLoggedIn">
+           <li class="dropdown-item" *ngIf="userLoggedIn">Profile</li>
+           <span class="divider"></span>
+           <li class="dropdown-item" *ngIf="userLoggedIn" (click)="onLogout()">Logout</li>
+          </ng-container>
+         
+          
+          
         </ul>
       </div>
 

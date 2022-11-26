@@ -10,13 +10,14 @@ import { MatDialog } from '@angular/material/dialog';
 
 
 export class UserService {
-  private authStatusListener = new Subject<boolean>();
   private userToken!: string;
+  private authStatusListener = new Subject<boolean>();
   private isAuthenticated: boolean = false;
   private userId!: string | null
 
 
   private _registerUrl = 'http://localhost:3030/users/register'
+  private loginUrl = 'http://localhost:3030/users/login'
   constructor(private http: HttpClient,private route: Router,private dialogRef: MatDialog) { }
 
   registerUser(user:User){
@@ -25,6 +26,14 @@ export class UserService {
         this.setUser(res);
       }
     })
+  }
+
+  loginUser(data: { email: string; password: string }) {
+    this.http.post<IUser>(this.loginUrl, data).subscribe({
+      next: (res) => {
+        this.setUser(res);
+      }
+    });
   }
 
   getIsLoggedIn() {
@@ -57,16 +66,43 @@ export class UserService {
     this.clearUserData();
     this.route.navigate(['/']);
   }
+  
+     autoLogin(){
+
+     const userData = this.getUserData();
+     console.log(userData)
+     if(!userData){
+      return
+     }
+     
+     if(userData.token){
+      this.userToken  = userData.token;
+      this.userId = userData.userId;
+      this.isAuthenticated = true;
+     }
+   
+
+  }
+
 
   private clearUserData() {
     localStorage.removeItem('token');
     localStorage.removeItem('userId');
   }
+
+
   private setUserData(token: string ,userId:string) {
     localStorage.setItem('token', token);
     localStorage.setItem('userId', userId);
   }
+  
+  
+  private getUserData(){
+    const token = localStorage.getItem('token');
+    const userId = localStorage.getItem('userId');
 
+    return {token, userId:userId}
+  }
   
 }
 
