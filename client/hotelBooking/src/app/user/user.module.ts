@@ -5,6 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http'
 import { userRoutingModule } from './user-routing.module';
 import { LoginComponent } from './login/login.component';
+import { ProfileComponent } from './profile/profile.component';
 
 
 
@@ -12,7 +13,8 @@ import { LoginComponent } from './login/login.component';
 @NgModule({
   declarations: [
     RegisterComponent,
-    LoginComponent
+    LoginComponent,
+    ProfileComponent
   ],
   imports: [
     CommonModule,
@@ -21,7 +23,9 @@ import { LoginComponent } from './login/login.component';
     HttpClientModule,
     userRoutingModule
   ], exports: [
-    LoginComponent
+    LoginComponent,
+    RegisterComponent,
+    ProfileComponent
   ]
 })
 export class UserModule { }
