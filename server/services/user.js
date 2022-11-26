@@ -19,12 +19,12 @@ async function register(email,username,password){
         username,
         hashedPassword: await bcrypt.hash(password, 10)
     });
-    return createToken(user)
+    return user;
 }
 async function login(email,password){
 
     const user = await User.findOne({email}).collation({ locale: 'en', strength: 2 });
-    if(!user){
+    if(!user){ 
         throw new Error('incorrect username or password');
     }
 
@@ -33,7 +33,7 @@ async function login(email,password){
     if(!match){
         throw new Error('incorrect username or password');
     }
-    return createToken(user)
+    return user;
 }
 async function logout(token){
     tokenBlackList.add(token);
@@ -45,15 +45,11 @@ function createToken(user){
         email: user.email,
         username: user.username
     }
+    const token = jwt.sign(payload, SECRET_PASSWORD, {
+        expiresIn: "1h"
+    })
 
-    return {
-        _id: user._id,
-        email: user.email,
-        username: user.username,
-        accessToken: jwt.sign(payload, SECRET_PASSWORD, {
-            expiresIn: 10000
-        })
-    }
+   return token;
     
     
 }
@@ -71,5 +67,6 @@ module.exports = {
     register,
     login,
     logout,
-    parseToken
+    parseToken,
+    createToken
 }

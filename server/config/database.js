@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const CONNECTION_STRING = 'mongodb://localhost:27017/hotel-booking';
+const CONNECTION_STRING = 'mongodb+srv://hasanovh:wm3Fr8ngc1hQ9rOd@cluster0.pwdjibo.mongodb.net/?retryWrites=true&w=majority';
 module.exports = async(app) => {
 
     try{
