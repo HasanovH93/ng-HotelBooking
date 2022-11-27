@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { SpinnerComponent } from '../shared/spinner/spinner.component';
 import { ProfileComponent } from './profile/profile.component';
 import { RegisterComponent } from './register/register.component';
 
@@ -11,7 +10,7 @@ const routes: Routes = [
   },
   {
     path: 'auth/profile',
-    component: SpinnerComponent
+    component: ProfileComponent
   }
 ];
 

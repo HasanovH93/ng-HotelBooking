@@ -15,6 +15,7 @@ export class UserService {
 
   private _registerUrl = 'http://localhost:3030/users/register';
   private loginUrl = 'http://localhost:3030/users/login';
+  
   constructor(
     private http: HttpClient,
     private route: Router,
@@ -97,4 +98,7 @@ export class UserService {
 
     return { token, userId: userId };
   }
+
+
+
 }

@@ -12,7 +12,7 @@ import { HomeComponent } from './home/home.component'
 @NgModule({
   declarations: [
     HotelViewComponent,
-    HomeComponent
+    HomeComponent,
   ],
   imports: [
     CommonModule,

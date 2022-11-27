@@ -14,7 +14,7 @@ import { ProfileComponent } from './profile/profile.component';
   declarations: [
     RegisterComponent,
     LoginComponent,
-    ProfileComponent
+    ProfileComponent,
   ],
   imports: [
     CommonModule,

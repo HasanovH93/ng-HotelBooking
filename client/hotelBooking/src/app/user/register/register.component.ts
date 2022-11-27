@@ -14,6 +14,7 @@ export class RegisterComponent implements OnInit {
   constructor(private _auth: UserService,private formBuilder: FormBuilder) { }
   signUpForm: FormGroup
   errorMessage = '';
+  isLoading: boolean = false;
 
 
   

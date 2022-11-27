@@ -15,7 +15,7 @@ $pink: #ff385c;
     position: absolute;
     top: 10rem;
     font-size: 7rem;
-    color: #00000063;
+    color: #241a71;
 }
 .frem h2{
     position: absolute;
@@ -36,4 +36,9 @@ $pink: #ff385c;
     text-decoration: none;
     font-size: 23px;
     border-radius: 13px;
+    cursor:pointer;
+}
+
+.frem a:hover{
+    background-color: #241a71;
 }

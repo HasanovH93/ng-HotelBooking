@@ -15,7 +15,9 @@
             <input  formControlName="password" type="password" class="input-field" placeholder="Enter Your Password" required>
         
             <input type="checkbox" class="check-box"><span>Remember password</span>
-            <button (click)="onLogin()" [disabled]="loginForm.invalid" type="button" class="submit-btn">Sign In</button>
+            <button (click)="onLogin()" [disabled]="loginForm.invalid && loading" type="button" class="submit-btn">Sign In</button>
+            
+          
         </form>
     </div>
    
