@@ -1,7 +1,8 @@
 const authController = require('express').Router();
 const {body, validationResult } = require('express-validator')
-const { register,login, logout, createToken } = require('../services/user');
+const { register,login, logout, createToken, getById } = require('../services/user');
 const { parseError } = require('../util/parser');
+const session = require('../middlewares/session');
 
 
 authController.post('/register', 
@@ -24,6 +25,8 @@ body('password').isLength({ min: 3}).withMessage('Password must be at least 3 ch
   }
 });
 
+
+
 authController.post('/login', async (req, res) => {
     try {
         const user=  await login(req.body.email, req.body.password);
@@ -37,6 +40,21 @@ authController.post('/login', async (req, res) => {
         res.status(401).json({ message })
        }
 });
+
+authController.get('/profile', session(), async (req, res) => {
+  try {
+    console.log("GET")
+    console.log(req.user)
+    const id = req.user._id;
+    console.log(id)
+    const user = await getById(id);
+    console.log(user)
+    const userData = removePassword(user);
+    res.status(200).send({userData})
+  } catch (error) {
+    res.status(401).send({message: error.message})
+  }
+})
 
 authController.get('/logout', async (req, res) => {
   const token = req.token

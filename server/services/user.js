@@ -6,6 +6,11 @@ const SECRET_PASSWORD = 'ljgfgjkhdghd123';
 
 const tokenBlackList = new Set();
 
+async function getById(id){
+    const user = await User.findById(id);
+    return user;
+}
+
 async function register(email,username,password){
 
     const existing = await User.findOne({email}).collation({ locale: 'en', strength: 2 });
@@ -68,5 +73,6 @@ module.exports = {
     login,
     logout,
     parseToken,
-    createToken
+    createToken,
+    getById
 }
