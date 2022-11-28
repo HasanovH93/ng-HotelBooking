@@ -6,6 +6,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http'
 import { userRoutingModule } from './user-routing.module';
 import { LoginComponent } from './login/login.component';
 import { ProfileComponent } from './profile/profile.component';
+import { SpinnerComponent } from '../shared/spinner/spinner.component';
 
 
 
@@ -15,6 +16,7 @@ import { ProfileComponent } from './profile/profile.component';
     RegisterComponent,
     LoginComponent,
     ProfileComponent,
+    SpinnerComponent
   ],
   imports: [
     CommonModule,

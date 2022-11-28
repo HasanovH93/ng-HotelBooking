@@ -1,4 +1,7 @@
-<div class="profile">
+<ng-container *ngIf="!currentUser">
+   <app-spinner></app-spinner>
+</ng-container>
+<div class="profile" *ngIf="currentUser">
 <div class="card">
     <div class="imgBox">
         <img src="/assets/icons/profile.jpg" alt="">
@@ -6,9 +9,9 @@
     <div class="content">
         <div class="details">
             <label for="username">Username:</label>
-            <h2>Hasan Hasanov</h2>
+            <h2>{{currentUser.userData.username}}</h2>
             <label for="email">Email:</label>
-            <h1>hasanovh14@gmail.com</h1>
+            <h1>{{currentUser.userData.email}}</h1>
             <div class="actionBtn">
                 <button>Edit Profile</button>
                 <button>Delete Profile</button>

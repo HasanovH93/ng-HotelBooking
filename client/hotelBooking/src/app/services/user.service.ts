@@ -15,12 +15,23 @@ export class UserService {
 
   private _registerUrl = 'http://localhost:3030/users/register';
   private loginUrl = 'http://localhost:3030/users/login';
+  private userUrl = 'http://localhost:3030/users/profile'
   
   constructor(
     private http: HttpClient,
     private route: Router,
     private dialogRef: MatDialog
+   
   ) {}
+ 
+
+ getUser(){
+  return this.http.get<IUser>(this.userUrl)
+ }
+
+ getToken() {
+  return this.userToken;
+}
 
   registerUser(user: User) {
     return this.http.post<IUser>(this._registerUrl, user).subscribe({
