@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { IUser } from 'src/app/modals/user';
 import { UserService } from 'src/app/services/user.service';
@@ -8,7 +8,7 @@ import { UserService } from 'src/app/services/user.service';
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss'],
 })
-export class ProfileComponent implements OnInit {
+export class ProfileComponent implements OnInit, OnDestroy {
   currentUser!: IUser;
   private userDataSubscription: Subscription;
   constructor(private userService: UserService) {}
@@ -18,10 +18,10 @@ export class ProfileComponent implements OnInit {
       .getUser()
       .subscribe((userData) => {
         this.currentUser = userData;
-        console.log(userData)
-        console.log(this.currentUser)
       });
+  }
 
-
+  ngOnDestroy(): void {
+    this.userDataSubscription.unsubscribe()
   }
 }

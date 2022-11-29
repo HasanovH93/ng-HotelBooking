@@ -5,6 +5,10 @@ import { PageNotFoundComponent } from './shared/page-not-found/page-not-found.co
 
 const routes: Routes = [
   {
+    path: 'auth',
+    loadChildren: () => import('./user/user.module').then((u) => u.UserModule)
+  },
+  {
     path: '',
     pathMatch: 'full',
     component: HomeComponent
