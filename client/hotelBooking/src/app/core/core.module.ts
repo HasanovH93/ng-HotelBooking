@@ -11,6 +11,7 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { DropdownDirective } from '../shared/directives/dropdown.directive';
 import { StickyMenuDirective } from '../shared/directives/sticky-menu.directive';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import { StickyMenuDirective } from '../shared/directives/sticky-menu.directive'
     BrowserAnimationsModule,
     RouterModule,
     MatSlideToggleModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    ReactiveFormsModule
   ],
   exports: [
     HeaderComponent,

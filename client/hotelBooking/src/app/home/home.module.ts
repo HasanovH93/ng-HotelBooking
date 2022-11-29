@@ -5,6 +5,7 @@ import { MatCardModule } from '@angular/material/card';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { FormsModule } from '@angular/forms';
 import { HomeComponent } from './home/home.component'
+import { homeRoutingModule } from './home-routing.module';
 
 
 
@@ -15,10 +16,12 @@ import { HomeComponent } from './home/home.component'
     HomeComponent,
   ],
   imports: [
+    
     CommonModule,
     MatCardModule,
     FontAwesomeModule,
-    FormsModule
+    FormsModule,
+    homeRoutingModule
   ],
   exports: [
     HotelViewComponent,
