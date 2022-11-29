@@ -3,7 +3,7 @@ const { parseToken } = require("../services/user");
 module.exports = () => (req, res, next) => {
 
   
-    const token = req.headers["x-authorization"].split(' ')[1]
+    const token = req.headers["authorization"].split(' ')[1]
     console.log(token)
 
   if (token) {
