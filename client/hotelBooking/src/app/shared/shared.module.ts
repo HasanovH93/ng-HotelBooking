@@ -8,7 +8,8 @@ import { SpinnerComponent } from './spinner/spinner.component';
 @NgModule({
   declarations: [
     PageNotFoundComponent,
-    SpinnerComponent
+    SpinnerComponent,
+
   ],
   imports: [
     CommonModule

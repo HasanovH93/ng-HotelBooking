@@ -7,6 +7,7 @@ import { userRoutingModule } from './user-routing.module';
 import { LoginComponent } from './login/login.component';
 import { ProfileComponent } from './profile/profile.component';
 import { SpinnerComponent } from '../shared/spinner/spinner.component';
+import { EditUserComponent } from './edit-user/edit-user.component';
 
 
 
@@ -16,7 +17,8 @@ import { SpinnerComponent } from '../shared/spinner/spinner.component';
     RegisterComponent,
     LoginComponent,
     ProfileComponent,
-    SpinnerComponent
+    SpinnerComponent,
+    EditUserComponent
   ],
   imports: [
     CommonModule,
@@ -27,7 +29,8 @@ import { SpinnerComponent } from '../shared/spinner/spinner.component';
   ], exports: [
     LoginComponent,
     RegisterComponent,
-    ProfileComponent
+    ProfileComponent,
+    EditUserComponent
   ]
 })
 export class UserModule { }
