@@ -5,7 +5,7 @@ import { faStar,faArrowAltCircleRight  } from '@fortawesome/free-regular-svg-ico
 @Component({
   selector: 'app-hotel-view',
   templateUrl: './hotel-view.component.html',
-  styleUrls: ['./hotel-view-component.css']
+  styleUrls: ['./hotel-view.component.scss']
 })
 export class HotelViewComponent implements OnInit {
    faStar = faStar

@@ -34,13 +34,6 @@ $grey-light: #f7f7f7;
   top: -50px;
 }
 
-// .header:has:not(.fixed){
-//   .noFixed {
-//     position: static;
-//     transition: 0.2s linear;
-//     top: -50px;
-//   }
-// }
 
 
 
@@ -68,7 +61,11 @@ $grey-light: #f7f7f7;
         font-weight: bold;
         margin-right: 50px;
         text-transform: uppercase;
+      
         color: $blue_bg;
+        &-link{
+          text-decoration: none;
+        }
         &-title {
           color: $pink;
         }

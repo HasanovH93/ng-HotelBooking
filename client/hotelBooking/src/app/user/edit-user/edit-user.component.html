@@ -30,7 +30,7 @@
           class="profile-card-content-details-inputGroup"
           *ngIf="currentUser"
         >
-          <label for="username">Username:</label>
+         <p>Username:</p>
           <input
             type="text"
             name="username"
@@ -38,7 +38,8 @@
             formControlName="username"
             class="profile-card-content-details-inputGroup-input-field"
           />
-          <label for="email">Email:</label>
+         
+          <p>Email:</p>
           <input
             type="email"
             name="email"
@@ -62,7 +63,7 @@
             type="file"
             class="profile-card-content-details-inputGroup-imageInput"
             accept="/image*"
-            formControlName="image"
+            
             #filePicker
             (change)="onImageUpload($event)"
           />
