@@ -2,7 +2,7 @@ const { parseToken } = require("../services/user");
 
 module.exports = () => (req, res, next) => {
 
-  
+  if(req.headers['authorization']){
     const token = req.headers["authorization"].split(' ')[1]
     // console.log(token)
 
@@ -15,5 +15,8 @@ module.exports = () => (req, res, next) => {
        return res.status(401).json({message: 'Invalid authorization token'})
     }
   }
+  }
+    
   next()
 };
+

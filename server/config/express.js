@@ -11,6 +11,7 @@ module.exports = (app) => {
     app.use("*", cors());
     app.use(express.json());
     app.use(trimBody());
+    app.use(session())
     // app.use(
     //     expressJwt({
     //       secret: "ljgfgjkhdghd123",

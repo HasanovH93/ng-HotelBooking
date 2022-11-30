@@ -1,8 +1,9 @@
+require('dotenv').config()
 const bcrypt = require('bcrypt');
 const User = require("../models/User");
 const jwt = require('jsonwebtoken');
 
-const SECRET_PASSWORD = 'ljgfgjkhdghd123';
+const SECRET_PASSWORD = process.env.JWT_SECRET_PASSWORD;
 
 const tokenBlackList = new Set();
 

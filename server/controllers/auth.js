@@ -2,7 +2,6 @@ const authController = require('express').Router();
 const {body, validationResult } = require('express-validator')
 const { register,login, logout, createToken, getById, editUser } = require('../services/user');
 const { parseError } = require('../util/parser');
-const session = require('../middlewares/session');
 const { s3UploadImg } = require('../middlewares/imagesUpload');
 
 
@@ -42,7 +41,7 @@ authController.post('/login', async (req, res) => {
        }
 });
 
-authController.get('/profile', session(), async (req, res) => {
+authController.get('/profile',  async (req, res) => {
   try {
     // console.log("GET")
     // console.log(req.user)
@@ -56,7 +55,7 @@ authController.get('/profile', session(), async (req, res) => {
     res.status(401).send({message: error.message})
   }
 })
-authController.put('/profile', session(), s3UploadImg(), async (req, res) => {
+authController.put('/profile',  s3UploadImg(), async (req, res) => {
   
   try {
     const { username, email } = req.body;

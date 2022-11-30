@@ -1,7 +1,7 @@
+require('dotenv').config()
 const S3 = require("aws-sdk/clients/s3");
 const multer = require("multer");
 const multerS3 = require("multer-s3");
-require('dotenv').config()
 
 const FILE_TYPE_MAP = {
     'image/png': 'png',
@@ -10,15 +10,15 @@ const FILE_TYPE_MAP = {
 };
 
 const s3 = new S3({
-    region: 'us-east-1',
-    accessKeyId: 'AKIAZTVL4J7WV3HB4NPB',
-    secretAccessKey: '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',
+    region: process.env.REGION,
+    accessKeyId: process.env.ACCESS_KEY,
+    secretAccessKey: process.env.SECRET_ACCESS_KEY,
 });
 
 const upload = multer({
     storage: multerS3({
         s3: s3,
-        bucket: 'hotelbooking-profile-picture-upload',
+        bucket: process.env.BUCKET_NAME,
         metadata: function (req, file, cb) {
             cb(null, { fieldName: file.fieldname });
         },
