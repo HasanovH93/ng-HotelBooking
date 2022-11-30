@@ -1,22 +1,27 @@
 <ng-container *ngIf="!currentUser">
-   <app-spinner></app-spinner>
+  <app-spinner></app-spinner>
 </ng-container>
 <div class="profile" *ngIf="currentUser">
-<div class="card">
-    <div class="imgBox">
-        <img src="/assets/icons/profile.jpg" alt="">
+  <div class="profile-card">
+    <div class="profile-card-imgBox">
+      <ng-container *ngIf="currentUser.userData.imageUrl">
+        <img src="{{ currentUser.userData.imageUrl }}" class="profile-card-imgBox-image" />
+      </ng-container>
+      <ng-container *ngIf="!currentUser.userData.imageUrl" class="profile-card-imgBox-image">
+        <img src="{{ defaultImg }}" class="image" />
+      </ng-container>
     </div>
-    <div class="content">
-        <div class="details">
-            <label for="username">Username:</label>
-            <h2>{{currentUser.userData.username}}</h2>
-            <label for="email">Email:</label>
-            <h1>{{currentUser.userData.email}}</h1>
-            <div class="actionBtn">
-                <button routerLink="/auth/edit-profile">Edit Profile</button>
-                <button>Delete Profile</button>
-            </div>
+    <div class="profile-card-content">
+      <div class="profile-card-content-details">
+        <label for="username">Username:</label>
+        <p class="profile-card-content-details-username">{{ currentUser.userData.username }}</p>
+        <label for="email">Email:</label>
+        <p class="profile-card-content-details-email">{{ currentUser.userData.email }}</p>
+        <div class="profile-card-content-details-actionBtn">
+          <button routerLink="/auth/edit-profile">Edit Profile</button>
+          <button>Delete Profile</button>
         </div>
+      </div>
     </div>
-</div>
+  </div>
 </div>
