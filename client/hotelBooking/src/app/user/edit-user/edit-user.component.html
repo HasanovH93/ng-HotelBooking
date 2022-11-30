@@ -1,32 +1,87 @@
 <ng-container *ngIf="!currentUser">
-    <app-spinner></app-spinner>
- </ng-container>
+  <app-spinner></app-spinner>
+</ng-container>
 <div class="profile">
- <div class="card">
-     <div class="imgBox" *ngIf="currentUser">
-        <ng-container *ngIf="imagePreview" >
-         <img  [src]="imagePreview ? imagePreview : currentUser.userData.imageUrl " alt="">
-        </ng-container>
-        <ng-container *ngIf="!imagePreview">
-            <img  [src]="currentUser.userData.imageUrl ? currentUser.userData.imageUrl : defaultImg" alt="">
-        </ng-container>
-       
-     </div>
-     <div class="content">
-         <div class="details">
-            <form [formGroup]="editForm" class="inputGroup" *ngIf="currentUser">
-             <label for="username">Username:</label>
-             <input type="text" name="username"  [ngModel]="currentUser.userData.username" formControlName="username"  class="input-field">
-             <label for="email">Email:</label>
-             <input type="email" name="email"  [ngModel]="currentUser.userData.email" formControlName="email"  class="input-field">
-             <button type="button" class="uploadBtn" (click)="filePicker.click()"><img class="upload" src="/assets/icons/upload-solid.svg" alt=""> Upload image</button>
-             <input type="file" class="imageInput"  accept="/image*" formControlName="image" #filePicker  (change)="onImageUpload($event)">
-             <div class="actionBtn">
-                 <button (click)="onSubmit()">Save</button>
-                 <button (click)="onCancel()">Cancel</button>
-             </div>
-            </form>
-         </div>
-     </div>
- </div>
- </div>
+  <div class="profile-card">
+    <div class="profile-card-imgBox" *ngIf="currentUser">
+      <ng-container *ngIf="imagePreview">
+        <img
+          class="profile-card-imgBox-image"
+          [src]="imagePreview ? imagePreview : currentUser.userData.imageUrl"
+          alt=""
+        />
+      </ng-container>
+      <ng-container *ngIf="!imagePreview">
+        <img
+          class="profile-card-imgBox-image"
+          [src]="
+            currentUser.userData.imageUrl
+              ? currentUser.userData.imageUrl
+              : defaultImg
+          "
+          alt=""
+        />
+      </ng-container>
+    </div>
+    <div class="profile-card-content">
+      <div class="profile-card-content-details">
+        <form
+          [formGroup]="editForm"
+          class="profile-card-content-details-inputGroup"
+          *ngIf="currentUser"
+        >
+          <label for="username">Username:</label>
+          <input
+            type="text"
+            name="username"
+            [ngModel]="currentUser.userData.username"
+            formControlName="username"
+            class="profile-card-content-details-inputGroup-input-field"
+          />
+          <label for="email">Email:</label>
+          <input
+            type="email"
+            name="email"
+            [ngModel]="currentUser.userData.email"
+            formControlName="email"
+            class="profile-card-content-details-inputGroup-input-field"
+          />
+          <button
+            type="button"
+            class="profile-card-content-details-inputGroup-uploadBtn"
+            (click)="filePicker.click()"
+          >
+            <img
+              class="profile-card-content-details-inputGroup-uploadBtn-upload"
+              src="/assets/icons/upload-solid.svg"
+              alt=""
+            />
+            Upload image
+          </button>
+          <input
+            type="file"
+            class="profile-card-content-details-inputGroup-imageInput"
+            accept="/image*"
+            formControlName="image"
+            #filePicker
+            (change)="onImageUpload($event)"
+          />
+          <div class="profile-card-content-details-inputGroup-actionBtn">
+            <button
+              class="profile-card-content-details-inputGroup-actionBtn-buttons"
+              (click)="onSubmit()"
+            >
+              Save
+            </button>
+            <button
+              class="profile-card-content-details-inputGroup-actionBtn-buttons"
+              (click)="onCancel()"
+            >
+              Cancel
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
