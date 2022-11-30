@@ -1,19 +1,28 @@
+<ng-container *ngIf="!currentUser">
+    <app-spinner></app-spinner>
+ </ng-container>
 <div class="profile">
  <div class="card">
-     <div class="imgBox">
-         <img src="/assets/icons/profile.jpg" alt="">
+     <div class="imgBox" *ngIf="currentUser">
+        <ng-container *ngIf="imagePreview" >
+         <img  [src]="imagePreview ? imagePreview : currentUser.userData.imageUrl " alt="">
+        </ng-container>
+        <ng-container *ngIf="!imagePreview">
+            <img  [src]="currentUser.userData.imageUrl ? currentUser.userData.imageUrl : defaultImg" alt="">
+        </ng-container>
+       
      </div>
      <div class="content">
          <div class="details">
-            <form [formGroup]="editForm" class="inputGroup">
+            <form [formGroup]="editForm" class="inputGroup" *ngIf="currentUser">
              <label for="username">Username:</label>
-             <input type="text" name="username" formControlName="username" class="input-field">
+             <input type="text" name="username"  [ngModel]="currentUser.userData.username" formControlName="username"  class="input-field">
              <label for="email">Email:</label>
-             <input type="email" name="email" formControlName="email" class="input-field">
+             <input type="email" name="email"  [ngModel]="currentUser.userData.email" formControlName="email"  class="input-field">
              <button type="button" class="uploadBtn" (click)="filePicker.click()"><img class="upload" src="/assets/icons/upload-solid.svg" alt=""> Upload image</button>
-             <input type="file" class="imageInput"  accept="/image" formControlName="image" #filePicker  (change)="onImageUpload($event)">
+             <input type="file" class="imageInput"  accept="/image*" formControlName="image" #filePicker  (change)="onImageUpload($event)">
              <div class="actionBtn">
-                 <button>Save</button>
+                 <button (click)="onSubmit()">Save</button>
                  <button (click)="onCancel()">Cancel</button>
              </div>
             </form>

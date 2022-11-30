@@ -10,6 +10,7 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class ProfileComponent implements OnInit, OnDestroy {
   currentUser!: IUser;
+  defaultImg: string = '../../../assets/icons/user-profile.png';
   private userDataSubscription: Subscription;
   constructor(private userService: UserService) {}
 
@@ -18,6 +19,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
       .getUser()
       .subscribe((userData) => {
         this.currentUser = userData;
+        console.log(this.currentUser)
       });
   }
 

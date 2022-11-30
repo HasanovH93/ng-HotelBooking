@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Subscription } from 'rxjs';
+import { IUser } from 'src/app/modals/user';
 import { UserService } from 'src/app/services/user.service';
 import { LoginComponent } from 'src/app/user/login/login.component';
 import { RegisterComponent } from 'src/app/user/register/register.component';
@@ -12,6 +13,8 @@ import { RegisterComponent } from 'src/app/user/register/register.component';
 export class HeaderComponent implements OnInit, OnDestroy {
   userLoggedIn: boolean = false;
   userServiceSub!: Subscription;
+  userDataSubscription: Subscription
+  currentUser: IUser
   
 
 
@@ -23,9 +26,13 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
     this.userServiceSub = this.userService.getAuthStatusListener().subscribe((isAuthenticated) => {
       this.userLoggedIn = isAuthenticated;
+
     })
 
   }
+
+
+
 ngOnDestroy(): void {
   this.userServiceSub.unsubscribe()
 }

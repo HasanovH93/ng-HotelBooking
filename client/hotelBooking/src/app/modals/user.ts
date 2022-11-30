@@ -5,6 +5,7 @@ export interface IUser{
         id: string;
         email: string;
         username: string;
+        imageUrl: string;
         password: string;
     };
    

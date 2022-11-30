@@ -1,8 +1,9 @@
 const authController = require('express').Router();
 const {body, validationResult } = require('express-validator')
-const { register,login, logout, createToken, getById } = require('../services/user');
+const { register,login, logout, createToken, getById, editUser } = require('../services/user');
 const { parseError } = require('../util/parser');
 const session = require('../middlewares/session');
+const { s3UploadImg } = require('../middlewares/imagesUpload');
 
 
 authController.post('/register', 
@@ -43,16 +44,42 @@ authController.post('/login', async (req, res) => {
 
 authController.get('/profile', session(), async (req, res) => {
   try {
-    console.log("GET")
-    console.log(req.user)
+    // console.log("GET")
+    // console.log(req.user)
     const id = req.user._id;
-    console.log(id)
+    // console.log(id)
     const user = await getById(id);
-    console.log(user)
+    // console.log(user)
     const userData = removePassword(user);
     res.status(200).send({userData})
   } catch (error) {
     res.status(401).send({message: error.message})
+  }
+})
+authController.put('/profile', session(), s3UploadImg(), async (req, res) => {
+  
+  try {
+    const { username, email } = req.body;
+   if(req.files.length > 0){
+    req.body.imageUrl = req.files[0].location
+   }else if(req.body.img && req.files.length <= 0) {
+     req.body.imageUrl = req.body.img
+   }
+    console.log(req.body.imageUrl)
+   const user = await editUser(
+    req.user._id,
+    username,
+    email,
+    req.body.imageUrl
+   );
+   console.log(user)
+   const token = createToken(user);
+   const userData = removePassword(user)
+    console.log(userData)
+   res.status(201).send({  userData, token, expiresIn: 3600 });
+
+  } catch (err) {
+    res.status(400).json({ message: err.message });
   }
 })
 
@@ -64,13 +91,14 @@ authController.get('/logout', async (req, res) => {
 })
 
 const removePassword = (data) => {
-  const { email, id, username } =
+  const { email, id, username, imageUrl } =
     data;
 
   const userData = {
     email,
     id,
     username,
+    imageUrl,
   };
   return userData;
 };

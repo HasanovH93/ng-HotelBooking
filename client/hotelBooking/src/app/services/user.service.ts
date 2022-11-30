@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { IUser, User } from '../modals/user';
 import { Subject, throwError } from 'rxjs';
 import { Router } from '@angular/router';
@@ -15,23 +15,28 @@ export class UserService {
 
   private _registerUrl = 'http://localhost:3030/users/register';
   private loginUrl = 'http://localhost:3030/users/login';
-  private userUrl = 'http://localhost:3030/users/profile'
-  
+  private userUrl = 'http://localhost:3030/users/profile';
+
   constructor(
     private http: HttpClient,
     private route: Router,
     private dialogRef: MatDialog
-   
   ) {}
- 
 
- getUser(){
-  return this.http.get<IUser>(this.userUrl)
- }
 
- getToken() {
-  return this.userToken;
-}
+
+  getUser() {
+    return this.http.get<IUser>(this.userUrl);
+  }
+
+  getToken() {
+    return this.userToken;
+  }
+
+  editUser(body: {}) {
+    console.log(body);
+    return this.http.put(this.userUrl, body);
+  }
 
   registerUser(user: User) {
     return this.http.post<IUser>(this._registerUrl, user).subscribe({
@@ -109,7 +114,4 @@ export class UserService {
 
     return { token, userId: userId };
   }
-
-
-
 }

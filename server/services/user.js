@@ -10,6 +10,14 @@ async function getById(id){
     const user = await User.findById(id);
     return user;
 }
+async function editUser(userId,username,email,imageUrl){
+    const user = await User.findById(userId)
+    user.username = username;
+    user.email = email;
+    user.imageUrl = imageUrl
+    user.save()
+    return user;
+}
 
 async function register(email,username,password){
 
@@ -74,5 +82,6 @@ module.exports = {
     logout,
     parseToken,
     createToken,
-    getById
+    getById,
+    editUser
 }
