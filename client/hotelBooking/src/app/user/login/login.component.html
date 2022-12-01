@@ -1,24 +1,47 @@
-<div class="hero">
-    <div class="form-box">
-        <div class="heading">
-            <h3>Sign In</h3>
-        </div>
-        <div class="social-icons">
-            <img src="/assets/user/fb.png" alt="">
-            <img src="/assets/user/gp.png" alt="">
-            <img src="/assets/user/tw.png" alt="">
-        </div>
-        <form [formGroup]="loginForm"   class="inputGroup" >
-            <input  formControlName="email" type="text" class="input-field" placeholder="Enter Your email" required>
-            <span *ngIf="!loginForm.get('email')?.valid && loginForm.get('email')?.touched" class="error-block">Please Enter a Valid Email</span>
-            
-            <input  formControlName="password" type="password" class="input-field" placeholder="Enter Your Password" required>
-        
-            <input type="checkbox" class="check-box"><span>Remember password</span>
-            <button (click)="onLogin()" [disabled]="loginForm.invalid && loading" type="button" class="submit-btn">Sign In</button>
-            
-          
-        </form>
-    </div>
+<div class="login">
+  <div class="login-heading">
+    <h3>Sign In</h3>
+  </div>
+  <div class="login-social-icons">
+    <img class="login-social-icons-image" src="/assets/user/fb.png" alt="" />
+    <img class="login-social-icons-image" src="/assets/user/gp.png" alt="" />
+    <img class="login-social-icons-image" src="/assets/user/tw.png" alt="" />
+  </div>
+  <form [formGroup]="loginForm" class="login-inputGroup">
+    <input
+      formControlName="email"
+      type="text"
+      class="login-inputGroup-input-field"
+      placeholder="Enter Your email"
+      required
+    />
+    <span
+      class="login-inputGroup-error-block"
+      *ngIf="!loginForm.get('email')?.valid && loginForm.get('email')?.touched"
+      >Please Enter a Valid Email</span
+    >
+
+    <input
+      formControlName="password"
+      [type]="showPassword ? 'text' : 'password'"
+      class="login-inputGroup-input-field"
+      placeholder="Enter Your Password"
+      required
+    />
+    <img (click)="toggleShow()" class="login-inputGroup-showPassword" src="/assets/icons/eye-solid.svg" *ngIf="!showPassword" alt="">
+    <img (click)="toggleShow()" class="login-inputGroup-showPassword" src="/assets/icons/eye-slash-solid.svg" *ngIf="showPassword" alt="">
+
+    <input type="checkbox" class="login-inputGroup-check-box" /><span
+      >Remember password</span
+    >
    
+    <button
+      type="button"
+      class="login-inputGroup-submit-btn"
+      (click)="onLogin()"
+      [disabled]="loginForm.invalid && loading"
+    >
+      Sign In
+    </button>
+  </form>
 </div>

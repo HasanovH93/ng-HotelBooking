@@ -12,6 +12,7 @@ import { UserService } from 'src/app/services/user.service';
 export class LoginComponent implements OnInit {
   loading: boolean = false;
   authStatusSubscription!: Subscription
+  showPassword = false;
 
   loginForm: FormGroup = this.formBuilder.group({
     email: new FormControl(null, [Validators.required, Validators.email]),
@@ -34,6 +35,10 @@ export class LoginComponent implements OnInit {
     console.log(this.loginForm.value)
 
     this.userService.loginUser(this.loginForm.value)
+  }
+
+  toggleShow(){
+    this.showPassword = !this.showPassword
   }
 
 }
