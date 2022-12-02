@@ -28,17 +28,17 @@ export class EditUserComponent implements OnInit, OnDestroy {
     private userService: UserService
   ) {}
 
-
   ngOnInit(): void {
     this.userDataSubscription = this.userService
       .getUser()
       .subscribe((userData) => {
         this.currentUser = userData;
-        this.editForm.patchValue({ 'username' :this.currentUser.userData.username})
-        this.editForm.patchValue({ 'email' : this.currentUser.userData.email})
+        this.editForm.patchValue({
+          username: this.currentUser.userData.username,
+        });
+        this.editForm.patchValue({ email: this.currentUser.userData.email });
       });
   }
-  
 
   onImageUpload(event: Event) {
     let file: any = (event.target as HTMLInputElement).files;
@@ -58,7 +58,7 @@ export class EditUserComponent implements OnInit, OnDestroy {
   onSubmit() {
     const formData = new FormData();
     formData.set('email', this.editForm.value.email),
-    formData.set('username', this.editForm.value.username);
+      formData.set('username', this.editForm.value.username);
 
     if (this.editForm.value.image != 'null') {
       formData.append('img', this.editForm.value.image);
@@ -71,11 +71,7 @@ export class EditUserComponent implements OnInit, OnDestroy {
 
     this.userService.editUser(formData).subscribe({
       complete: () => {
-        // window.location.reload();
         this.router.navigate(['/auth/profile']);
-      },
-      error: (err) => {
-        console.log(err.error.message);
       },
     });
   }

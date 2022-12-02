@@ -12,7 +12,7 @@ export class UserService {
   private authStatusListener = new Subject<boolean>();
   private isAuthenticated: boolean = false;
   private userId!: string | null;
-  private _refreshNeeds = new Subject<void>()
+  private _refreshNeeds = new Subject<void>();
 
   private _registerUrl = 'http://localhost:3030/users/register';
   private loginUrl = 'http://localhost:3030/users/login';
@@ -24,9 +24,8 @@ export class UserService {
     private dialogRef: MatDialog
   ) {}
 
-
-  get refreshNeeds(){
-   return this._refreshNeeds;
+  get refreshNeeds() {
+    return this._refreshNeeds;
   }
 
   getUser() {
@@ -39,11 +38,11 @@ export class UserService {
 
   editUser(body: {}) {
     console.log(body);
-    return this.http.put(this.userUrl, body).pipe(
+    return this.http.put<IUser>(this.userUrl, body).pipe(
       tap(() => {
-        this._refreshNeeds.next()
+        this._refreshNeeds.next();
       })
-    )
+    );
   }
 
   registerUser(user: User) {
@@ -61,7 +60,6 @@ export class UserService {
       },
     });
   }
-
 
   getIsLoggedIn() {
     return this.isAuthenticated;
