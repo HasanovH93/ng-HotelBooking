@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { IUser, User } from '../modals/user';
-import { Subject, throwError } from 'rxjs';
+import { Subject, tap, throwError } from 'rxjs';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 @Injectable({
@@ -12,6 +12,7 @@ export class UserService {
   private authStatusListener = new Subject<boolean>();
   private isAuthenticated: boolean = false;
   private userId!: string | null;
+  private _refreshNeeds = new Subject<void>()
 
   private _registerUrl = 'http://localhost:3030/users/register';
   private loginUrl = 'http://localhost:3030/users/login';
@@ -24,6 +25,9 @@ export class UserService {
   ) {}
 
 
+  get refreshNeeds(){
+   return this._refreshNeeds;
+  }
 
   getUser() {
     return this.http.get<IUser>(this.userUrl);
@@ -35,7 +39,11 @@ export class UserService {
 
   editUser(body: {}) {
     console.log(body);
-    return this.http.put(this.userUrl, body);
+    return this.http.put(this.userUrl, body).pipe(
+      tap(() => {
+        this._refreshNeeds.next()
+      })
+    )
   }
 
   registerUser(user: User) {
@@ -53,6 +61,7 @@ export class UserService {
       },
     });
   }
+
 
   getIsLoggedIn() {
     return this.isAuthenticated;
@@ -72,6 +81,7 @@ export class UserService {
       this.setUserData(token, this.userId);
       this.dialogRef.closeAll();
       this.route.navigate(['/']);
+      window.location.reload();
     }
   }
 

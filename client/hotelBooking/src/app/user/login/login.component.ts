@@ -5,7 +5,6 @@ import { Subscription } from 'rxjs';
 import { UserService } from 'src/app/services/user.service';
 import { MatDialog } from '@angular/material/dialog';
 import { RegisterComponent } from '../register/register.component';
-import { DialogRef } from '@angular/cdk/dialog';
 
 @Component({
   selector: 'app-login',

@@ -28,13 +28,17 @@ export class EditUserComponent implements OnInit, OnDestroy {
     private userService: UserService
   ) {}
 
+
   ngOnInit(): void {
     this.userDataSubscription = this.userService
       .getUser()
       .subscribe((userData) => {
         this.currentUser = userData;
+        this.editForm.patchValue({ 'username' :this.currentUser.userData.username})
+        this.editForm.patchValue({ 'email' : this.currentUser.userData.email})
       });
   }
+  
 
   onImageUpload(event: Event) {
     let file: any = (event.target as HTMLInputElement).files;
@@ -67,6 +71,7 @@ export class EditUserComponent implements OnInit, OnDestroy {
 
     this.userService.editUser(formData).subscribe({
       complete: () => {
+        // window.location.reload();
         this.router.navigate(['/auth/profile']);
       },
       error: (err) => {

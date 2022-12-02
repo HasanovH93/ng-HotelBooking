@@ -27,7 +27,6 @@ import { CoreModule } from '../core/core.module';
     ReactiveFormsModule,
     HttpClientModule,
     userRoutingModule,
-    CoreModule
   ], exports: [
     LoginComponent,
     RegisterComponent,
