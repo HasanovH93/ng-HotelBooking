@@ -181,6 +181,7 @@ $grey-light: #f7f7f7;
           width: 30px;
           height: 30px;
         }
+
         &-user {
           border-radius: 50%;
           height: 100%;
@@ -190,6 +191,10 @@ $grey-light: #f7f7f7;
         .dropdown-menu {
           display: none;
         }
+      }
+      &-default {
+        width: 30px;
+          height: 30px;
       }
     }
     .open {

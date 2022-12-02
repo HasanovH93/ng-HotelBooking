@@ -15,6 +15,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   userLoggedIn: boolean = false;
   userServiceSub!: Subscription;
   userDataSubscription: Subscription;
+  getUserSubscription : Subscription
   currentUser: IUser;
 
   constructor(private dialogRef: MatDialog, private userService: UserService) {}
@@ -27,19 +28,22 @@ export class HeaderComponent implements OnInit, OnDestroy {
       .subscribe((isAuthenticated) => {
         this.userLoggedIn = isAuthenticated;
       });
+  
 
-    this.userDataSubscription = this.userService.refreshNeeds.subscribe(() => {
+    if (this.userLoggedIn) {
+      this.getUserSubscription = this.userService.refreshNeeds.subscribe(
+        () => {
+          this.getUser();
+        }
+      );
       this.getUser();
-    });
-    this.getUser();
-
+    }
 
     
-   
   }
 
   private getUser() {
-    this.userService.getUser().subscribe((userData) => {
+   this. userDataSubscription =  this.userService.getUser().subscribe((userData) => {
       this.currentUser = userData;
     });
   }
@@ -47,6 +51,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.userServiceSub.unsubscribe();
     this.userDataSubscription.unsubscribe();
+    this.getUserSubscription.unsubscribe();
   }
 
   openDialogRegister() {

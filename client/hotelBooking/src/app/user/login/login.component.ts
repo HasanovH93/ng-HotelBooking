@@ -29,6 +29,9 @@ export class LoginComponent implements OnInit {
     this.authStatusSubscription = this.userService.getAuthStatusListener().subscribe(status => {
       this.loading = false;
     })
+
+    
+    
   }
 
   onLogin(): void{
@@ -39,6 +42,7 @@ export class LoginComponent implements OnInit {
 
     this.userService.loginUser(this.loginForm.value)
   }
+
 
   toggleShow(){
     this.showPassword = !this.showPassword
