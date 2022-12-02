@@ -1,11 +1,11 @@
 <div class="login">
   <div class="login-heading">
-    <h3>Sign In</h3>
+    <h3 class="login-heading-h3">Sign In</h3>
   </div>
   <div class="login-social-icons">
-    <img class="login-social-icons-image" src="/assets/user/fb.png" alt="" />
-    <img class="login-social-icons-image" src="/assets/user/gp.png" alt="" />
-    <img class="login-social-icons-image" src="/assets/user/tw.png" alt="" />
+    <img class="login-social-icons-image" src="/assets/icons/facebook.svg" alt="" />
+    <img class="login-social-icons-image" src="/assets/icons/instagram.svg" alt="" />
+    <img class="login-social-icons-image" src="/assets/icons/youtube.svg" alt="" />
   </div>
   <form [formGroup]="loginForm" class="login-inputGroup">
     <input
@@ -44,4 +44,5 @@
       Sign In
     </button>
   </form>
+  <p class="login-signup">Don't have an account? <span class="login-signup-click" (click)="openDialogRegister()">Sign up!</span> </p>
 </div>

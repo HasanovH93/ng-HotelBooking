@@ -1,3 +1,5 @@
+$pink: #ff385c;
+$blue_bg: #241a71;
 .login {
   width: 380px;
   height: 480px;
@@ -10,6 +12,9 @@
 
   &-heading {
     margin-left: 150px;
+    &-h3{
+      font-size:24px;
+    }
   }
 
   &-social-icons {
@@ -17,7 +22,7 @@
     text-align: center;
 
     &-image {
-      width: 30px;
+      height: 30px;
       margin: 0 12px;
       box-shadow: 0 0 20px 0 #7f7f7f3d;
       cursor: pointer;
@@ -63,15 +68,29 @@
       bottom: 68px;
     }
     &-submit-btn {
+      font-size: 15px;
       width: 85%;
-      padding: 10px 30px;
+      padding: 15px 20px;
       cursor: pointer;
+      color:white;
       display: block;
       margin: auto;
-      background: linear-gradient(to right, #241a71, #f6685e);
+      top:10px;
+      background: $pink;
       border: 0;
       outline: none;
       border-radius: 30px;
+    }
+    &-submit-btn:hover{
+      background-color: $blue_bg;
+    }
+  }
+  &-signup{
+    margin-left:65px;
+    margin-top:60px;
+    &-click{
+      cursor: pointer;
+      color: $blue_bg;
     }
   }
 }

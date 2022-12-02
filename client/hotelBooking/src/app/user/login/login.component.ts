@@ -3,6 +3,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { Subscription } from 'rxjs';
 import { UserService } from 'src/app/services/user.service';
+import { MatDialog } from '@angular/material/dialog';
+import { RegisterComponent } from '../register/register.component';
+import { DialogRef } from '@angular/cdk/dialog';
 
 @Component({
   selector: 'app-login',
@@ -18,9 +21,10 @@ export class LoginComponent implements OnInit {
     email: new FormControl(null, [Validators.required, Validators.email]),
     password: new FormControl(null, [Validators.required, Validators.minLength(5)]),
   })
+ 
 
 
-  constructor(private formBuilder: FormBuilder, private userService: UserService) { }
+  constructor(private formBuilder: FormBuilder, private userService: UserService , private dialogRef: MatDialog) { }
 
   ngOnInit(): void {
     this.authStatusSubscription = this.userService.getAuthStatusListener().subscribe(status => {
@@ -39,6 +43,11 @@ export class LoginComponent implements OnInit {
 
   toggleShow(){
     this.showPassword = !this.showPassword
+  }
+
+  openDialogRegister() {
+    this.dialogRef.closeAll()
+    this.dialogRef.open(RegisterComponent);
   }
 
 }

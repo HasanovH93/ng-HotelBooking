@@ -8,6 +8,7 @@ import { LoginComponent } from './login/login.component';
 import { ProfileComponent } from './profile/profile.component';
 import { SpinnerComponent } from '../shared/spinner/spinner.component';
 import { EditUserComponent } from './edit-user/edit-user.component';
+import { CoreModule } from '../core/core.module';
 
 
 
@@ -25,7 +26,8 @@ import { EditUserComponent } from './edit-user/edit-user.component';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    userRoutingModule
+    userRoutingModule,
+    CoreModule
   ], exports: [
     LoginComponent,
     RegisterComponent,
