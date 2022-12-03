@@ -7,7 +7,7 @@ import { MatDialog } from '@angular/material/dialog';
 @Injectable({
   providedIn: 'root',
 })
-export class UserService  {
+export class UserService {
   private userToken!: string;
   private authStatusListener = new Subject<boolean>();
   private isAuthenticated: boolean = false;
@@ -25,10 +25,8 @@ export class UserService  {
   ) {}
 
   get refreshNeeds() {
-    return this._refreshNeeds;
+    return this._refreshNeeds.asObservable();
   }
-
-
 
   getUser() {
     return this.http.get<IUser>(this.userUrl);
@@ -51,7 +49,6 @@ export class UserService  {
     return this.http.post<IUser>(this._registerUrl, user).subscribe({
       next: (res) => {
         this.setUser(res);
-        this.refreshNeeds.next()
       },
     });
   }
@@ -60,7 +57,6 @@ export class UserService  {
     this.http.post<IUser>(this.loginUrl, data).subscribe({
       next: (res) => {
         this.setUser(res);
-        this.refreshNeeds.next()
       },
     });
   }
@@ -80,6 +76,7 @@ export class UserService  {
       this.userId = res.userData.id;
       this.isAuthenticated = true;
       this.authStatusListener.next(true);
+      this._refreshNeeds.next();
       this.setUserData(token, this.userId);
       this.dialogRef.closeAll();
       this.route.navigate(['/']);
@@ -125,6 +122,4 @@ export class UserService  {
 
     return { token, userId: userId };
   }
-
-
 }

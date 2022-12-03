@@ -16,6 +16,5 @@ export type User = {
         email: string;
         username: string;
         password: string;
-        rePass: string
       
 }
