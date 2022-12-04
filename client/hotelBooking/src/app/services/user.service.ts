@@ -1,18 +1,25 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnDestroy } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { IUser, User } from '../modals/user';
-import { Subject, tap, throwError } from 'rxjs';
+import {  Subject, tap } from 'rxjs';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
+import { LoginComponent } from '../user/login/login.component';
 @Injectable({
   providedIn: 'root',
 })
-export class UserService {
+export class UserService implements OnDestroy {
   private userToken!: string;
+  private tokenTime!: any;
   private authStatusListener = new Subject<boolean>();
-  private isAuthenticated: boolean = false;
   private userId!: string | null;
   private _refreshNeeds = new Subject<void>();
+
+  private isAuthenticated : boolean;
+
+
+
+
 
   private _registerUrl = 'http://localhost:3030/users/register';
   private loginUrl = 'http://localhost:3030/users/login';
@@ -28,8 +35,14 @@ export class UserService {
     return this._refreshNeeds.asObservable();
   }
 
+  getIsLoggedIn() {
+    return this.isAuthenticated;
+  }
+  
+
+
   getUser() {
-    return this.http.get<IUser>(this.userUrl);
+    return this.http.get<IUser>(this.userUrl)
   }
 
   getToken() {
@@ -53,17 +66,15 @@ export class UserService {
     });
   }
 
-  loginUser(data: { email: string; password: string }) {
-    this.http.post<IUser>(this.loginUrl, data).subscribe({
+  loginUser(data: { email: string; password: string}) {
+   return this.http.post<IUser>(this.loginUrl, data).subscribe({
       next: (res) => {
-        this.setUser(res);
+      this.setUser(res);
       },
     });
   }
 
-  getIsLoggedIn() {
-    return this.isAuthenticated;
-  }
+
 
   getAuthStatusListener() {
     return this.authStatusListener.asObservable();
@@ -73,11 +84,14 @@ export class UserService {
     const token = res.token;
     this.userToken = token;
     if (token) {
+      const tokenDuration = res.expiresIn;
+      this.setAuthTimer(tokenDuration);
       this.userId = res.userData.id;
       this.isAuthenticated = true;
       this.authStatusListener.next(true);
-      this._refreshNeeds.next();
-      this.setUserData(token, this.userId);
+      const timeNow = new Date();
+      const tokenData = new Date(timeNow.getTime() + tokenDuration * 1000);
+      this.setUserData(token, tokenData, this.userId);
       this.dialogRef.closeAll();
       this.route.navigate(['/']);
     }
@@ -85,8 +99,9 @@ export class UserService {
 
   logout() {
     this.userToken = '';
-    this.isAuthenticated = false;
     this.authStatusListener.next(false);
+    this.isAuthenticated = false;
+    clearTimeout(this.tokenTime);
     this.userId = '';
     this.clearUserData();
     this.route.navigate(['/']);
@@ -97,29 +112,48 @@ export class UserService {
     if (!userData) {
       return;
     }
-
-    if (userData.token) {
+    const now = new Date();
+    const expiresIn = userData.expirationDate.getTime() - now.getTime();
+    if (expiresIn > 0) {
       this.userToken = userData.token;
       this.userId = userData.userId;
+      this.setAuthTimer(expiresIn / 1000);
       this.isAuthenticated = true;
       this.authStatusListener.next(true);
+      // this._refreshNeeds.next();
     }
+  }
+
+  private setAuthTimer(duration: number) {
+    this.tokenTime = setTimeout(() => {
+      this.logout();
+      this.dialogRef.open(LoginComponent);
+    }, duration * 1000);
   }
 
   private clearUserData() {
     localStorage.removeItem('token');
+    localStorage.removeItem('expiration');
     localStorage.removeItem('userId');
   }
 
-  private setUserData(token: string, userId: string) {
+  private setUserData(token: string, tokenData: Date, userId: string) {
     localStorage.setItem('token', token);
+    localStorage.setItem('expiration', tokenData.toISOString());
     localStorage.setItem('userId', userId);
   }
 
   private getUserData() {
     const token = localStorage.getItem('token');
+    const expDate = localStorage.getItem('expiration');
     const userId = localStorage.getItem('userId');
 
-    return { token, userId: userId };
+    if (!token || !expDate) {
+      return;
+    }
+
+    return { token, expirationDate: new Date(expDate), userId: userId };
   }
+
+  ngOnDestroy(): void {}
 }

@@ -31,8 +31,8 @@
 
       <div class="right-menu-icons" appDropdown>
         <img class="right-menu-icons-dropdown" src="/assets/icons/hamburger.svg" alt="Hamburger" />
-        <div class="right-menu-icons-imgBox" *ngIf="currentUser && userLoggedIn">
-       <img class="right-menu-icons-user" src="{{currentUser.userData.imageUrl}}"  />
+        <div class="right-menu-icons-imgBox" *ngIf="userLoggedIn ">
+       <img class="right-menu-icons-user" src="{{currImage}}"  />
           
         </div>
         <ng-container *ngIf="!userLoggedIn">

@@ -37,8 +37,6 @@ export class LoginComponent implements OnInit {
   onLogin(): void{
     this.loading = true
     const { email, password } = this.loginForm.value;
-    const body = { email, password };
-    console.log(this.loginForm.value)
 
     this.userService.loginUser(this.loginForm.value)
   }
