@@ -1,4 +1,10 @@
-import { Component, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
+import {
+  Component,
+  OnChanges,
+  OnDestroy,
+  OnInit,
+  SimpleChanges,
+} from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Subscription } from 'rxjs';
 import { IUser } from 'src/app/modals/user';
@@ -10,46 +16,40 @@ import { RegisterComponent } from 'src/app/user/register/register.component';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
 })
-export class HeaderComponent implements OnInit,  OnDestroy {
+export class HeaderComponent implements OnInit, OnDestroy {
   defaultImg: string = '../../../assets/icons/account.svg';
   userLoggedIn: boolean = false;
   userServiceSub!: Subscription;
   userDataSubscription: Subscription;
   getUserSubscription: Subscription;
-  currentUser: IUser;
+  currentUser: IUser | null;
   currImage: string;
 
   constructor(private dialogRef: MatDialog, private userService: UserService) {}
 
   ngOnInit(): void {
     this.userLoggedIn = this.userService.getIsLoggedIn();
+    if (this.userLoggedIn) {
+      this.getUser();
+    }
 
     this.userServiceSub = this.userService
       .getAuthStatusListener()
       .subscribe((isAuthenticated) => {
         this.userLoggedIn = isAuthenticated;
-
-        if (this.userLoggedIn) {
-          this.getUserSubscription = this.userService.refreshNeeds.subscribe(
-            () => {
-              this.getUser();
-            }
-          );
-          this.getUser();
-        }
       });
 
-    if (this.userLoggedIn) {
-      this.getUser();
-    }
+    this.getUserSubscription = this.userService.refreshNeeds.subscribe(
+      (user) => {
+        this.currentUser = user;
+      }
+    );
   }
-
 
   private getUser() {
     this.userDataSubscription = this.userService
       .getUser()
       .subscribe((userData) => {
-        this.currImage = userData.userData.imageUrl;
         this.currentUser = userData;
       });
   }

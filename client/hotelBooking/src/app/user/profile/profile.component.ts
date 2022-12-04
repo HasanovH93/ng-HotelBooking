@@ -19,7 +19,6 @@ export class ProfileComponent implements OnInit, OnDestroy {
       .getUser()
       .subscribe((userData) => {
         this.currentUser = userData;
-        console.log(this.currentUser)
       });
   }
 

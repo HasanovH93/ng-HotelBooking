@@ -11,6 +11,7 @@ export interface IUser{
    
 }
 
+
 export type User = {
  
         email: string;

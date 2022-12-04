@@ -1,7 +1,7 @@
 import { Injectable, OnDestroy } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { IUser, User } from '../modals/user';
-import {  Subject, tap } from 'rxjs';
+import { IUser,  User } from '../modals/user';
+import {   Subject, tap } from 'rxjs';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { LoginComponent } from '../user/login/login.component';
@@ -13,14 +13,11 @@ export class UserService implements OnDestroy {
   private tokenTime!: any;
   private authStatusListener = new Subject<boolean>();
   private userId!: string | null;
-  private _refreshNeeds = new Subject<void>();
-
+  private _refreshNeeds = new Subject<IUser | null>;
   private isAuthenticated : boolean;
 
 
-
-
-
+  
   private _registerUrl = 'http://localhost:3030/users/register';
   private loginUrl = 'http://localhost:3030/users/login';
   private userUrl = 'http://localhost:3030/users/profile';
@@ -50,16 +47,19 @@ export class UserService implements OnDestroy {
   }
 
   editUser(body: {}) {
-    console.log(body);
     return this.http.put<IUser>(this.userUrl, body).pipe(
-      tap(() => {
-        this._refreshNeeds.next();
+      tap((res) => {
+       this._refreshNeeds.next(res);
       })
     );
   }
 
   registerUser(user: User) {
-    return this.http.post<IUser>(this._registerUrl, user).subscribe({
+    return this.http.post<IUser>(this._registerUrl, user).pipe(
+      tap((res) => {
+       this._refreshNeeds.next(res);
+      })
+    ).subscribe({
       next: (res) => {
         this.setUser(res);
       },
@@ -67,7 +67,11 @@ export class UserService implements OnDestroy {
   }
 
   loginUser(data: { email: string; password: string}) {
-   return this.http.post<IUser>(this.loginUrl, data).subscribe({
+   return this.http.post<IUser>(this.loginUrl, data).pipe(
+    tap((res) => {
+     this._refreshNeeds.next(res);
+    })
+  ).subscribe({
       next: (res) => {
       this.setUser(res);
       },
@@ -99,6 +103,7 @@ export class UserService implements OnDestroy {
 
   logout() {
     this.userToken = '';
+    this._refreshNeeds.next(null);
     this.authStatusListener.next(false);
     this.isAuthenticated = false;
     clearTimeout(this.tokenTime);
