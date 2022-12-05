@@ -5,8 +5,10 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { MessageService, MessageType } from 'src/app/services/message.service';
 import { UserService } from 'src/app/services/user.service';
+import { LoginComponent } from '../login/login.component';
 import { passwordChecker } from '../password.validator';
 
 @Component({
@@ -15,9 +17,14 @@ import { passwordChecker } from '../password.validator';
   styleUrls: ['./register.component.scss'],
 })
 export class RegisterComponent implements OnInit {
-  constructor(private _auth: UserService, private formBuilder: FormBuilder, private msgService:MessageService) {}
-  errorMessage! : string;
-  isErrorType! : boolean;
+  constructor(
+    private _auth: UserService,
+    private formBuilder: FormBuilder,
+    private msgService: MessageService,
+    private dialogRef: MatDialog
+  ) {}
+  errorMessage!: string;
+  isErrorType!: boolean;
 
   isLoading: boolean = false;
 
@@ -41,19 +48,22 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit(): void {
     this.msgService.onMessage$.subscribe((message) => {
-      this.errorMessage = message.text
-      this.isErrorType = message.type === MessageType.error
-      if(this.errorMessage){
+      this.errorMessage = message.text;
+      this.isErrorType = message.type === MessageType.error;
+      if (this.errorMessage) {
         setTimeout(() => {
-          this.errorMessage = ''
-        }, 3000)
+          this.errorMessage = '';
+        }, 3000);
       }
-    })
+    });
   }
-
-  
 
   onRegister() {
     this._auth.registerUser(this.signUpForm.value);
+  }
+
+  openDialogRegister() {
+    this.dialogRef.closeAll()
+    this.dialogRef.open(LoginComponent)
   }
 }

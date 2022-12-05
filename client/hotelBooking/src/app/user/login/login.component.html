@@ -16,11 +16,11 @@
       autocomplete="on"
       required
     />
-    <span
-      class="login-inputGroup-error-block"
-      *ngIf="!loginForm.get('email')?.valid && loginForm.get('email')?.touched"
-      >Please Enter a Valid Email</span
-    >
+    <ng-container *ngIf="loginForm.get('email')?.touched">
+      <div class="error-block" *ngIf="loginForm.get('email')?.errors?.['required']">Email is required</div>
+      <div class="error-block" *ngIf="loginForm.get('email')?.errors?.['email']">Invalid Email</div>
+      </ng-container>
+  
 
     <input
       formControlName="password"
@@ -30,6 +30,10 @@
       placeholder="Enter Your Password"
       required
     />
+    <ng-container *ngIf="loginForm.get('password')?.touched">
+      <div class="error-block" *ngIf="loginForm.get('password')?.errors?.['required']">Password is required</div>
+      <div class="error-block" *ngIf="loginForm.get('password')?.errors?.['minlength']">Password should be at least 6 characters long</div>
+      </ng-container>
     <img (click)="toggleShow()" class="login-inputGroup-showPassword" src="/assets/icons/eye-solid.svg" *ngIf="!showPassword" alt="">
     <img (click)="toggleShow()" class="login-inputGroup-showPassword" src="/assets/icons/eye-slash-solid.svg" *ngIf="showPassword" alt="">
 
@@ -41,10 +45,14 @@
       type="button"
       class="login-inputGroup-submit-btn"
       (click)="onLogin()"
-      [disabled]="loginForm.invalid && loading"
+      [disabled]="loginForm.invalid"
     >
       Sign In
     </button>
   </form>
-  <p class="login-signup">Don't have an account? <span class="login-signup-click" (click)="openDialogRegister()">Sign up!</span> </p>
+  <p class="login-signin">Don't have an account? <span class="login-signin-click" (click)="openDialogRegister()">Sign up!</span> </p>
+  <ng-container *ngIf="!!errorMessage">
+    <p class="login-errorMessage" *ngIf="isErrorType">{{errorMessage}}</p>
+    <p class="login-errorMessage"*ngIf="!isErrorType">{{errorMessage}}</p>
+  </ng-container>
 </div>

@@ -82,9 +82,10 @@
       Sign Up
     </button>
   </form>
+  <p class="register-signin">Already registered? <span class="register-signin-click" (click)="openDialogRegister()">Sign In!</span> </p>
 
   <ng-container *ngIf="!!errorMessage">
-    <p *ngIf="isErrorType">{{errorMessage}}</p>
-    <p *ngIf="!isErrorType">{{errorMessage}}</p>
+    <p class="register-errorMessage" *ngIf="isErrorType">{{errorMessage}}</p>
+    <p class="register-errorMessage"*ngIf="!isErrorType">{{errorMessage}}</p>
   </ng-container>
 </div>

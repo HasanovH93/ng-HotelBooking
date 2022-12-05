@@ -1,5 +1,6 @@
 $pink: #ff385c;
 $blue_bg: #241a71;
+$grey-med: #ddd;
 .login {
   width: 380px;
   height: 480px;
@@ -62,11 +63,6 @@ $blue_bg: #241a71;
     &-check-box {
       margin: 30px 10px 30px 0;
     }
-    &-error-block {
-      color: red;
-      font-size: 12px;
-      bottom: 68px;
-    }
     &-submit-btn {
       font-size: 15px;
       width: 85%;
@@ -85,7 +81,7 @@ $blue_bg: #241a71;
       background-color: $blue_bg;
     }
   }
-  &-signup{
+  &-signin{
     margin-left:65px;
     margin-top:60px;
     &-click{
@@ -93,4 +89,20 @@ $blue_bg: #241a71;
       color: $blue_bg;
     }
   }
+  &-errorMessage {
+    padding: 10px 5px;
+    margin-top:40px;
+    border: 1px solid $grey-med;
+    align-items: center;
+    color:$pink;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.18);
+    
 }
+}
+
+
+.error-block{
+  font-size:12px;
+  color:red;
+}
+
