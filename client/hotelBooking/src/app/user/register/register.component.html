@@ -68,7 +68,7 @@
 
     <ng-container *ngIf="signUpForm.get('rePass')?.touched && signUpForm.get('rePass')?.invalid ">
         <div class="error-block" *ngIf="signUpForm.get('rePass')?.errors?.['required']">Repeat password is required</div>
-        <div class="error-block" *ngIf="signUpForm.get('rePass')?.errors?.['mismatch']">Password passwords don\'t match</div>
+        <div class="error-block" *ngIf="signUpForm.get('rePass')?.errors?.['mismatch']">Passwords don't match</div>
         </ng-container>
 
     <input type="checkbox" class="register-inputGroup-check-box" /><span
@@ -76,10 +76,15 @@
     >
     <button
       (click)="onRegister()"
-      type="button"
+      type="submit"
       class="register-inputGroup-submit-btn"
     >
       Sign Up
     </button>
   </form>
+
+  <ng-container *ngIf="!!errorMessage">
+    <p *ngIf="isErrorType">{{errorMessage}}</p>
+    <p *ngIf="!isErrorType">{{errorMessage}}</p>
+  </ng-container>
 </div>

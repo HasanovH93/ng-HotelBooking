@@ -8,6 +8,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'
 import { FormsModule } from '@angular/forms'
 
 import { AuthInterceptor } from './user/user.interceptor';
+import { ErrorHandlerInterceptor } from './shared/error-handler.interceptor';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,11 @@ import { AuthInterceptor } from './user/user.interceptor';
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ErrorHandlerInterceptor,
       multi: true
     }
   ],
