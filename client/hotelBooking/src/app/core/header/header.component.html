@@ -2,9 +2,7 @@
   <nav class="nav">
     <div class="nav-menu">
       <div class="nav-menu-logo">
-        <a class="nav-menu-logo-link" routerLink="/"
-          >Hotel <span class="nav-menu-logo-title">Booking</span></a
-        >
+        <a class="nav-menu-logo-link" routerLink="/">Hotel <span class="nav-menu-logo-title">Booking</span></a>
       </div>
       <ul class="nav-menu-links">
         <li class="nav-menu-links-items">Room</li>
@@ -20,11 +18,7 @@
       <button class="search-button-guests">
         Add guests
         <div class="search-button-guests-icon">
-          <img
-            class="search-button-guests-icon-icon"
-            src="/assets/icons/searchIcon.svg"
-            alt="Search Icon"
-          />
+          <img class="search-button-guests-icon-icon" src="/assets/icons/searchIcon.svg" alt="Search Icon" />
         </div>
       </button>
     </div>
@@ -35,21 +29,11 @@
       </button>
 
       <div class="right-menu-icons" appDropdown>
-        <img
-          class="right-menu-icons-dropdown"
-          src="/assets/icons/hamburger.svg"
-          alt="Hamburger"
-        />
+        <img class="right-menu-icons-dropdown" src="/assets/icons/hamburger.svg" alt="Hamburger" />
 
-        <div
-          class="right-menu-icons-imgBox"
-          *ngIf="userLoggedIn && currentUser"
-        >
+        <div class="right-menu-icons-imgBox" *ngIf="userLoggedIn && currentUser">
           <ng-container *ngIf="currentUser.userData.imageUrl">
-            <img
-              class="right-menu-icons-user"
-              src="{{ currentUser.userData.imageUrl }}"
-            />
+            <img class="right-menu-icons-user" src="{{ currentUser.userData.imageUrl }}" />
           </ng-container>
           <ng-container *ngIf="!currentUser.userData.imageUrl">
             <img class="right-menu-default" src="{{ defaultImg }}" />
@@ -61,11 +45,7 @@
 
         <ul class="dropdown-menu">
           <ng-container *ngIf="!userLoggedIn">
-            <li
-              class="dropdown-item"
-              (click)="openDialogRegister()"
-              style="font-weight: 600"
-            >
+            <li class="dropdown-item" (click)="openDialogRegister()" style="font-weight: 600">
               Register
             </li>
             <span class="divider"></span>
@@ -74,11 +54,7 @@
           <ng-container *ngIf="userLoggedIn && currentUser">
             <p class="dropdown-item">{{ currentUser.userData.email }}</p>
             <span class="divider"></span>
-            <li
-              routerLink="/auth/profile"
-              class="dropdown-item"
-              *ngIf="userLoggedIn"
-            >
+            <li routerLink="/auth/profile" class="dropdown-item" *ngIf="userLoggedIn">
               Profile
             </li>
 

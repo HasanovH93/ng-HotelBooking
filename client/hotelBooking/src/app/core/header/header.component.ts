@@ -1,10 +1,4 @@
-import {
-  Component,
-  OnChanges,
-  OnDestroy,
-  OnInit,
-  SimpleChanges,
-} from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Subscription } from 'rxjs';
 import { IUser } from 'src/app/modals/user';
@@ -23,7 +17,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
   userDataSubscription: Subscription;
   getUserSubscription: Subscription;
   currentUser: IUser | null;
-  currImage: string;
 
   constructor(private dialogRef: MatDialog, private userService: UserService) {}
 
