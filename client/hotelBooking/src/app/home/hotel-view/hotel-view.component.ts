@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { IHotel, IHotelDto } from '../../modals/hotel';
 
 import { faStar,faArrowAltCircleRight  } from '@fortawesome/free-regular-svg-icons'
+import { HotelService } from 'src/app/services/hotel.service';
 
 @Component({
   selector: 'app-hotel-view',
@@ -9,10 +11,17 @@ import { faStar,faArrowAltCircleRight  } from '@fortawesome/free-regular-svg-ico
 })
 export class HotelViewComponent implements OnInit {
    faStar = faStar
-   faArrow = faArrowAltCircleRight
-  constructor() { }
+   faArrow = faArrowAltCircleRight;
 
-  ngOnInit(): void {
-  }
+   hotel: IHotel[] = []
+   constructor(private hotelService: HotelService) { }
+   
+   ngOnInit(): void {
+     this.hotelService.getLastHotels().subscribe((data)=> {
+      this.hotel = data.latestHotels
+
+      })
+    }
+
 
 }

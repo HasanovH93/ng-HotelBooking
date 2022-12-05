@@ -6,6 +6,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { FormsModule } from '@angular/forms';
 import { HomeComponent } from './home/home.component'
 import { homeRoutingModule } from './home-routing.module';
+import { SpinnerComponent } from '../shared/spinner/spinner.component';
 
 
 
@@ -14,6 +15,7 @@ import { homeRoutingModule } from './home-routing.module';
   declarations: [
     HotelViewComponent,
     HomeComponent,
+    SpinnerComponent
   ],
   imports: [
     

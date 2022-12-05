@@ -4,87 +4,27 @@
         <h5>EXCLUSIVE OFFERS </h5>
         <h3>Our Best Deals</h3>
       </div>
-
-      <div class="content grid2 mtop">
+      
+      <div class="content grid2 mtop" *ngFor="let hotel of hotel">
+        <ng-container *ngIf="!hotel">
+          <p>LOADING.....</p>
+          <app-spinner></app-spinner>
+        </ng-container>
         <div class="box flex">
           <div class="left">
-            <img src="/assets/images/hotel1.jpg" alt="">
+            <img src="{{hotel.imageUrls[0]}}" alt="">
           </div>
           <div class="right">
-            <h4>Deluxe Room</h4>
-            <div class="rate flex">
+            <h4>{{hotel.roomType}}</h4>
+            <div class="rate flex" >
                 <fa-icon [icon]="faStar" class="star"></fa-icon>
                 <fa-icon [icon]="faStar" class="star"></fa-icon>
                 <fa-icon [icon]="faStar" class="star"></fa-icon>
                 <fa-icon [icon]="faStar" class="star"></fa-icon>
                 <fa-icon [icon]="faStar" class="star"></fa-icon>
             </div>
-            <p> Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-            <h5>From $50.6/night</h5>
-            <button class="flex1">
-              <span>Check Availability</span>
-              <fa-icon [icon]="faArrow" class="i"></fa-icon>
-            </button>
-          </div>
-        </div>
-        <div class="box flex">
-          <div class="left">
-            <img src="/assets/images/hotel1.jpg" alt="">
-          </div>
-          <div class="right">
-            <h4>Deluxe Room</h4>
-            <div class="rate flex">
-                <fa-icon [icon]="faStar" class="star"></fa-icon>
-                <fa-icon [icon]="faStar" class="star"></fa-icon>
-                <fa-icon [icon]="faStar" class="star"></fa-icon>
-                <fa-icon [icon]="faStar" class="star"></fa-icon>
-                <fa-icon [icon]="faStar" class="star"></fa-icon>
-            </div>
-            <p> Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-            <h5>From $50.6/night</h5>
-            <button class="flex1">
-              <span>Check Availability</span>
-              <fa-icon [icon]="faArrow" class="i"></fa-icon>
-            </button>
-          </div>
-        </div>
-
-        <div class="box flex">
-          <div class="left">
-            <img src="/assets/images/hotel1.jpg" alt="">
-          </div>
-          <div class="right">
-            <h4>Deluxe Room</h4>
-            <div class="rate flex">
-                <fa-icon [icon]="faStar" class="star"></fa-icon>
-                <fa-icon [icon]="faStar" class="star"></fa-icon>
-                <fa-icon [icon]="faStar" class="star"></fa-icon>
-                <fa-icon [icon]="faStar" class="star"></fa-icon>
-                <fa-icon [icon]="faStar" class="star"></fa-icon>
-            </div>
-            <p> Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-            <h5>From $50.6/night</h5>
-            <button class="flex1">
-              <span>Check Availability</span>
-              <fa-icon [icon]="faArrow" class="i"></fa-icon>
-            </button>
-          </div>
-        </div>
-        <div class="box flex">
-          <div class="left">
-            <img src="/assets/images/hotel1.jpg" alt="">
-          </div>
-          <div class="right">
-            <h4>Deluxe Room</h4>
-            <div class="rate flex">
-                <fa-icon [icon]="faStar" class="star"></fa-icon>
-                <fa-icon [icon]="faStar" class="star"></fa-icon>
-                <fa-icon [icon]="faStar" class="star"></fa-icon>
-                <fa-icon [icon]="faStar" class="star"></fa-icon>
-                <fa-icon [icon]="faStar" class="star"></fa-icon>
-            </div>
-            <p> Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-            <h5>From $50.6/night</h5>
+            <p> {{hotel.description}}</p>
+            <h5>From ${{hotel.price}}/night</h5>
             <button class="flex1">
               <span>Check Availability</span>
               <fa-icon [icon]="faArrow" class="i"></fa-icon>
