@@ -1,46 +1,49 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { UserService } from 'src/app/services/user.service';
-
+import { passwordChecker } from '../password.validator';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.scss']
+  styleUrls: ['./register.component.scss'],
 })
 export class RegisterComponent implements OnInit {
-
-      
-  constructor(private _auth: UserService,private formBuilder: FormBuilder) { }
-  signUpForm: FormGroup
+  constructor(private _auth: UserService, private formBuilder: FormBuilder) {}
   errorMessage = '';
   isLoading: boolean = false;
 
-
-  
-
-  ngOnInit(): void {
-    this.signUpForm = new FormGroup ({
+  signUpForm: FormGroup = this.formBuilder.group(
+    {
       email: new FormControl(null, [Validators.required, Validators.email]),
-      username: new FormControl(null, [Validators.required, Validators.minLength(5)]),
-      password: new FormControl(null, [Validators.required, Validators.minLength(5)]),
-      rePass: new FormControl(null,  [Validators.required, Validators.minLength(5)]),
-    })
-  }
+      username: new FormControl(null, [
+        Validators.required,
+        Validators.minLength(5),
+      ]),
+      password: new FormControl(null, [
+        Validators.required,
+        Validators.minLength(6),
+      ]),
+      rePass: new FormControl(null, [Validators.required]),
+    },
+    {
+      validators: [passwordChecker],
+    }
+  );
 
-  onRegister(){
-    console.log(this.signUpForm.controls)
-    const {username,email,password,rePass} = this.signUpForm.value;
-    if(password !== rePass){
-      this.errorMessage = 'Passwords Don\'t Match';
+  ngOnInit(): void {}
+
+  onRegister() {
+    const { username, email, password, rePass } = this.signUpForm.value;
+    if (password !== rePass) {
+      this.errorMessage = "Passwords Don't Match";
       return;
     }
-    this._auth.registerUser(this.signUpForm.value)
-
-    
+    this._auth.registerUser(this.signUpForm.value);
   }
-
-  
- 
-
 }

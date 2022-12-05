@@ -1,32 +1,85 @@
-<div class="hero">
-    <div class="form-box">
-        <div class="heading">
-            <h3>Sign Up</h3>
-        </div>
-        <div class="social-icons">
-            <img src="/assets/user/fb.png" alt="">
-            <img src="/assets/user/gp.png" alt="">
-            <img src="/assets/user/tw.png" alt="">
-        </div>
-        <form [formGroup]="signUpForm" action="post" id="login"  class="inputGroup" >
-            <input  formControlName="email" type="text" class="input-field" placeholder="Enter Your email" required>
-            <span *ngIf="!signUpForm.get('email')?.valid && signUpForm.get('email')?.touched" class="error-block">Please Enter a Valid Email</span>
-            <input  formControlName="username" type="text" class="input-field" placeholder="Enter Your username" required>
-            <span  *ngIf="!signUpForm.get('username')!.valid && signUpForm.get('username')!.touched" class="error-block">Please enter a valid Username</span>
-            <input  formControlName="password" type="password" class="input-field" placeholder="Enter Your Password" required>
-            <input  formControlName="rePass" type="password" class="input-field" placeholder="Repeat Password" required>
-            <!-- <p *ngIf="
-            signUpForm.controls['rePass']?.errors &&
-            signUpForm.get('password')?.touched &&
-            signUpForm.get('password')?.valid">
-            <span class="error-block">Password dont match</span>
+<div class="register">
+  <div class="register-heading">
+    <h3 class="register-heading-h3">Sign Up</h3>
+  </div>
+  <div class="register-social-icons">
+    <img
+      class="register-social-icons-image"
+      src="/assets/icons/facebook.svg"
+      alt=""
+    />
+    <img
+      class="register-social-icons-image"
+      src="/assets/icons/instagram.svg"
+      alt=""
+    />
+    <img
+      class="register-social-icons-image"
+      src="/assets/icons/youtube.svg"
+      alt=""
+    />
+  </div>
+  <form
+    [formGroup]="signUpForm"
+    action="post"
+    id="login"
+    class="register-inputGroup"
+  >
+    <input
+      formControlName="email"
+      type="text"
+      class="register-inputGroup-input-field"
+      placeholder="Enter Your email"
+      required
+    />
+    <ng-container *ngIf="signUpForm.get('email')?.touched">
+        <div class="error-block" *ngIf="signUpForm.get('email')?.errors?.['required']">Email is required</div>
+        <div class="error-block" *ngIf="signUpForm.get('email')?.errors?.['email']">Invalid Email</div>
+        </ng-container>
+    <input
+      formControlName="username"
+      type="text"
+      class="register-inputGroup-input-field"
+      placeholder="Enter Your username"
+      required
+    />
+    <ng-container *ngIf="signUpForm.get('username')?.touched">
+        <div class="error-block" *ngIf="signUpForm.get('username')?.errors?.['required']">Username is required</div>
+        <div class="error-block" *ngIf="signUpForm.get('username')?.errors?.['minlength']">Username should be at least 5 characters long</div>
+        </ng-container>
+    <input
+      formControlName="password"
+      type="password"
+      class="register-inputGroup-input-field"
+      placeholder="Enter Your Password"
+      required
+    />
+    <ng-container *ngIf="signUpForm.get('password')?.touched">
+        <div class="error-block" *ngIf="signUpForm.get('password')?.errors?.['required']">Password is required</div>
+        <div class="error-block" *ngIf="signUpForm.get('password')?.errors?.['minlength']">Password should be at least 6 characters long</div>
+        </ng-container>
+    <input
+      formControlName="rePass"
+      type="password"
+      class="register-inputGroup-input-field"
+      placeholder="Repeat Password"
+      required
+    />
 
-            </p>
-             -->
-        
-            <input type="checkbox" class="check-box"><span>Remember password</span>
-            <button (click)="onRegister()"  [disabled]="signUpForm.invalid" type="button" class="submit-btn">Sign Up</button>
-        </form>
-    </div>
-   
+    <ng-container *ngIf="signUpForm.get('rePass')?.touched && signUpForm.get('rePass')?.invalid ">
+        <div class="error-block" *ngIf="signUpForm.get('rePass')?.errors?.['required']">Repeat password is required</div>
+        <div class="error-block" *ngIf="signUpForm.get('rePass')?.errors?.['mismatch']">Password passwords don\'t match</div>
+        </ng-container>
+
+    <input type="checkbox" class="register-inputGroup-check-box" /><span
+      >I agree</span
+    >
+    <button
+      (click)="onRegister()"
+      type="button"
+      class="register-inputGroup-submit-btn"
+    >
+      Sign Up
+    </button>
+  </form>
 </div>
