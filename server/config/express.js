@@ -18,7 +18,8 @@ module.exports = (app) => {
     //       algorithms: ["HS256"],
     //     }).unless({
     //        path:  [
-    //       { url : `/users/login`}
+
+    //       { url : /(.*)/ }
          
     //       ]
     //     })

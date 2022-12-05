@@ -7,7 +7,7 @@ const { s3UploadImg } = require('../middlewares/imagesUpload');
 
 authController.post('/register', 
 body('email').isEmail().withMessage('Invalid Email'),
-body('password').isLength({ min: 3}).withMessage('Password must be at least 3 characrers long'),
+body('password').isLength({ min: 3}).withMessage('Password must be at least 6 characters long'),
  async (req, res) => {
  
   try {
@@ -27,13 +27,13 @@ body('password').isLength({ min: 3}).withMessage('Password must be at least 3 ch
 
 
 
-authController.post('/login', async (req, res) => {
+authController.post('/login',  async (req, res) => {
     try {
-        const user=  await login(req.body.email, req.body.password);
+        const user =  await login(req.body.email, req.body.password);
         const token = createToken(user);
         const userData = removePassword(user)
 
-        console.log('POST')
+        console.log(userData)
         res.json({userData, token, expiresIn: 3600})
        } catch (error) {
         const message = parseError(error)
@@ -44,7 +44,7 @@ authController.post('/login', async (req, res) => {
 authController.get('/profile',  async (req, res) => {
   try {
     // console.log("GET")
-    // console.log(req.user)
+    console.log(req)
     const id = req.user._id;
     // console.log(id)
     const user = await getById(id);
