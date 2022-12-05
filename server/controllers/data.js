@@ -8,6 +8,8 @@ const {
   getByUserId,
 } = require("../services/item");
 const { parseError } = require("../util/parser");
+const { s3UploadImg } = require('../middlewares/imagesUpload');
+const { dataInputParser } = require("../helpers/inpurtParser");
 
 const dataController = require("express").Router();
 
@@ -22,11 +24,30 @@ dataController.get("/", async (req, res) => {
   res.json(items);
 });
 
-dataController.post("/", hasUser(), async (req, res) => {
+dataController.post("/create",  s3UploadImg(), async (req, res) => {
   try {
-    const data = Object.assign({ _ownerId: req.user._id }, req.body);
-    const item = await create(data);
-    res.json(item);
+
+    req.body = JSON.parse(JSON.stringify(req.body))
+
+
+    console.log(req.files)
+    req.body.imageUrls = req.files.map((img) => img.location);
+    const data = {
+      hotelName: req.body.hotelName,
+      roomType: req.body.roomType,
+      location: req.body.location,
+      stars: Number(req.body.stars),
+      description: req.body.description,
+      price: Number(req.body.price),
+      imageUrls: req.body.imageUrls,
+
+  }
+
+    console.log(data)
+    data.owner = req.user._id;
+    const createdData = await create(data)
+    res.status(201).send( {message: "Successfully uploaded " + req.files.length + " files!",
+    createdData})
   } catch (error) {
     const message = parseError(error);
     res.status(400).json({ message });

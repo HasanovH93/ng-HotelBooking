@@ -8,5 +8,5 @@ module.exports = (app) => {
     })
     
     app.use('/users', authController);
-    app.use('/data/catalog', dataController);
+    app.use('/hotels/', dataController);
 }

@@ -1,41 +1,42 @@
-const Item = require("../models/Item");
+const Hotel = require("../models/hotel");
 
 
 async function getAll(){
-   return Item.find({});
+   return Hotel.find({});
 
 }
 
 async function getByUserId(userId){
-    return Item.find({_ownerId: userId})
+    return Hotel.find({_ownerId: userId})
 }
 
 
 async function getById(id){
-  return Item.findById(id);
+  return Hotel.findById(id);
 }
 
 async function create(item){
-  return Item.create(item);
+   const newHotel = new Hotel(item)
+  return await newHotel.save()
 
 }
-async function edit(id,item){
-   const existing = await Item.findById(id)
 
-   existing.make = item.make;
-   existing.model = item.model;
-   existing.year = item.year;
+
+async function edit(id,item){
+   const existing = await Hotel.findById(id)
+
+   existing.name = item.make;
+   existing.location = item.model;
    existing.description = item.description;
    existing.price = item.price;
    existing.img = item.img;
-   existing.material = item.material;
    
    return existing.save();
 }
 
 
 async function deleteItem(id){
-   return Item.findByIdAndDelete(id)
+   return Hotel.findByIdAndDelete(id)
 }
 
 module.exports = {
