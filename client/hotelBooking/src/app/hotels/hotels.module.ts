@@ -5,6 +5,7 @@ import { HotelsRoutingModule } from './hotels-routing.module';
 import { AllHotelsComponent } from './all-hotels/all-hotels.component';
 import { RouterModule } from '@angular/router';
 import { AddHotelComponent } from './add-hotel/add-hotel.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { AddHotelComponent } from './add-hotel/add-hotel.component';
   imports: [
     CommonModule,
     HotelsRoutingModule,
-    RouterModule
+    RouterModule,
+    ReactiveFormsModule
   ],
   exports: [
     AllHotelsComponent

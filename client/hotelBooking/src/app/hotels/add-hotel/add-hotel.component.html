@@ -1,1 +1,75 @@
-<p>add-hotel works!</p>
+<div class="create-form">
+    <div class="create-form-container">
+        <div class="create-form-container-title">Add Hotel</div>
+        <form [formGroup]="addHotelForm" class="create-form-container-form">
+            <div class="create-form-container-form-user-details">
+                <div class="create-form-container-form-user-details-input-box">
+                    <span class="create-form-container-form-user-details-input-box-details">Hotel Name</span>
+                    <input  formControlName="hotelName" class="create-form-container-form-user-details-input-box-input-field" type="text"
+                        placeholder="Enter Hotel Name" required>
+                </div>
+                <div class="create-form-container-form-user-details-input-box">
+                    <span class="create-form-container-form-user-details-input-box-details">Room Type</span>
+                    <select class="create-form-container-form-user-details-input-box-input-field" formControlName="roomType" required>
+                        <option disabled value="null">Select Room Type</option>
+                        <option *ngFor="let item of roomTypes" [value]="item.name">{{item.name}}</option>
+                    </select>
+                </div>
+                <div class="create-form-container-form-user-details-input-box">
+                    <span class="create-form-container-form-user-details-input-box-details">Location</span>
+                    <select class="create-form-container-form-user-details-input-box-input-field" formControlName="location" required>
+                        <option disabled value="null">Select City</option>
+                        <option *ngFor="let item of cities" [value]="item.name">{{item.name}}</option>
+                    </select>
+                </div>
+                <div class="create-form-container-form-user-details-input-box">
+                    <span class="create-form-container-form-user-details-input-box-details">Stars</span>
+                    <select  class="create-form-container-form-user-details-input-box-input-field" formControlName="stars" required>
+                        <option value="null">Select Stars</option>
+                        <option [value]="1">1</option>
+                        <option [value]="1">2</option>
+                        <option [value]="1">3</option>
+                        <option [value]="1">4</option>
+                        <option [value]="1">5</option>
+                    </select>
+                </div>
+
+                <div class="create-form-container-form-user-details-input-box">
+                    <span class="create-form-container-form-user-details-input-box-details">Price</span>
+                    <input class="create-form-container-form-user-details-input-box-input-field" type="number"
+                       formControlName="price" placeholder="Enter Price" required>
+                </div>
+                <div class="create-form-container-form-user-details-input-box">
+                    <span class="create-form-container-form-user-details-input-box-details">Upload Images</span>
+                    <button type="button" class="create-form-container-form-user-details-input-box-uploadBtn" (click)="filePicker.click()">
+                        <img class="create-form-container-form-user-details-input-box-uploadBtn-upload"
+                            src="/assets/icons/upload-solid.svg" alt="" />
+                        Upload image
+                    </button>
+                    <input multiple  type="file" class="create-form-container-form-user-details-input-box-input" accept="/image*" #filePicker
+                    (change)="onImageUpload($event)"/>
+                </div>
+            
+
+                <div class=" create-form-container-form-user-details-input-box">
+                    <span class="create-form-container-form-user-details-input-box-details">Description</span>
+                    <textarea class="create-form-container-form-user-details-input-box-text-area" name="" id=""
+                       formControlName="description" cols="50" rows="5"></textarea>
+                </div>
+
+                <div class=" create-form-container-form-user-details-input-box" *ngIf="[uploadedFiles].length">
+                    <span class="create-form-container-form-user-details-input-box-details">Preview</span>
+                    <ul *ngIf="[uploadedFiles].length">
+                        <li *ngFor="let file of uploadedFiles"> {{file.name}} - {{file.size}} bytes</li>
+                    </ul>
+                </div>
+            </div>
+                
+           
+
+            <div class="create-form-container-form-button">
+                <input (click)="onSubmit()" class="create-form-container-form-button-input" type="submit" value="Add Hotel">
+            </div>
+        </form>
+    </div>
+</div>
