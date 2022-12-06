@@ -6,6 +6,13 @@ async function getAll(){
 
 }
 
+async function getLastFour() {
+   return await Hotel.find({})
+     .populate("owner")
+     .limit(5)
+     .lean();
+ }
+
 async function getByUserId(userId){
     return Hotel.find({_ownerId: userId})
 }
@@ -45,5 +52,6 @@ module.exports = {
     create,
     edit,
     deleteItem,
-    getByUserId
+    getByUserId,
+    getLastFour
 }
