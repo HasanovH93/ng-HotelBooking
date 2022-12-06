@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { IHotel, IHotelDto } from '../../modals/hotel';
+import { IHotel  } from '../../modals/hotel';
 
 import {
   faStar,
@@ -15,22 +15,17 @@ import { HotelService } from 'src/app/services/hotel.service';
 export class HotelViewComponent implements OnInit {
   faStar = faStar;
   faArrow = faArrowAltCircleRight;
+  isLoading: boolean= true
 
   hotels: IHotel[] = [];
-  icons: string[] = [];
-  image = '../../../assets/icons/user-profile.png';
+
   constructor(private hotelService: HotelService) {}
 
   ngOnInit(): void {
     this.hotelService.getLastHotels().subscribe((data) => {
       this.hotels = data.latestHotels;
-      for(let hotel of data.latestHotels){
-       for(let i=0; i<= hotel.stars; i++){
-        this.icons.push(this.image)
-       }
-     return
-      }
-
+     
+     this.isLoading = false
     });
   }
 }

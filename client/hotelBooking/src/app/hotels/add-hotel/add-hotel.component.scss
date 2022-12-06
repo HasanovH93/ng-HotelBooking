@@ -1,4 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+$pink: #ff385c;
+$blue_bg: #241a71;
 
 .create-form {
   height: 100vh;
@@ -27,7 +29,7 @@
       height: 3px;
       width: 30px;
       border-radius: 5px;
-      background: linear-gradient(135deg, #71b7e6, #9b59b6);
+      background: linear-gradient(135deg, $blue_bg, $pink);
     }
     &-form {
       &-user-details {
@@ -112,37 +114,40 @@
           letter-spacing: 1px;
           cursor: pointer;
           transition: all 0.3s ease;
-          background: linear-gradient(135deg, #71b7e6, #9b59b6);
+          background: linear-gradient(135deg, $blue_bg, $pink);
         }
         &-input:hover {
-          background: linear-gradient(-135deg, #71b7e6, #9b59b6);
+          background: linear-gradient(-135deg, $blue_bg, $pink);
         }
       }
     }
   }
 }
 
-@media (max-width: 584px) {
-  .container {
-    max-width: 100%;
+@media screen and (max-width: 720px) {
+  .create-form {
+    
+    &-container {
+      max-width: 100%;
+
+      &-user-details{
+        max-height: 300px;
+        overflow-y: scroll;
+        &-input-box{
+          margin-bottom: 15px;
+          width: 100%;
+        }
+      }
+    }
   }
-  form .user-details .input-box {
-    margin-bottom: 15px;
-    width: 100%;
-  }
-  form .category {
-    width: 100%;
-  }
-  .content form .user-details {
-    max-height: 300px;
-    overflow-y: scroll;
-  }
+
+
   .user-details::-webkit-scrollbar {
     width: 5px;
   }
 }
 @media (max-width: 459px) {
-  .container .content .category {
+  .create-form {
     flex-direction: column;
   }
 }

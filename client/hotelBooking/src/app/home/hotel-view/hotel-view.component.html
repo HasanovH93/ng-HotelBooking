@@ -1,36 +1,39 @@
-<section class="offer mtop">
+<ng-container *ngIf="!isLoading">
+<div class="container">
   
-      <div class="heading">
-        <h5>EXCLUSIVE OFFERS </h5>
-        <h3>Our Best Deals</h3>
-      </div>
-      
-      <div class="content grid2 mtop" *ngFor="let hotel of hotels">
-        <ng-container *ngIf="!hotel">
-          <app-spinner></app-spinner>
-        </ng-container>
-        <div class="box flex" *ngIf="hotel">
-          <div class="left">
-            <img src="{{hotel.imageUrls[0]}}" alt="">
-          </div>
-          <div class="right">
-            <h4>{{hotel.roomType}}</h4>
-            <div class="rate flex">
-          
-               
-                <fa-icon [icon]="faStar" class="star"></fa-icon>
-                <fa-icon [icon]="faStar" class="star"></fa-icon>
-                <fa-icon [icon]="faStar" class="star"></fa-icon>
-                <fa-icon [icon]="faStar" class="star"></fa-icon>
-            </div>
-            <p> {{hotel.description}}</p>
-            <h5>From ${{hotel.price}}/night</h5>
-            <button class="flex1">
-              <span>Check Availability</span>
-              <fa-icon [icon]="faArrow" class="i"></fa-icon>
-            </button>
-          </div>
-        </div>
-      </div>
+  <div class="container-heading">
+    <h5 class="container-heading-title">BEST HOTELS </h5>
+    <h3>Our Best Deals</h3>
+  </div>
+  
 
-  </section>
+  <div class="container-card">
+    <div class="container-card-content" *ngFor="let hotel of hotels">     
+      <div class="container-card-content-left">
+        <img class="container-card-content-left-image" src="{{hotel.imageUrls[0]}}" alt="">
+      </div>
+      <div class="container-card-content-right">
+        <h4 class="container-card-content-right-h4">{{hotel.roomType}}</h4>
+        <div class="container-card-content-right-icons">
+            <fa-icon [icon]="faStar" class="container-card-content-right-icons-star"></fa-icon>
+            <fa-icon [icon]="faStar" class="container-card-content-right-icons-star"></fa-icon>
+            <fa-icon [icon]="faStar" class="container-card-content-right-icons-star"></fa-icon>
+            <fa-icon [icon]="faStar" class="container-card-content-right-icons-star"></fa-icon>
+            <fa-icon [icon]="faStar" class="container-card-content-right-icons-star"></fa-icon>
+        </div>
+        <p class="container-card-content-right-description"> {{hotel.description}}</p>
+        <p>From ${{hotel.price}}/night</p>
+        <button class="container-card-content-right-detailsBtn">
+          <span>Check Availability</span>
+        </button>
+      </div>
+    </div>
+  
+
+   
+  </div>
+
+</div>
+
+</ng-container>
+<ng-container *ngIf="isLoading"><app-spinner></app-spinner></ng-container>

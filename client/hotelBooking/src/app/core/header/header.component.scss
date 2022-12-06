@@ -242,3 +242,10 @@ $grey-light: #f7f7f7;
 }
 
 
+@media screen and (max-width: 720px) {
+
+
+  .search {
+    display: none;
+  }
+}
