@@ -37,7 +37,7 @@ dataController.post("/create",  s3UploadImg(), async (req, res) => {
       imageUrls: req.body.imageUrls,
 
   }
-  
+
     data.owner = req.user._id;
     const createdData = await create(data)
     res.status(201).send( {message: "Successfully uploaded " + req.files.length + " files!",
@@ -50,38 +50,38 @@ dataController.post("/create",  s3UploadImg(), async (req, res) => {
 
 
 
-dataController.get("/:id", async (req, res) => {
-  const item = await getById(req.params.id);
-  res.json(item);
-});
+// dataController.get("/:id", async (req, res) => {
+//   const item = await getById(req.params.id);
+//   res.json(item);
+// });
 
-dataController.put("/:id", hasUser(), async (req, res) => {
-  const item = await getById(req.params.id);
-  if (req.user._id != item._ownerId) {
-    return res.status(403).json({ message: "You cannot modify this record" });
-  }
-  try {
-    const result = await edit(req.params.id, req.body);
-    res.json(result);
-  } catch (error) {
-    const message = parseError(error);
-    res.status(400).json({ message });
-  }
-});
+// dataController.put("/:id", hasUser(), async (req, res) => {
+//   const item = await getById(req.params.id);
+//   if (req.user._id != item._ownerId) {
+//     return res.status(403).json({ message: "You cannot modify this record" });
+//   }
+//   try {
+//     const result = await edit(req.params.id, req.body);
+//     res.json(result);
+//   } catch (error) {
+//     const message = parseError(error);
+//     res.status(400).json({ message });
+//   }
+// });
 
-dataController.delete("/:id", hasUser(), async (req, res) => {
-  const item = await getById(req.params.id);
-  if (req.user._id != item._ownerId) {
-    return res.status(403).json({ message: "You cannot modify this record" });
-  }
+// dataController.delete("/:id", hasUser(), async (req, res) => {
+//   const item = await getById(req.params.id);
+//   if (req.user._id != item._ownerId) {
+//     return res.status(403).json({ message: "You cannot modify this record" });
+//   }
 
-  try {
-    await deleteItem(item);
-    res.status(204).end();
-  } catch (error) {
-    const message = parseError(error);
-    res.status(400).json({ message });
-  }
-});
+//   try {
+//     await deleteItem(item);
+//     res.status(204).end();
+//   } catch (error) {
+//     const message = parseError(error);
+//     res.status(400).json({ message });
+//   }
+// });
 
 module.exports = dataController;
