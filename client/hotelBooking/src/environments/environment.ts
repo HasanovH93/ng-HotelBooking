@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'https://app.goflightlabs.com/countries?access_key=eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiI0IiwianRpIjoiZDljN2RjNGExNmU5NjBkYWViYjYwMGQxNDgwOTNkNzQ4MTZhMGQxOWNlMGM3MDM1ZDY1MDI4ZTJjNmY5M2UwN2RlMDQ3ZDczM2RjNDFjZTQiLCJpYXQiOjE2NjgxOTgwNzEsIm5iZiI6MTY2ODE5ODA3MSwiZXhwIjoxNjk5NzM0MDcxLCJzdWIiOiIxNzg4NCIsInNjb3BlcyI6W119.XEVaO6lVnPbjIf0QItsJNcF6O8KbfF4gn3Jvdyg4mmFP3IrBXKqGDYMv9k5K0i1XL4Ye6WtiCvL_8hao00LKRA'
+  apiUrl: 'http://localhost:3030/'
 };
 
 /*

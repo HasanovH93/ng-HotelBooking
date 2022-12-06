@@ -6,9 +6,9 @@ import { HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http'
 import { userRoutingModule } from './user-routing.module';
 import { LoginComponent } from './login/login.component';
 import { ProfileComponent } from './profile/profile.component';
-import { SpinnerComponent } from '../shared/spinner/spinner.component';
 import { EditUserComponent } from './edit-user/edit-user.component';
-import { CoreModule } from '../core/core.module';
+import { SpinnerComponent } from '../shared/spinner/spinner.component';
+import { SharedModule } from '../shared/shared.module';
 
 
 
@@ -18,8 +18,8 @@ import { CoreModule } from '../core/core.module';
     RegisterComponent,
     LoginComponent,
     ProfileComponent,
-    SpinnerComponent,
-    EditUserComponent
+    EditUserComponent,
+    
   ],
   imports: [
     CommonModule,
@@ -27,6 +27,7 @@ import { CoreModule } from '../core/core.module';
     ReactiveFormsModule,
     HttpClientModule,
     userRoutingModule,
+    SharedModule
   ], exports: [
     LoginComponent,
     RegisterComponent,

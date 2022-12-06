@@ -20,7 +20,11 @@ export class AddHotelComponent implements OnInit {
   imagePreview!: string;
   previews: [];
 
-  constructor(private formBuilder: FormBuilder,private hotelService:HotelService, private router: Router) {
+  constructor(
+    private formBuilder: FormBuilder,
+    private hotelService: HotelService,
+    private router: Router
+  ) {
     (this.cities = cities()),
       (this.roomTypes = roomTypes()),
       (this.uploadedFiles = []);
@@ -40,8 +44,6 @@ export class AddHotelComponent implements OnInit {
     console.log(this.cities);
   }
 
-  
-
   preview: string[] = [];
   onImageUpload(event: any) {
     for (let file of event.target.files) {
@@ -52,32 +54,30 @@ export class AddHotelComponent implements OnInit {
     this.addHotelForm.get('image')?.updateValueAndValidity();
   }
 
-
   onSubmit() {
-    const formData : FormData = new FormData();
-    if(this.uploadedFiles.length != undefined){
-      for(const file of this.addHotelForm.controls['image'].value){
-        formData.append('img',file)
+    const formData: FormData = new FormData();
+    if (this.uploadedFiles.length != undefined) {
+      for (const file of this.addHotelForm.controls['image'].value) {
+        formData.append('img', file);
       }
     }
-    const {hotelName,roomType,location,stars,price,description} = this.addHotelForm.value;
+    const { hotelName, roomType, location, stars, price, description } =
+      this.addHotelForm.value;
 
     formData.append('hotelName', hotelName);
     formData.append('roomType', roomType);
     formData.append('location', location);
     formData.append('stars', stars);
     formData.append('price', price);
-    formData.append('description', description)
-  
- 
-   this.hotelService.createAd(formData).subscribe({
-    next: (res) => {
-      console.log(res)
-    },
-    complete: () => {
-     this.router.navigate(['/'])
-    }
-   })
+    formData.append('description', description);
 
+    this.hotelService.createHotel(formData).subscribe({
+      next: (res) => {
+        console.log(res);
+      },
+      complete: () => {
+        this.router.navigate(['/']);
+      },
+    });
   }
 }

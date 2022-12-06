@@ -5,6 +5,7 @@ import { Subject, tap } from 'rxjs';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { LoginComponent } from '../user/login/login.component';
+import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root',
 })
@@ -16,9 +17,8 @@ export class UserService implements OnDestroy {
   private tokenTime!: any;
   private userId!: string | null;
 
-  private _registerUrl = 'http://localhost:3030/users/register';
-  private loginUrl = 'http://localhost:3030/users/login';
-  private userUrl = 'http://localhost:3030/users/profile';
+  
+  private apiUrl = environment.apiUrl
 
   constructor(
     private http: HttpClient,
@@ -43,7 +43,7 @@ export class UserService implements OnDestroy {
   }
 
   getUser() {
-    return this.http.get<IUser>(this.userUrl).pipe(
+    return this.http.get<IUser>(this.apiUrl + 'users/profile').pipe(
       tap((res) => {
         this._refreshNeeds.next(res);
       })
@@ -51,7 +51,7 @@ export class UserService implements OnDestroy {
   }
 
   editUser(body: {}) {
-    return this.http.put<IUser>(this.userUrl, body).pipe(
+    return this.http.put<IUser>(this.apiUrl + 'users/profile', body).pipe(
       tap((res) => {
         this._refreshNeeds.next(res);
       })
@@ -60,7 +60,7 @@ export class UserService implements OnDestroy {
 
   registerUser(user: User) {
     return this.http
-      .post<IUser>(this._registerUrl, user)
+      .post<IUser>(this.apiUrl + 'users/register', user)
       .pipe(
         tap((res) => {
           this._refreshNeeds.next(res);
@@ -75,7 +75,7 @@ export class UserService implements OnDestroy {
 
   loginUser(data: { email: string; password: string }) {
     return this.http
-      .post<IUser>(this.loginUrl, data)
+      .post<IUser>(this.apiUrl+ 'users/login', data)
       .pipe(
         tap((res) => {
           this._refreshNeeds.next(res);

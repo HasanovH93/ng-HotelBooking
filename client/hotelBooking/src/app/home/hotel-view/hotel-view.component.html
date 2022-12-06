@@ -5,19 +5,19 @@
         <h3>Our Best Deals</h3>
       </div>
       
-      <div class="content grid2 mtop" *ngFor="let hotel of hotel">
+      <div class="content grid2 mtop" *ngFor="let hotel of hotels">
         <ng-container *ngIf="!hotel">
-          <p>LOADING.....</p>
           <app-spinner></app-spinner>
         </ng-container>
-        <div class="box flex">
+        <div class="box flex" *ngIf="hotel">
           <div class="left">
             <img src="{{hotel.imageUrls[0]}}" alt="">
           </div>
           <div class="right">
             <h4>{{hotel.roomType}}</h4>
-            <div class="rate flex" >
-                <fa-icon [icon]="faStar" class="star"></fa-icon>
+            <div class="rate flex">
+          
+               
                 <fa-icon [icon]="faStar" class="star"></fa-icon>
                 <fa-icon [icon]="faStar" class="star"></fa-icon>
                 <fa-icon [icon]="faStar" class="star"></fa-icon>

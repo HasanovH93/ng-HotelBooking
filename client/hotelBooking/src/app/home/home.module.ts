@@ -6,7 +6,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { FormsModule } from '@angular/forms';
 import { HomeComponent } from './home/home.component'
 import { homeRoutingModule } from './home-routing.module';
-import { SpinnerComponent } from '../shared/spinner/spinner.component';
+import { SharedModule } from '../shared/shared.module';
 
 
 
@@ -15,7 +15,6 @@ import { SpinnerComponent } from '../shared/spinner/spinner.component';
   declarations: [
     HotelViewComponent,
     HomeComponent,
-    SpinnerComponent
   ],
   imports: [
     
@@ -23,7 +22,8 @@ import { SpinnerComponent } from '../shared/spinner/spinner.component';
     MatCardModule,
     FontAwesomeModule,
     FormsModule,
-    homeRoutingModule
+    homeRoutingModule,
+    SharedModule
   ],
   exports: [
     HotelViewComponent,

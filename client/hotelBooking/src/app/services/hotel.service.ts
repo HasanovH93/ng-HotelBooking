@@ -1,24 +1,20 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { IHotel, IHotelDto } from '../modals/hotel';
+import { environment } from 'src/environments/environment';
+import { IHotelDto } from '../modals/hotel';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class HotelService {
+  private apiUrl = environment.apiUrl;
 
+  constructor(private http: HttpClient) {}
 
-  constructor(private http: HttpClient) { }
-
-  private userUrl = 'http://localhost:3030/hotels/create';
-  private hotelsUrl = 'http://localhost:3030/hotels/last-hotels';
-  
-  createAd(files: {}) {
-    return this.http.post(this.userUrl  , files);
+  createHotel(body: {}) {
+    return this.http.post(this.apiUrl + 'hotels/create', body);
   }
-  getLastHotels(){
-    return this.http.get<IHotelDto>(this.hotelsUrl)
+  getLastHotels() {
+    return this.http.get<IHotelDto>(this.apiUrl + 'hotels/last-hotels');
   }
-
-  
 }
