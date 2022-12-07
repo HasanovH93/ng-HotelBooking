@@ -13,18 +13,19 @@
         <img class="container-card-content-left-image" src="{{hotel.imageUrls[0]}}" alt="">
       </div>
       <div class="container-card-content-right">
-        <h4 class="container-card-content-right-h4">{{hotel.roomType}}</h4>
+        <h2>{{hotel.hotelName}}</h2>
         <div class="container-card-content-right-icons">
-            <fa-icon [icon]="faStar" class="container-card-content-right-icons-star"></fa-icon>
-            <fa-icon [icon]="faStar" class="container-card-content-right-icons-star"></fa-icon>
-            <fa-icon [icon]="faStar" class="container-card-content-right-icons-star"></fa-icon>
-            <fa-icon [icon]="faStar" class="container-card-content-right-icons-star"></fa-icon>
-            <fa-icon [icon]="faStar" class="container-card-content-right-icons-star"></fa-icon>
+          <fa-icon [icon]="faStar" class="container-card-content-right-icons-star"></fa-icon>
+          <fa-icon [icon]="faStar" class="container-card-content-right-icons-star"></fa-icon>
+          <fa-icon [icon]="faStar" class="container-card-content-right-icons-star"></fa-icon>
+          <fa-icon [icon]="faStar" class="container-card-content-right-icons-star"></fa-icon>
+          <fa-icon [icon]="faStar" class="container-card-content-right-icons-star"></fa-icon>
         </div>
+        <h4 class="container-card-content-right-h4">{{hotel.roomType}}</h4>
         <p class="container-card-content-right-description"> {{hotel.description}}</p>
         <p>From ${{hotel.price}}/night</p>
         <button class="container-card-content-right-detailsBtn">
-          <span>Check Availability</span>
+          <span>View more</span>
         </button>
       </div>
     </div>
