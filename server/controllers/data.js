@@ -43,8 +43,8 @@ dataController.post("/create", s3UploadImg(), async (req, res) => {
       createdData,
     });
   } catch (error) {
-    const message = parseError(error);
-    res.status(400).json({ message, message:'Error' });
+    // const message = parseError(error);
+    res.status(400).json({  message:'Error' });
   }
 });
 
