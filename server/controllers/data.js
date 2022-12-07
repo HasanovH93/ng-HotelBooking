@@ -1,4 +1,4 @@
-const { hasUser } = require("../middlewares/guards");
+
 const { create, getLastFour } = require("../services/item");
 const { parseError } = require("../util/parser");
 const { s3UploadImg } = require("../middlewares/imagesUpload");
