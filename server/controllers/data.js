@@ -1,4 +1,4 @@
-
+const { hasUser } = require("../middlewares/guards");
 const { create, getLastFour } = require("../services/item");
 const { parseError } = require("../util/parser");
 const { s3UploadImg } = require("../middlewares/imagesUpload");
@@ -17,7 +17,7 @@ dataController.post("/create", s3UploadImg(), async (req, res) => {
     req.body = JSON.parse(JSON.stringify(req.body));
     req.body.imageUrls = req.files.map((img) => img.location);
 
-    if (Object.values(req.body).some((v) => !v || v === 'null')) {
+    if (Object.values(req.body).some((v) => !v)) {
       throw new Error(`All fields are required`);
       
     }
@@ -43,8 +43,8 @@ dataController.post("/create", s3UploadImg(), async (req, res) => {
       createdData,
     });
   } catch (error) {
-    // const message = parseError(error);
-    res.status(400).json({  message:'Error' });
+    const message = parseError(error);
+    res.status(400).json({ message });
   }
 });
 
