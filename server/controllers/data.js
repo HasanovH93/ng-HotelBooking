@@ -17,7 +17,9 @@ dataController.post("/create", s3UploadImg(), async (req, res) => {
     req.body = JSON.parse(JSON.stringify(req.body));
     req.body.imageUrls = req.files.map((img) => img.location);
 
-   
+    if (Object.values(req.body).some((v) => !v || v=== 'null')) {
+      throw new Error(`All fields are required`);
+    }
    
     const data = {
       hotelName: req.body.hotelName,
@@ -29,9 +31,7 @@ dataController.post("/create", s3UploadImg(), async (req, res) => {
       imageUrls: req.body.imageUrls,
     };
     
-    if (Object.values(req.body).some((v) => !v || isNaN(v))) {
-      throw new Error(`All fields are required`);
-    }
+    
    
     
     data.owner = req.user._id;
