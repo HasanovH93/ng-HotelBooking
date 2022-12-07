@@ -10,6 +10,8 @@ dataController.get("/last-hotels", async (req, res) => {
   res.status(200).send({ latestHotels: hotels });
 });
 
+
+
 dataController.post("/create", s3UploadImg(), async (req, res) => {
   try {
     req.body = JSON.parse(JSON.stringify(req.body));
@@ -27,21 +29,13 @@ dataController.post("/create", s3UploadImg(), async (req, res) => {
       imageUrls: req.body.imageUrls,
     };
     
-    if (Object.values(req.body).some((v) => !v)) {
+    if (Object.values(req.body).some((v) => !v || isNaN(v))) {
       throw new Error(`All fields are required`);
     }
    
     
     data.owner = req.user._id;
-
-        
-    if (Object.values(data).some((v) => !v)) {
-      throw new Error(`All fields are required`);
-    }
     
-   
-  
-
     const createdData = await create(data);
     res.status(201).send({
       message: "Successfully uploaded " + req.files.length + " files!",
