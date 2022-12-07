@@ -17,8 +17,9 @@ dataController.post("/create", s3UploadImg(), async (req, res) => {
     req.body = JSON.parse(JSON.stringify(req.body));
     req.body.imageUrls = req.files.map((img) => img.location);
 
-    if (Object.values(req.body).some((v) => !v || v=== 'null')) {
+    if (Object.values(req.body).some((v) => !v || v === 'null')) {
       throw new Error(`All fields are required`);
+      
     }
    
     const data = {
