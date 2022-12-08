@@ -60,6 +60,6 @@ export class LoginComponent implements OnInit {
 
   openDialogRegister() {
     this.dialogRef.closeAll();
-    this.dialogRef.open(RegisterComponent);
+    this.dialogRef.open(RegisterComponent,{autoFocus:false});
   }
 }

@@ -1,7 +1,12 @@
 
+$pink: #ff385c;
+$blue_bg: #241a71;
+$grey-med: #ddd;
+
 .container {
     width: 100%;
     padding: 0 5%;
+    
 }
 .list-container{
     margin-top:50px;
@@ -30,10 +35,15 @@
     border-top: 1px solid #ccc;
     
 }
+
+.house:last-child{
+    border-bottom: 1px solid #ccc;
+}
 .house-img {
     flex-basis: 40%;
 }
 .house-img img {
+    height: 100%;
     width: 100%;
     border-radius: 12px;
 }
@@ -57,6 +67,20 @@
 .house-price {
     text-align: right;
 }
+.description {
+    width:70%;
+}
+.detailsBtn{
+    font-size: 15px;
+    padding: 20px 40px;
+    cursor: pointer;
+    color:white;
+    margin: auto;
+    margin-top:20px;
+    background: $pink;
+    border: 0;
+    outline: none;
+}
 
 .house-price h4 {
     font-size: 20px;
@@ -70,6 +94,7 @@
     border:1px solid #999;
     padding: 40px 100px;
     margin-top:80px;
+    margin-bottom: 100px;
     position: fixed;
 }
 .sidebar h2 {
@@ -96,10 +121,7 @@
     cursor:pointer
 }
 
-.search-results {
-    height: 100%;
-    overflow: scroll;
-  }
+
 
 @media only screen and (max-width: 700px){
    .list-container {

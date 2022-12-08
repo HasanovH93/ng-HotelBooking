@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { IAllHotels, IHotelDto } from '../modals/hotel';
+import { IHotel, IHotelDto } from '../modals/hotel';
 
 @Injectable({
   providedIn: 'root',
@@ -21,7 +21,7 @@ export class HotelService {
   }
 
   getHotels(params: any):Observable<any> {
-    return this.http.get<IAllHotels>(this.apiUrl+ `hotels/all-hotels`, {params});
+    return this.http.get<IHotel>(this.apiUrl+ `hotels/all-hotels`, {params});
   }
 
   

@@ -14,9 +14,3 @@ export interface IHotelDto{
     latestHotels: IHotel[]
 }
 
-export interface IAllHotels {
-    message: string;
-    data: IHotel[];
-    total_pages: number;
-    total_results: number;
-  }

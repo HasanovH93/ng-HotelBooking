@@ -65,6 +65,6 @@ export class RegisterComponent implements OnInit {
 
   openDialogRegister() {
     this.dialogRef.closeAll()
-    this.dialogRef.open(LoginComponent)
+    this.dialogRef.open(LoginComponent,{autoFocus:false})
   }
 }

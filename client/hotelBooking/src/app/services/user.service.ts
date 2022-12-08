@@ -135,7 +135,7 @@ export class UserService implements OnDestroy {
   private setAuthTimer(duration: number) {
     this.tokenTime = setTimeout(() => {
       this.logout();
-      this.dialogRef.open(LoginComponent);
+      this.dialogRef.open(LoginComponent,{autoFocus:false});
     }, duration * 1000);
   }
 

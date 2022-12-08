@@ -18,7 +18,7 @@ export class AuthGuard implements CanActivate {
     const isAuth = this.authService.getIsLoggedIn();
     if (!isAuth) {
         this.router.navigate(['/'])
-      this.dialogRef.open(LoginComponent)
+      this.dialogRef.open(LoginComponent,{autoFocus:false})
     }
     return isAuth;
   }
