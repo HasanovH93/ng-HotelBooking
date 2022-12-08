@@ -5,7 +5,9 @@ $grey-med: #ddd;
 
 .container {
     width: 100%;
-    padding: 0 5%;
+    padding: 1% 5%;
+    margin-bottom: 100px;
+
     
 }
 .list-container{
@@ -92,9 +94,8 @@ $grey-med: #ddd;
 
 .sidebar {
     border:1px solid #999;
-    padding: 40px 100px;
     margin-top:80px;
-    margin-bottom: 100px;
+    padding: 40px 120px;
     position: fixed;
 }
 .sidebar h2 {
@@ -109,7 +110,7 @@ $grey-med: #ddd;
     display: flex;
     align-items: center;
     color:#555;
-    margin-bottom:10px;
+
    
 }
 

@@ -15,9 +15,9 @@ import { ErrorHandlerInterceptor } from './shared/error-handler.interceptor';
     AppComponent,
   ],
   imports: [
+    CoreModule,
     BrowserModule,
     AppRoutingModule,
-    CoreModule,
     HttpClientModule,
     FormsModule,
   ],

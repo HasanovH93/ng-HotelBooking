@@ -24,11 +24,13 @@ export class AllHotelsComponent implements OnInit {
   }
 
   getHotel(): void {
+    this.isLoading = true
     this.hotelService.getHotels({ page: this.page }).subscribe((res) => {
       res.forEach((element: IHotel) => {
         this.isLoading = false
         this.Data.push(element);
       });
+      this.isLoading = false
       console.log(res);
     });
   }
