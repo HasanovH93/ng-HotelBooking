@@ -13,9 +13,9 @@ dataController.get("/last-hotels", async (req, res) => {
 dataController.post("/create", s3UploadImg(), async (req, res) => {
   try {
     req.body = JSON.parse(JSON.stringify(req.body));
-    req.body.imageUrls = req.files.map((img) => img.location);
 
-   
+    console.log(req.user)
+    req.body.imageUrls = req.files.map((img) => img.location);
 
     const data = {
       hotelName: req.body.hotelName,
@@ -25,18 +25,24 @@ dataController.post("/create", s3UploadImg(), async (req, res) => {
       description: req.body.description,
       price: Number(req.body.price),
       imageUrls: req.body.imageUrls,
+      facilities: req.body.facilities,
     };
 
+    data.date = new Date().toDateString();
     data.owner = req.user._id;
 
     if (Object.values(data).some((v) => !v)) {
       throw new Error(`All fields are required`);
     }
 
+    const user = req.user
     const createdData = await create(data);
+    
     res.status(201).send({
       message: "Successfully uploaded " + req.files.length + " files!",
       createdData,
+      user
+     
     });
   } catch (error) {
     const message = parseError(error);
