@@ -5,9 +5,17 @@ roomType:string;
 location:string;
 stars:number;
 price: number;
-imageUrls: string[]
+imageUrls: string[];
 description:string;
-owner:string;
+owner:iOwner;
+facilities: string[];
+}
+
+export interface iOwner {
+    _id:string,
+    email:string,
+    username: string,
+
 }
 
 export interface IHotelDto{

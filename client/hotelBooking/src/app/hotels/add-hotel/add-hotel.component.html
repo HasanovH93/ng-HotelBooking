@@ -88,7 +88,6 @@
                             <p class="error-block" *ngIf="addHotelForm.get('description')?.errors?.['minlength']">Description should be at least 15 characters long</p>
                         </ng-container>
                 </div>
-
                 <div class=" create-form-container-form-user-details-input-box" *ngIf="[uploadedFiles].length">
                     <span class="create-form-container-form-user-details-input-box-details">Preview</span>
                     <ul *ngIf="[uploadedFiles].length">
@@ -96,6 +95,16 @@
                     </ul>
                     <p *ngIf="imageErrorMessage">{{imageErrorMessage}}</p>
                 </div>
+                <div class=" create-form-container-form-user-details-check-box">
+                     <span class="create-form-container-form-user-details--check-box-details">Facilities</span>
+                     <ng-container *ngFor="let facility of facilities; let i = index">
+                    <input type="checkbox" [value]="facility.value" (change)="onCheckBoxChange($event)">
+                    {{facility.name}}-<img class="facility-icons" src="{{facility.icon}}">
+                </ng-container>
+                    
+                </div>
+
+               
             </div>
 
 

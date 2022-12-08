@@ -17,6 +17,9 @@
                             <p>{{hotel.hotelName}}</p>
                             <h3>{{hotel.roomType}}</h3>
                             <p>1 Bedroom / 1 Bathroom / Wifi / Kitchen</p>
+                            <ng-container *ngFor="let facility of hotel.facilities">
+                                <p>{{facility}}</p>
+                              </ng-container>
                             
                             <img class="stars" src="/assets/icons/star-solid.svg" alt="">
                             <p class="description">{{hotel.description}}</p>

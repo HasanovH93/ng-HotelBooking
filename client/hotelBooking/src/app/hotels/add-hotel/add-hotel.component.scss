@@ -8,6 +8,7 @@ $blue_bg: #241a71;
   justify-content: center;
   align-items: center;
   padding: 10px;
+  margin-bottom: 100px;
 
   &-container {
     max-width: 800px;
@@ -125,6 +126,11 @@ $blue_bg: #241a71;
       }
     }
   }
+}
+
+.facility-icons{
+  height: 16px;
+  margin-left:5px;
 }
 
 @media screen and (max-width: 586px) {

@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import {
+  FormArray,
   FormBuilder,
   FormControl,
   FormGroup,
   Validators,
 } from '@angular/forms';
 import { Router } from '@angular/router';
+import { faC } from '@fortawesome/free-solid-svg-icons';
 import { HotelService } from 'src/app/services/hotel.service';
 import { MessageService, MessageType } from 'src/app/services/message.service';
 import { cities } from '../cities';
@@ -51,7 +53,34 @@ export class AddHotelComponent implements OnInit {
       Validators.required,
       Validators.minLength(15),
     ]),
+    facilities: this.formBuilder.array([]),
   });
+
+  facilities: Array<any> = [
+    { name: 'TV', value: 'TV', icon: '../../../assets/facilities/tv-solid.svg' },
+    { name: 'Washing Machine', value: 'Washing Machine' },
+    { name: 'Wi-Fi', value: 'Wi-Fi', icon: '../../../assets/facilities/wifi-solid.svg' },
+    { name: 'Elevator', value: 'Elevator', icon: '../../../assets/facilities/elevator-solid.svg' },
+    { name: 'Fitness', value: 'Fitness' },
+  ];
+
+  onCheckBoxChange(event: any) {
+    const facilities: FormArray = this.addHotelForm.get(
+      'facilities'
+    ) as FormArray;
+    if (event.target.checked) {
+      facilities.push(new FormControl(event.target.value));
+    } else {
+      let i = 0;
+      facilities.controls.forEach((item: any) => {
+        if (item.value == event.target.value) {
+          facilities.removeAt(i);
+          return;
+        }
+      });
+      i++;
+    }
+  }
 
   ngOnInit(): void {
     this.msgService.onMessage$.subscribe((message) => {
@@ -65,7 +94,6 @@ export class AddHotelComponent implements OnInit {
     });
   }
 
-  preview: string[] = [];
   onImageUpload(event: any) {
     this.imageErrorMessage = '';
 
@@ -90,8 +118,15 @@ export class AddHotelComponent implements OnInit {
       }
     }
 
-    const { hotelName, roomType, location, stars, price, description } =
-      this.addHotelForm.value;
+    const {
+      hotelName,
+      roomType,
+      location,
+      stars,
+      price,
+      description,
+      facilities,
+    } = this.addHotelForm.value;
 
     formData.append('hotelName', hotelName);
     formData.append('roomType', roomType);
@@ -99,10 +134,11 @@ export class AddHotelComponent implements OnInit {
     formData.append('stars', stars);
     formData.append('price', price);
     formData.append('description', description);
+    formData.append('facilities', facilities);
 
     this.hotelService.createHotel(formData).subscribe({
       next: (res) => {
-        console.log(res);
+        console.log(res)
       },
       complete: () => {
         this.router.navigate(['/']);
