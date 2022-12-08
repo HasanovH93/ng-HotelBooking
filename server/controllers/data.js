@@ -1,5 +1,5 @@
 const { hasUser } = require("../middlewares/guards");
-const { create, getLastFour } = require("../services/item");
+const { create, getLastFour, getAll } = require("../services/item");
 const { parseError } = require("../util/parser");
 const { s3UploadImg } = require("../middlewares/imagesUpload");
 
@@ -10,18 +10,13 @@ dataController.get("/last-hotels", async (req, res) => {
   res.status(200).send({ latestHotels: hotels });
 });
 
-
-
 dataController.post("/create", s3UploadImg(), async (req, res) => {
   try {
     req.body = JSON.parse(JSON.stringify(req.body));
     req.body.imageUrls = req.files.map((img) => img.location);
 
-    if (Object.values(req.body).some((v) => !v)) {
-      throw new Error(`All fields are required`);
-      
-    }
    
+
     const data = {
       hotelName: req.body.hotelName,
       roomType: req.body.roomType,
@@ -31,12 +26,13 @@ dataController.post("/create", s3UploadImg(), async (req, res) => {
       price: Number(req.body.price),
       imageUrls: req.body.imageUrls,
     };
-    
-    
-   
-    
+
     data.owner = req.user._id;
-    
+
+    if (Object.values(data).some((v) => !v)) {
+      throw new Error(`All fields are required`);
+    }
+
     const createdData = await create(data);
     res.status(201).send({
       message: "Successfully uploaded " + req.files.length + " files!",
@@ -46,6 +42,16 @@ dataController.post("/create", s3UploadImg(), async (req, res) => {
     const message = parseError(error);
     res.status(400).json({ message });
   }
+});
+
+dataController.get("/all-hotels", async (req, res) => {
+  try {
+    const page = parseInt(req.query.page);
+    const limit = 3;
+    const skip = parseInt(page * limit);
+    const data = await getAll(skip, limit);
+    res.json(data);
+  } catch (error) {}
 });
 
 // dataController.get("/:id", async (req, res) => {

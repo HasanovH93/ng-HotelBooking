@@ -1,8 +1,8 @@
 const Hotel = require("../models/Hotel");
 
 
-async function getAll(){
-   return Hotel.find({});
+async function getAll(skip,limit){
+   return Hotel.find({}).skip(skip).limit(limit).lean();
 
 }
 
