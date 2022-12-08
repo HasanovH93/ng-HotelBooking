@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { IHotel  } from '../../modals/hotel';
+import { IHotel } from '../../modals/hotel';
 
 import {
   faStar,
@@ -15,7 +15,7 @@ import { HotelService } from 'src/app/services/hotel.service';
 export class HotelViewComponent implements OnInit {
   faStar = faStar;
   faArrow = faArrowAltCircleRight;
-  isLoading: boolean= true
+  isLoading: boolean = true;
 
   hotels: IHotel[] = [];
 
@@ -24,8 +24,8 @@ export class HotelViewComponent implements OnInit {
   ngOnInit(): void {
     this.hotelService.getLastHotels().subscribe((data) => {
       this.hotels = data.latestHotels;
-     
-     this.isLoading = false
+
+      this.isLoading = false;
     });
   }
 }

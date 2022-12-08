@@ -43,7 +43,6 @@ $blue_bg: #241a71;
           width: calc(100% / 2 - 20px);
 
           &-details {
-            display: block;
             font-weight: 500;
             margin-bottom: 5px;
           }
@@ -103,7 +102,7 @@ $blue_bg: #241a71;
         height: 45px;
         margin: 35px 0;
 
-        &-input {
+        &-actionBtn{
           height: 100%;
           width: 100%;
           border-radius: 5px;
@@ -116,7 +115,11 @@ $blue_bg: #241a71;
           transition: all 0.3s ease;
           background: linear-gradient(135deg, $blue_bg, $pink);
         }
-        &-input:hover {
+        &-actionBtn:disabled{
+         opacity: 50%;
+          cursor:not-allowed;
+        }
+        &-actionBtn:hover {
           background: linear-gradient(-135deg, $blue_bg, $pink);
         }
       }
@@ -124,30 +127,26 @@ $blue_bg: #241a71;
   }
 }
 
-@media screen and (max-width: 720px) {
-  .create-form {
-    
-    &-container {
-      max-width: 100%;
-
-      &-user-details{
-        max-height: 300px;
-        overflow-y: scroll;
-        &-input-box{
-          margin-bottom: 15px;
-          width: 100%;
-        }
-      }
-    }
+@media screen and (max-width: 586px) {
+ 
+  .create-form-container{
+    max-width: 100%;
   }
-
-
-  .user-details::-webkit-scrollbar {
-    width: 5px;
+  .create-form-container-form-user-details-input-box{
+    margin-bottom: 15px;
+    width: 100%;
   }
+.create-form-container-form-user-details{
+  flex-direction: column;
 }
-@media (max-width: 459px) {
-  .create-form {
-    flex-direction: column;
-  }
+
+
+  
 }
+
+.error-block{
+  font-size:14px;
+  color:red;
+}
+
+

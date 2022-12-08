@@ -1,12 +1,13 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
+import { InfiniteScrollModule } from "ngx-infinite-scroll";
 import { HotelsRoutingModule } from './hotels-routing.module';
 import { AllHotelsComponent } from './all-hotels/all-hotels.component';
 import { RouterModule } from '@angular/router';
 import { AddHotelComponent } from './add-hotel/add-hotel.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
+import { MatProgressSpinnerModule} from '@angular/material/progress-spinner'
 
 
 @NgModule({
@@ -21,7 +22,9 @@ import { SharedModule } from '../shared/shared.module';
     HotelsRoutingModule,
     RouterModule,
     ReactiveFormsModule,
-    SharedModule
+    SharedModule,
+    InfiniteScrollModule,
+    MatProgressSpinnerModule,
   ],
   exports: [
     AllHotelsComponent

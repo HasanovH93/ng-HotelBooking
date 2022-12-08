@@ -1,30 +1,44 @@
 <div class="create-form">
     <div class="create-form-container">
         <div class="create-form-container-title">Add Hotel</div>
-        <form [formGroup]="addHotelForm" class="create-form-container-form">
+        <form [formGroup]="addHotelForm" class="create-form-container-form" (ngSubmit)="onSubmit($event)">
             <div class="create-form-container-form-user-details">
                 <div class="create-form-container-form-user-details-input-box">
                     <span class="create-form-container-form-user-details-input-box-details">Hotel Name</span>
-                    <input  formControlName="hotelName" class="create-form-container-form-user-details-input-box-input-field" type="text"
+                    <input formControlName="hotelName"
+                        class="create-form-container-form-user-details-input-box-input-field" type="text"
                         placeholder="Enter Hotel Name" required>
+                        <ng-container *ngIf="addHotelForm.get('hotelName')?.touched  && addHotelForm.get('description')?.invalid">
+                            <p class="error-block" *ngIf="addHotelForm.get('hotelName')?.errors?.['required']">Hotel name is required</p>
+                        </ng-container>
                 </div>
+
                 <div class="create-form-container-form-user-details-input-box">
                     <span class="create-form-container-form-user-details-input-box-details">Room Type</span>
-                    <select class="create-form-container-form-user-details-input-box-input-field" formControlName="roomType" required>
+                    <select class="create-form-container-form-user-details-input-box-input-field"
+                        formControlName="roomType" required>
                         <option disabled value="null">Select Room Type</option>
                         <option *ngFor="let item of roomTypes" [value]="item.name">{{item.name}}</option>
                     </select>
+                    <ng-container *ngIf="addHotelForm.get('roomType')?.touched && addHotelForm.get('description')?.invalid">
+                        <p class="error-block" *ngIf="addHotelForm.get('roomType')?.errors?.['required']">Room type is required</p>
+                    </ng-container>
                 </div>
                 <div class="create-form-container-form-user-details-input-box">
                     <span class="create-form-container-form-user-details-input-box-details">Location</span>
-                    <select class="create-form-container-form-user-details-input-box-input-field" formControlName="location" required>
+                    <select class="create-form-container-form-user-details-input-box-input-field"
+                        formControlName="location" required>
                         <option disabled value="null">Select City</option>
                         <option *ngFor="let item of cities" [value]="item.name">{{item.name}}</option>
                     </select>
+                    <ng-container *ngIf="addHotelForm.get('location')?.touched && addHotelForm.get('description')?.invalid">
+                        <p class="error-block" *ngIf="addHotelForm.get('location')?.errors?.['required']">Location is required</p>
+                    </ng-container>
                 </div>
                 <div class="create-form-container-form-user-details-input-box">
                     <span class="create-form-container-form-user-details-input-box-details">Stars</span>
-                    <select  class="create-form-container-form-user-details-input-box-input-field" formControlName="stars" required>
+                    <select class="create-form-container-form-user-details-input-box-input-field"
+                        formControlName="stars" required>
                         <option disabled value="null">Select Stars</option>
                         <option [value]="1">1</option>
                         <option [value]="2">2</option>
@@ -32,29 +46,47 @@
                         <option [value]="4">4</option>
                         <option [value]="5">5</option>
                     </select>
+
+                    <ng-container *ngIf="addHotelForm.get('stars')?.touched">
+                        <p class="error-block" *ngIf="addHotelForm.get('stars')?.errors?.['required']">Stars is required</p>
+                    </ng-container>
                 </div>
 
                 <div class="create-form-container-form-user-details-input-box">
                     <span class="create-form-container-form-user-details-input-box-details">Price</span>
                     <input class="create-form-container-form-user-details-input-box-input-field" type="number"
-                       formControlName="price" placeholder="Enter Price" required>
+                        formControlName="price" placeholder="Enter Price" required>
+                    <ng-container *ngIf="addHotelForm.get('price')?.touched && addHotelForm.get('price')?.invalid">
+                        <p class="error-block" *ngIf="addHotelForm.get('price')?.errors?.['required']">Price is required</p>
+                        <p class="error-block" *ngIf="addHotelForm.get('price')?.errors?.['min']">
+                            Price must be a positive number
+                        </p>
+                    </ng-container>
                 </div>
+
                 <div class="create-form-container-form-user-details-input-box">
                     <span class="create-form-container-form-user-details-input-box-details">Upload Images</span>
-                    <button type="button" class="create-form-container-form-user-details-input-box-uploadBtn" (click)="filePicker.click()">
+                    <button type="button" class="create-form-container-form-user-details-input-box-uploadBtn"
+                        (click)="filePicker.click()">
                         <img class="create-form-container-form-user-details-input-box-uploadBtn-upload"
                             src="/assets/icons/upload-solid.svg" alt="" />
                         Upload image
                     </button>
-                    <input multiple  type="file" class="create-form-container-form-user-details-input-box-input" accept="/image*" #filePicker
-                    (change)="onImageUpload($event)"/>
+                    <input multiple type="file" class="create-form-container-form-user-details-input-box-input"
+                        accept="/image*"  #filePicker (change)="onImageUpload($event)" />
+                      
                 </div>
-            
+
 
                 <div class=" create-form-container-form-user-details-input-box">
                     <span class="create-form-container-form-user-details-input-box-details">Description</span>
                     <textarea class="create-form-container-form-user-details-input-box-text-area" name="" id=""
-                       formControlName="description" cols="50" rows="5"></textarea>
+                        formControlName="description" cols="50" rows="5"></textarea>
+
+                        <ng-container *ngIf="addHotelForm.get('description')?.touched && addHotelForm.get('description')?.invalid">
+                            <p class="error-block" *ngIf="addHotelForm.get('description')?.errors?.['required']">Description is required</p>
+                            <p class="error-block" *ngIf="addHotelForm.get('description')?.errors?.['minlength']">Description should be at least 15 characters long</p>
+                        </ng-container>
                 </div>
 
                 <div class=" create-form-container-form-user-details-input-box" *ngIf="[uploadedFiles].length">
@@ -62,14 +94,21 @@
                     <ul *ngIf="[uploadedFiles].length">
                         <li *ngFor="let file of uploadedFiles"> {{file.name}} - {{file.size}} bytes</li>
                     </ul>
+                    <p *ngIf="imageErrorMessage">{{imageErrorMessage}}</p>
                 </div>
             </div>
-                
-           
+
+
 
             <div class="create-form-container-form-button">
-                <input (click)="onSubmit()" class="create-form-container-form-button-input" type="submit" value="Add Hotel">
+                <button class="create-form-container-form-button-actionBtn" type="submit"
+                   
+                    >Add Hotel</button>
             </div>
         </form>
+        <ng-container *ngIf="!!errorMessage">
+            <p class="error-block" *ngIf="isErrorType">{{ errorMessage }}</p>
+            <p class="error-block" *ngIf="!isErrorType">{{ errorMessage }}</p>
+          </ng-container>
     </div>
 </div>

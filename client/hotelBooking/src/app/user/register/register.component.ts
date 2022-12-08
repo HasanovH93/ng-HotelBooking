@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component,  OnInit } from '@angular/core';
 import {
   FormBuilder,
   FormControl,
@@ -25,12 +25,12 @@ export class RegisterComponent implements OnInit {
   ) {}
   errorMessage!: string;
   isErrorType!: boolean;
-
+  emailPattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$";
   isLoading: boolean = false;
 
   signUpForm: FormGroup = this.formBuilder.group(
     {
-      email: new FormControl(null, [Validators.required, Validators.email]),
+      email: new FormControl(null, [Validators.required, Validators.pattern(this.emailPattern)]),
       username: new FormControl(null, [
         Validators.required,
         Validators.minLength(5),
@@ -61,6 +61,7 @@ export class RegisterComponent implements OnInit {
   onRegister() {
     this._auth.registerUser(this.signUpForm.value);
   }
+
 
   openDialogRegister() {
     this.dialogRef.closeAll()
