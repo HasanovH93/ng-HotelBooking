@@ -8,6 +8,7 @@ import { AddHotelComponent } from './add-hotel/add-hotel.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
 import { MatProgressSpinnerModule} from '@angular/material/progress-spinner'
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 
 @NgModule({
@@ -25,6 +26,7 @@ import { MatProgressSpinnerModule} from '@angular/material/progress-spinner'
     SharedModule,
     InfiniteScrollModule,
     MatProgressSpinnerModule,
+    FontAwesomeModule
   ],
   exports: [
     AllHotelsComponent

@@ -7,7 +7,22 @@ import {
   Validators,
 } from '@angular/forms';
 import { Router } from '@angular/router';
-import { faC } from '@fortawesome/free-solid-svg-icons';
+
+import {
+  faTv,
+  faWifi,
+  faElevator,
+  faSpa,
+  faUtensils,
+  faSquareParking,
+  faMartiniGlass,
+  faPaw,
+  faKitchenSet,
+  faMugSaucer,
+  faPersonSwimming,
+  faVault
+
+} from '@fortawesome/free-solid-svg-icons';
 import { HotelService } from 'src/app/services/hotel.service';
 import { MessageService, MessageType } from 'src/app/services/message.service';
 import { cities } from '../cities';
@@ -55,13 +70,27 @@ export class AddHotelComponent implements OnInit {
     ]),
     facilities: this.formBuilder.array([]),
   });
+   
+  // faTv= faTv
+  // faWifi = faWifi
+  // faElevator = faElevator
+  // faSpa = faSpa
+  // faUtensils = faUtensils
+  // faParking = faSquareParking
 
   facilities: Array<any> = [
-    { name: 'TV', value: 'TV', icon: '../../../assets/facilities/tv-solid.svg' },
-    { name: 'Washing Machine', value: 'Washing Machine' },
-    { name: 'Wi-Fi', value: 'Wi-Fi', icon: '../../../assets/facilities/wifi-solid.svg' },
-    { name: 'Elevator', value: 'Elevator', icon: '../../../assets/facilities/elevator-solid.svg' },
-    { name: 'Fitness', value: 'Fitness' },
+    { name: 'TV', value: 'TV', icon: faTv },
+    { name: 'Spa', value: 'Spa', icon: faSpa },
+    { name: 'Wi-Fi', value: 'Wi-Fi', icon: faWifi },
+    { name: 'Elevator', value: 'Elevator', icon: faElevator },
+    { name: 'Restaurant', value: 'Restaurant', icon: faUtensils },
+    { name: 'Parking', value: 'Parking', icon: faSquareParking},
+    { name: 'Bar', value: 'Bar', icon: faMartiniGlass },
+    { name: 'Pet Friendly', value: 'Pet Frendly', icon: faPaw },
+    { name: 'Kitchen', value: 'Kitchen', icon: faKitchenSet },
+    { name: 'Breakfast', value: 'Breakfast', icon: faMugSaucer },
+    { name: 'Pool', value: 'Pool', icon: faPersonSwimming },
+    { name: 'Safe', value: 'Safe', icon: faVault },
   ];
 
   onCheckBoxChange(event: any) {

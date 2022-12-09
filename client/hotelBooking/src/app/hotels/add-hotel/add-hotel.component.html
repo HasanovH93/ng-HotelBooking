@@ -8,9 +8,11 @@
                     <input formControlName="hotelName"
                         class="create-form-container-form-user-details-input-box-input-field" type="text"
                         placeholder="Enter Hotel Name" required>
-                        <ng-container *ngIf="addHotelForm.get('hotelName')?.touched  && addHotelForm.get('description')?.invalid">
-                            <p class="error-block" *ngIf="addHotelForm.get('hotelName')?.errors?.['required']">Hotel name is required</p>
-                        </ng-container>
+                    <ng-container
+                        *ngIf="addHotelForm.get('hotelName')?.touched  && addHotelForm.get('description')?.invalid">
+                        <p class="error-block" *ngIf="addHotelForm.get('hotelName')?.errors?.['required']">Hotel name is
+                            required</p>
+                    </ng-container>
                 </div>
 
                 <div class="create-form-container-form-user-details-input-box">
@@ -20,8 +22,10 @@
                         <option disabled value="null">Select Room Type</option>
                         <option *ngFor="let item of roomTypes" [value]="item.name">{{item.name}}</option>
                     </select>
-                    <ng-container *ngIf="addHotelForm.get('roomType')?.touched && addHotelForm.get('description')?.invalid">
-                        <p class="error-block" *ngIf="addHotelForm.get('roomType')?.errors?.['required']">Room type is required</p>
+                    <ng-container
+                        *ngIf="addHotelForm.get('roomType')?.touched && addHotelForm.get('description')?.invalid">
+                        <p class="error-block" *ngIf="addHotelForm.get('roomType')?.errors?.['required']">Room type is
+                            required</p>
                     </ng-container>
                 </div>
                 <div class="create-form-container-form-user-details-input-box">
@@ -31,8 +35,10 @@
                         <option disabled value="null">Select City</option>
                         <option *ngFor="let item of cities" [value]="item.name">{{item.name}}</option>
                     </select>
-                    <ng-container *ngIf="addHotelForm.get('location')?.touched && addHotelForm.get('description')?.invalid">
-                        <p class="error-block" *ngIf="addHotelForm.get('location')?.errors?.['required']">Location is required</p>
+                    <ng-container
+                        *ngIf="addHotelForm.get('location')?.touched && addHotelForm.get('description')?.invalid">
+                        <p class="error-block" *ngIf="addHotelForm.get('location')?.errors?.['required']">Location is
+                            required</p>
                     </ng-container>
                 </div>
                 <div class="create-form-container-form-user-details-input-box">
@@ -48,7 +54,8 @@
                     </select>
 
                     <ng-container *ngIf="addHotelForm.get('stars')?.touched">
-                        <p class="error-block" *ngIf="addHotelForm.get('stars')?.errors?.['required']">Stars is required</p>
+                        <p class="error-block" *ngIf="addHotelForm.get('stars')?.errors?.['required']">Stars is required
+                        </p>
                     </ng-container>
                 </div>
 
@@ -57,7 +64,8 @@
                     <input class="create-form-container-form-user-details-input-box-input-field" type="number"
                         formControlName="price" placeholder="Enter Price" required>
                     <ng-container *ngIf="addHotelForm.get('price')?.touched && addHotelForm.get('price')?.invalid">
-                        <p class="error-block" *ngIf="addHotelForm.get('price')?.errors?.['required']">Price is required</p>
+                        <p class="error-block" *ngIf="addHotelForm.get('price')?.errors?.['required']">Price is required
+                        </p>
                         <p class="error-block" *ngIf="addHotelForm.get('price')?.errors?.['min']">
                             Price must be a positive number
                         </p>
@@ -73,8 +81,8 @@
                         Upload image
                     </button>
                     <input multiple type="file" class="create-form-container-form-user-details-input-box-input"
-                        accept="/image*"  #filePicker (change)="onImageUpload($event)" />
-                      
+                        accept="/image*" #filePicker (change)="onImageUpload($event)" />
+
                 </div>
 
 
@@ -83,41 +91,57 @@
                     <textarea class="create-form-container-form-user-details-input-box-text-area" name="" id=""
                         formControlName="description" cols="50" rows="5"></textarea>
 
-                        <ng-container *ngIf="addHotelForm.get('description')?.touched && addHotelForm.get('description')?.invalid">
-                            <p class="error-block" *ngIf="addHotelForm.get('description')?.errors?.['required']">Description is required</p>
-                            <p class="error-block" *ngIf="addHotelForm.get('description')?.errors?.['minlength']">Description should be at least 15 characters long</p>
-                        </ng-container>
+                    <ng-container
+                        *ngIf="addHotelForm.get('description')?.touched && addHotelForm.get('description')?.invalid">
+                        <p class="error-block" *ngIf="addHotelForm.get('description')?.errors?.['required']">Description
+                            is required</p>
+                        <p class="error-block" *ngIf="addHotelForm.get('description')?.errors?.['minlength']">
+                            Description should be at least 15 characters long</p>
+                    </ng-container>
                 </div>
                 <div class=" create-form-container-form-user-details-input-box" *ngIf="[uploadedFiles].length">
-                    <span class="create-form-container-form-user-details-input-box-details">Preview</span>
                     <ul *ngIf="[uploadedFiles].length">
+                        <span class="create-form-container-form-user-details-input-box-details">Preview</span>
                         <li *ngFor="let file of uploadedFiles"> {{file.name}} - {{file.size}} bytes</li>
                     </ul>
                     <p *ngIf="imageErrorMessage">{{imageErrorMessage}}</p>
                 </div>
-                <div class=" create-form-container-form-user-details-check-box">
-                     <span class="create-form-container-form-user-details--check-box-details">Facilities</span>
-                     <ng-container *ngFor="let facility of facilities; let i = index">
-                    <input type="checkbox" [value]="facility.value" (change)="onCheckBoxChange($event)">
-                    {{facility.name}}-<img class="facility-icons" src="{{facility.icon}}">
-                </ng-container>
-                    
+
+
+                <div class="checkbox">
+                    <fieldset class="checkbox_group">
+                        <legend class="checkbox_group_title">Choose Facilities</legend>
+                        <div class="checkbox" *ngFor="let facility of facilities; let i = index">
+                            <label class="checkbox_wrapper">
+                                <input type="checkbox" class="checkbox_input" [value]="facility.value"
+                                    (change)="onCheckBoxChange($event)">
+                                <span class="checkbox_content">
+                                    <span class="checkbox-icon">
+                                        <fa-icon [icon]="facility.icon"
+                                            class="container-card-content-right-icons-star"></fa-icon>
+                                    </span>
+                                    <span class="checkbox_title">{{facility.name}}</span>
+                                </span>
+                            </label>
+                        </div>
+                    </fieldset>
+
                 </div>
 
-               
+
+
+
             </div>
 
 
 
             <div class="create-form-container-form-button">
-                <button class="create-form-container-form-button-actionBtn" type="submit"
-                   
-                    >Add Hotel</button>
+                <button class="create-form-container-form-button-actionBtn" type="submit">Add Hotel</button>
             </div>
         </form>
         <ng-container *ngIf="!!errorMessage">
             <p class="error-block" *ngIf="isErrorType">{{ errorMessage }}</p>
             <p class="error-block" *ngIf="!isErrorType">{{ errorMessage }}</p>
-          </ng-container>
+        </ng-container>
     </div>
 </div>
