@@ -3,6 +3,7 @@ _id:string;
 hotelName: string;
 roomType:string;
 location:string;
+address: string;
 stars:number;
 price: number;
 imageUrls: string[];

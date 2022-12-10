@@ -58,6 +58,7 @@ export class AddHotelComponent implements OnInit {
     hotelName: new FormControl(null, [Validators.required]),
     roomType: new FormControl(null, [Validators.required]),
     location: new FormControl(null, [Validators.required]),
+    address: new FormControl(null),
     stars: new FormControl(null, [Validators.required]),
     price: new FormControl(null, [
       Validators.required,
@@ -71,12 +72,7 @@ export class AddHotelComponent implements OnInit {
     facilities: this.formBuilder.array([]),
   });
    
-  // faTv= faTv
-  // faWifi = faWifi
-  // faElevator = faElevator
-  // faSpa = faSpa
-  // faUtensils = faUtensils
-  // faParking = faSquareParking
+
 
   facilities: Array<any> = [
     { name: 'TV', value: 'TV', icon: faTv },
@@ -86,9 +82,11 @@ export class AddHotelComponent implements OnInit {
     { name: 'Restaurant', value: 'Restaurant', icon: faUtensils },
     { name: 'Parking', value: 'Parking', icon: faSquareParking},
     { name: 'Bar', value: 'Bar', icon: faMartiniGlass },
-    { name: 'Pet Friendly', value: 'Pet Frendly', icon: faPaw },
+    { name: 'Pet Friendly', value: 'Pet Friendly', icon: faPaw },
     { name: 'Kitchen', value: 'Kitchen', icon: faKitchenSet },
     { name: 'Breakfast', value: 'Breakfast', icon: faMugSaucer },
+    { name: 'Pool', value: 'Pool', icon: faPersonSwimming },
+    { name: 'Safe', value: 'Safe', icon: faVault },
     { name: 'Pool', value: 'Pool', icon: faPersonSwimming },
     { name: 'Safe', value: 'Safe', icon: faVault },
   ];
@@ -151,6 +149,7 @@ export class AddHotelComponent implements OnInit {
       hotelName,
       roomType,
       location,
+      address,
       stars,
       price,
       description,
@@ -160,6 +159,7 @@ export class AddHotelComponent implements OnInit {
     formData.append('hotelName', hotelName);
     formData.append('roomType', roomType);
     formData.append('location', location);
+    formData.append('address', address)
     formData.append('stars', stars);
     formData.append('price', price);
     formData.append('description', description);
