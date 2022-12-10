@@ -21,6 +21,7 @@ dataController.post("/create", s3UploadImg(), async (req, res) => {
       hotelName: req.body.hotelName,
       roomType: req.body.roomType,
       location: req.body.location,
+      address: req.body.address,
       stars: Number(req.body.stars),
       description: req.body.description,
       price: Number(req.body.price),
@@ -35,7 +36,7 @@ dataController.post("/create", s3UploadImg(), async (req, res) => {
       throw new Error(`All fields are required`);
     }
 
-    const user = req.user
+    const user = req.user._id
     const createdData = await create(data);
     
     res.status(201).send({
