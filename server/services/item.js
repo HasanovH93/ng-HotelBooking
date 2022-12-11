@@ -14,11 +14,11 @@ async function getLastFour() {
  }
 
 async function getByUserId(userId){
-    return Hotel.find({_ownerId: userId})
+    return Hotel.find({owner: userId})
 }
 
 
-async function getById(id){
+async function getHotelById(id){
   return await Hotel.findById(id).lean();
 }
 
@@ -28,6 +28,15 @@ async function create(item){
 
 }
 
+async function changeImage(id, newImage, newEmail){
+   const existing = await Hotel.findById(id)
+  
+ 
+   existing.ownerImage =  newImage
+   existing.ownerEmail =  newEmail
+
+   return  existing.save()
+}
 
 async function edit(id,item){
    const existing = await Hotel.findById(id)
@@ -38,7 +47,7 @@ async function edit(id,item){
    existing.price = item.price;
    existing.img = item.img;
    
-   return existing.save();
+   return existing.update();
 }
 
 
@@ -48,10 +57,11 @@ async function deleteItem(id){
 
 module.exports = {
     getAll,
-    getById,
+    getHotelById,
     create,
     edit,
     deleteItem,
     getByUserId,
-    getLastFour
+    getLastFour,
+    changeImage
 }

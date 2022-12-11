@@ -1,5 +1,6 @@
 const { hasUser } = require("../middlewares/guards");
-const { create, getLastFour, getAll, getById } = require("../services/item");
+const { create, getLastFour, getAll, getHotelById } = require("../services/item");
+const { getById} = require('../services/user')
 const { parseError } = require("../util/parser");
 const { s3UploadImg } = require("../middlewares/imagesUpload");
 
@@ -38,10 +39,12 @@ dataController.post("/create", s3UploadImg(), async (req, res) => {
     }
     data.date = new Date().toDateString();
     data.owner = req.user._id;
-    data.ownerImage = req.user.imageUrl
-    data.ownerEmail = req.user.email
-    console.log(req.user.imageUrl)
-    console.log(req.user)
+
+   
+    const id = req.user._id;
+   const user = await getById(id);
+   data.ownerImage = user.imageUrl
+   data.ownerEmail = user.email
 
     const createdData = await create(data);
 
@@ -68,7 +71,7 @@ dataController.get("/all-hotels", async (req, res) => {
 dataController.get("/details/:id", async (req, res) => {
 try {
   const id = req.params.id;
-  const data = await getById(id)
+  const data = await getHotelById(id)
   res.status(200).send({data})
 } catch (error) {
   const message = parseError(error);
