@@ -5,7 +5,7 @@ const jwt = require('jsonwebtoken');
 
 const SECRET_PASSWORD = process.env.JWT_SECRET_PASSWORD;
 
-const tokenBlackList = new Set();
+
 
 async function getById(id){
     const user = await User.findById(id);
@@ -49,15 +49,14 @@ async function login(email,password){
     }
     return user;
 }
-async function logout(token){
-    tokenBlackList.add(token);
-}
+
 
 function createToken(user){
     const payload = {
         _id: user._id,
         email: user.email,
-        username: user.username
+        username: user.username,
+        imageUrl: user.imageUrl
     }
     const token = jwt.sign(payload, SECRET_PASSWORD, {
         expiresIn: "1h"
@@ -68,10 +67,10 @@ function createToken(user){
     
 }
 
+
+
 function parseToken(token){
-   if(tokenBlackList.has(token)){
-    throw new Error('Token is blacklisted')
-   }
+
 
    return jwt.verify(token,SECRET_PASSWORD)
 }
@@ -80,7 +79,6 @@ function parseToken(token){
 module.exports = {
     register,
     login,
-    logout,
     parseToken,
     createToken,
     getById,

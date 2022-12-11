@@ -12,6 +12,8 @@ const hotelSchema = new Schema({
    facilities: [{type:String}],
    date: {type:String},
    owner: { type: Types.ObjectId, ref: "User", required: true },
+   ownerEmail: {type: String},
+   ownerImage: {type: String}
 });
 
 const Hotel = model('hotel', hotelSchema);

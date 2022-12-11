@@ -19,7 +19,7 @@ async function getByUserId(userId){
 
 
 async function getById(id){
-  return Hotel.findById(id);
+  return await Hotel.findById(id).lean();
 }
 
 async function create(item){

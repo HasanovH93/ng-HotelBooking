@@ -1,5 +1,5 @@
 const { hasUser } = require("../middlewares/guards");
-const { create, getLastFour, getAll } = require("../services/item");
+const { create, getLastFour, getAll, getById } = require("../services/item");
 const { parseError } = require("../util/parser");
 const { s3UploadImg } = require("../middlewares/imagesUpload");
 
@@ -28,8 +28,7 @@ dataController.post("/create", s3UploadImg(), async (req, res) => {
       facilities: req.body.facilities,
     };
 
-    data.date = new Date().toDateString();
-    data.owner = req.user._id;
+  
 
     if (Object.values(data).some((v) => !v)) {
       throw new Error(`All fields are required`);
@@ -37,15 +36,18 @@ dataController.post("/create", s3UploadImg(), async (req, res) => {
     if (req.body.imageUrls.length < 1) {
       throw new Error("At least one Image is required!");
     }
+    data.date = new Date().toDateString();
+    data.owner = req.user._id;
+    data.ownerImage = req.user.imageUrl
+    data.ownerEmail = req.user.email
+    console.log(req.user.imageUrl)
+    console.log(req.user)
 
-    const user = req.user._id;
     const createdData = await create(data);
-    console.log(createdData);
 
     res.status(201).send({
       message: "Successfully uploaded " + req.files.length + " files!",
-      createdData,
-      user,
+      createdData
     });
   } catch (error) {
     const message = parseError(error);
@@ -63,10 +65,16 @@ dataController.get("/all-hotels", async (req, res) => {
   } catch (error) {}
 });
 
-// dataController.get("/:id", async (req, res) => {
-//   const item = await getById(req.params.id);
-//   res.json(item);
-// });
+dataController.get("/details/:id", async (req, res) => {
+try {
+  const id = req.params.id;
+  const data = await getById(id)
+  res.status(200).send({data})
+} catch (error) {
+  const message = parseError(error);
+ res.status(400).json({message})
+}
+});
 
 // dataController.put("/:id", hasUser(), async (req, res) => {
 //   const item = await getById(req.params.id);

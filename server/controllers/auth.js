@@ -1,6 +1,6 @@
 const authController = require('express').Router();
 const {body, validationResult } = require('express-validator')
-const { register,login, logout, createToken, getById, editUser } = require('../services/user');
+const { register,login, createToken, getById, editUser, refreshToken } = require('../services/user');
 const { parseError } = require('../util/parser');
 const { s3UploadImg } = require('../middlewares/imagesUpload');
 
@@ -62,17 +62,17 @@ authController.put('/profile',  s3UploadImg(), async (req, res) => {
    }else if(req.body.img && req.files.length <= 0) {
      req.body.imageUrl = req.body.img
    }
-    console.log(req.body.imageUrl)
+   const imageUrl = req.body.imageUrl
    const user = await editUser(
     req.user._id,
     username,
     email,
-    req.body.imageUrl
+    imageUrl
    );
-   console.log(user)
    const token = createToken(user);
    const userData = removePassword(user)
-    console.log(userData)
+   console.log(token)
+   console.log(userData)
    res.status(201).send({  userData, token, expiresIn: 3600 });
 
   } catch (err) {
@@ -80,12 +80,6 @@ authController.put('/profile',  s3UploadImg(), async (req, res) => {
   }
 })
 
-authController.get('/logout', async (req, res) => {
-  const token = req.token
-  await logout(token);
-  res.status(204).end();
-
-})
 
 const removePassword = (data) => {
   const { email, id, username, imageUrl } =
