@@ -1,0 +1,234 @@
+.hotel-details {
+    padding: 0 12%;
+}
+.hotel-title{
+    margin-top:50px;
+}
+.hotel-title h1 {
+    font-weight: 600;
+}
+.hotel-title .row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    margin: 10px 0;
+}
+
+.hotel-title  span {
+    margin: 0 20px;
+}
+.stars-icon {
+    color: #ff5361;
+    font-size: 14px;
+}
+.image-grid {
+	--gap: 16px;
+	--num-cols: 4;
+	--row-height: 180px;
+
+	box-sizing: border-box;
+	padding: 10px 0;
+
+	display: grid;
+	grid-template-columns: repeat(var(--num-cols), 1fr);
+	grid-auto-rows: var(--row-height);
+	gap: var(--gap);
+}
+
+.image-grid>img {
+	width: 100%;
+	height: 100%;
+    border-radius: 10px;
+}
+
+.image-grid-col-2 {
+	grid-column: span 2;
+}
+
+.image-grid-row-2 {
+	grid-row: span 2;
+}
+
+
+.small-details h2{
+    font-weight: 500;
+
+}
+.small-details h4 {
+    text-align: right;
+    font-size: 22px;
+}
+.line{
+    border:0;
+    height: 1px;
+    background: #ccc;
+    width: 100%;
+    max-width: 800px;
+    margin: 20;
+    
+}
+
+.check-form {
+    margin: 30px 0;
+    background: #fff;
+    box-shadow: 0 0 30px rgba(0,0,0,0.3);
+    border-radius: 8px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    padding: 10px 50px;
+}
+
+.check-form label {
+    display: block;
+}
+.check-form div {
+    padding: 20px;
+}
+
+.check-form input {
+    background: transparent;
+    border:0;
+    outline: none;
+
+}
+.check-form button {
+    background-color: #ff5361 ;
+    border: 0;
+    outline: none;
+    color: #fff;
+    padding: 18px;
+    width: 350px;
+    border-radius: 8px;
+    font-size: 16px;
+
+}
+.guest-field {
+    flex: 1;
+}
+
+.details-list {
+    list-style: none;
+    margin: 50px 0
+}
+
+.details-list li {
+    margin-left: 50px;
+    font-size: 20px;
+    font-weight: 500;
+    margin-bottom: 20px;
+    color: #555;
+    position: relative;
+}
+
+.details-list li span {
+    display: block;
+    font-weight: 400;
+    font-size: 16px;
+}
+
+.facilities-icon {
+    position: absolute;
+    top:5px;
+    left: -40px;
+}
+
+.description {
+  max-width: 700px;
+  margin: 50px 0
+}
+.map {
+    margin: 50px 0;
+}
+
+.map iframe {
+    width: 100%;
+    margin-bottom: 30px;
+}
+.map h3 {
+    font-size: 26px;
+    font-weight: 500;
+    margin-bottom: 30px;
+}
+.map b {
+    display: block;
+    margin-bottom: 16px;
+}
+
+.host {
+    margin-top:15px;
+    display: flex;
+    align-items: center;
+}
+.host img {
+    height: 65px;
+
+    border-radius: 50%;
+    margin-right: 30px;
+}
+.host h2 {
+    margin-bottom: 10px;
+    font-weight: 500;
+}
+
+.contact-host{
+    display: inline-block;
+    margin: 40px 0 40px 120px;
+    text-decoration: none;
+    color: #555;
+    padding: 15px 50px;
+    border: 1px solid #ff5361;
+    border-radius: 8px;
+    background: transparent;
+}
+
+
+@media screen and (max-width: 1024px) {
+	.image-grid {
+		--num-cols: 2;
+		--row-height: 200px;
+	}
+}
+
+@media only screen and (max-width: 700px){
+    .hotel-details {
+        margin-top:50px;
+    }
+    .row p {
+     margin-top: 10px;
+    }
+    .small-details h2 {
+        font-size: 20px;
+        margin-top: 25px;
+    }
+    .small-details h4 {
+        text-align: left;
+        margin: 10px 0;
+        font-size: 18px;
+    }
+    .check-form  {
+        padding: 10px 30px;
+    }
+    .check-form div {
+        padding: 20px 0;
+        width: 100%;
+    }
+    .check-form input {
+        border-bottom:  1px solid #ccc;
+        width: 100%;
+        padding-bottom: 5px;
+    }
+    .check-form button {
+        font-size: 14px;
+        margin-top: 10px;
+        margin-bottom: 15px;
+        border-radius: 4px;
+    }
+    .host {
+        display: block;
+        list-style: 28px;
+    }
+    .contact-host {
+      margin:40px 0;
+    }
+}
