@@ -54,7 +54,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   openDialogRegister() {
-    this.dialogRef.open(RegisterComponent,{autoFocus:false});
+  
+    this.dialogRef.open(RegisterComponent,{autoFocus: false});
   }
 
   openDialogLogin() {
