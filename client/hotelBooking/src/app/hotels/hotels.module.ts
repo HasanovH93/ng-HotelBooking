@@ -9,12 +9,14 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
 import { MatProgressSpinnerModule} from '@angular/material/progress-spinner'
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { DetailsViewComponent } from './details-view/details-view.component';
 
 
 @NgModule({
   declarations: [
     AllHotelsComponent,
     AddHotelComponent,
+    DetailsViewComponent,
 
 
   ],

@@ -71,7 +71,7 @@ export class AddHotelComponent implements OnInit {
       Validators.required,
       Validators.minLength(15),
     ]),
-    facilities: this.formBuilder.array([]),
+    facilities: this.formBuilder.array([],Validators.required),
   });
    
 
