@@ -26,7 +26,7 @@
                             <div class="house-price">
                                 <p>2 Guest</p>
                                 <h4>$ {{hotel.price}} / <span>day</span></h4>
-                                <button class="detailsBtn" routerLink="/hotels/details">View Details</button>
+                                <button class="detailsBtn" [routerLink]="'/hotels/details/' + hotel._id">View Details</button>
                             </div>
                         </div>
                     </div>

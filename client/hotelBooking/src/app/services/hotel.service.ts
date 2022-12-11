@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, of, switchMap } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { IHotel, IHotelDto } from '../modals/hotel';
+import { IHotel, IHotelDto, ISHotel } from '../modals/hotel';
 
 @Injectable({
   providedIn: 'root',
@@ -22,6 +22,14 @@ export class HotelService {
 
   getHotels(params: any):Observable<any> {
     return this.http.get<IHotel>(this.apiUrl+ `hotels/all-hotels`, {params});
+  }
+
+  getHotelById(id:string){
+    return this.http.get<ISHotel>(this.apiUrl + `hotels/details/${id}`).pipe(
+      switchMap((res) => {
+        return of(res.data)
+      })
+    )
   }
 
   

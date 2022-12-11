@@ -1,81 +1,106 @@
-<div class="hotel-details">
-    <div class="hotel-title">
-        <h1>Wenge House</h1>
-        <div class="row">
-            <div class="stars">
-                <fa-icon [icon]="faStar" class="stars-icon"></fa-icon>
-                <fa-icon [icon]="faStar" class="stars-icon"></fa-icon>
-                <fa-icon [icon]="faStar" class="stars-icon"></fa-icon>
-                <fa-icon [icon]="faStar" class="stars-icon"></fa-icon>
-                <fa-icon [icon]="faStar" class="stars-icon"></fa-icon>
-             <span>245 Reviews</span>
-            </div>
-            <div class="location">
-                Location: San Francisco, California, United-states
-            </div>
+<div class="hotel-details" *ngIf="hotel">
+  <div class="hotel-title">
+    <h1>{{ hotel.hotelName }}</h1>
+    <div class="row">
+      <div class="stars">
+        <fa-icon [icon]="faStar" class="stars-icon"></fa-icon>
+        <fa-icon [icon]="faStar" class="stars-icon"></fa-icon>
+        <fa-icon [icon]="faStar" class="stars-icon"></fa-icon>
+        <fa-icon [icon]="faStar" class="stars-icon"></fa-icon>
+        <fa-icon [icon]="faStar" class="stars-icon"></fa-icon>
+        <span>245 Reviews</span>
+      </div>
+      <div class="location">
+        Location: {{hotel.location}}, {{hotel.address}}
+      </div>
+    </div>
+  </div>
+  <div class="image-grid" *ngIf="hotel.imageUrls">
+    <img
+      class="image-grid-col-2 image-grid-row-2"
+      src="{{ hotel.imageUrls[0] }}"
+      alt="architecture"
+    />
+    <ng-container *ngIf="hotel.imageUrls.length > 1">
+      <img src="{{ hotel.imageUrls[1] }}" />
+    </ng-container>
 
-        </div>
+    <ng-container *ngIf="hotel.imageUrls.length > 2">
+      <img src="{{ hotel.imageUrls[2] }}" />
+    </ng-container>
+    <ng-container *ngIf="hotel.imageUrls.length > 3">
+      <img src="{{ hotel.imageUrls[3] }}" />
+    </ng-container>
+    <ng-container *ngIf="hotel.imageUrls.length > 4">
+      <img src="{{ hotel.imageUrls[4] }}" />
+    </ng-container>
+  </div>
+  <div class="small-details">
+    <h2>{{hotel.hotelName}} by Brandon</h2>
+    <p>2 guest &nbsp; &nbsp; 2beds &nbsp; &nbsp; 1 bathroom</p>
+    <h4>${{hotel.price}} / day</h4>
+  </div>
+  <hr class="line" />
+  <form class="check-form">
+    <div>
+      <label>Check-in</label>
+      <input type="text" placeholder="Add Date" />
     </div>
-    <div class="image-grid">
-		<img class="image-grid-col-2 image-grid-row-2" src="/assets/images/house1.jpg" alt="architecture">
-		<img src="/assets/images/house1.jpg" alt="architecture">
-		<img src="/assets/images/house1.jpg" alt="architecture">
-		<img src="/assets/images/house1.jpg" alt="architecture">
-		<img src="/assets/images/house1.jpg" alt="architecture">
-	</div>
-    <div class="small-details">
-        <h2>Entire rental unit hosted by Brandon</h2>
-        <p>2 guest &nbsp; &nbsp; 2beds &nbsp; &nbsp; 1 bathroom </p>
-        <h4>$100 / day</h4>
+    <div>
+      <label>Check-out</label>
+      <input type="text" placeholder="Add Date" />
     </div>
-    <hr class="line">
-    <form class="check-form">
-        <div>
-            <label>Check-in</label>
-            <input type="text" placeholder="Add Date">
-        </div>
-        <div>
-            <label>Check-out</label>
-            <input type="text" placeholder="Add Date">
-        </div>
-        <div class="guest-field">
-            <label>Guest</label>
-            <input type="text" placeholder="2 guests">
-        </div>
-        <button type="button">Reserve</button>
-
-    </form>
-    <ul class="details-list">
-        <li> <fa-icon [icon]="faHome" class="facilities-icon"></fa-icon>Entire House <span>You will have the entire flat for you</span> </li>
-        <li><fa-icon [icon]="faHome" class="facilities-icon"></fa-icon>Entire House <span>You will have the entire flat for you</span> </li>
-        <li><fa-icon [icon]="faHome" class="facilities-icon"></fa-icon>Entire House <span>You will have the entire flat for you</span> </li>
-        <li><fa-icon [icon]="faHome" class="facilities-icon"></fa-icon>Entire House <span>You will have the entire flat for you</span> </li>
-    </ul>
-    <hr class="line">
-    <p class="description">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
-    <hr class="line">
-    <div class="map">
-        <h3>Location on Map</h3>
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d186125.68115431405!2d27.802481707096558!3d43.20500549043367!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40a4538baaf3d7a1%3A0x5727941c71a58b7c!2z0JLQsNGA0L3QsCwg0JHRitC70LPQsNGA0LjRjw!5e0!3m2!1sbg!2sde!4v1670776635273!5m2!1sbg!2sde" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-       <b>Varna,Bulgaria</b>
-       <p>I'ts like a home away from home.</p>    
+    <div class="guest-field">
+      <label>Guest</label>
+      <input type="text" placeholder="2 guests" />
     </div>
-    <hr class="line">
-    <div class="host">
-        <img src="/assets/images/profile.jpg" alt="">
-        <div>
-            <h2>Hosted By Hasanov</h2>
-            <p><span>
-                <fa-icon [icon]="faStar" class="stars-icon"></fa-icon>
-                <fa-icon [icon]="faStar" class="stars-icon"></fa-icon>
-                <fa-icon [icon]="faStar" class="stars-icon"></fa-icon>
-                <fa-icon [icon]="faStar" class="stars-icon"></fa-icon>
-                <fa-icon [icon]="faStar" class="stars-icon"></fa-icon>
-            </span>&nbsp; &nbsp; 245 reviews &nbsp; &nbsp; Response Time 60 minutes</p>
-        </div>
+    <button type="button">Reserve</button>
+  </form>
+  <ul class="details-list">
+    <li>
+      <fa-icon [icon]="faHome" class="facilities-icon"></fa-icon>Entire House
+      <span>You will have the entire flat for you</span>
+    </li>
+    <li>
+      <fa-icon [icon]="faHome" class="facilities-icon"></fa-icon>Entire House
+      <span>You will have the entire flat for you</span>
+    </li>
+    <li>
+      <fa-icon [icon]="faHome" class="facilities-icon"></fa-icon>Entire House
+      <span>You will have the entire flat for you</span>
+    </li>
+    <li>
+      <fa-icon [icon]="faHome" class="facilities-icon"></fa-icon>Entire House
+      <span>You will have the entire flat for you</span>
+    </li>
+  </ul>
+  <hr class="line" />
+  <p class="description">
+    {{hotel.description}}
+  </p>
+  <hr class="line" />
+  <div class="map">
+    <h3>Location on Map</h3>
+    <!-- <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d186125.68115431405!2d27.802481707096558!3d43.20500549043367!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40a4538baaf3d7a1%3A0x5727941c71a58b7c!2z0JLQsNGA0L3QsCwg0JHRitC70LPQsNGA0LjRjw!5e0!3m2!1sbg!2sde!4v1670776635273!5m2!1sbg!2sde" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe> -->
+    <b>Varna,Bulgaria</b>
+    <p>I'ts like a home away from home.</p>
+  </div>
+  <hr class="line" />
+  <div class="host">
+    <img src="/assets/images/profile.jpg" alt="" />
+    <div>
+      <h2>Hosted By Hasanov</h2>
+      <p>
+        <span>
+          <fa-icon [icon]="faStar" class="stars-icon"></fa-icon>
+          <fa-icon [icon]="faStar" class="stars-icon"></fa-icon>
+          <fa-icon [icon]="faStar" class="stars-icon"></fa-icon>
+          <fa-icon [icon]="faStar" class="stars-icon"></fa-icon>
+          <fa-icon [icon]="faStar" class="stars-icon"></fa-icon> </span
+        >&nbsp; &nbsp; 245 reviews &nbsp; &nbsp; Response Time 60 minutes
+      </p>
     </div>
-    <button class="contact-host"> Contact Host</button>
-    <hr class="line">
-
+  </div>
+  <button class="contact-host">Contact Host</button>
+  <hr class="line" />
 </div>
-

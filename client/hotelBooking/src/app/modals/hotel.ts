@@ -8,18 +8,19 @@ stars:number;
 price: number;
 imageUrls: string[];
 description:string;
-owner:iOwner;
+owner:string;
 facilities: string[];
 }
 
-export interface iOwner {
-    _id:string,
-    email:string,
-    username: string,
 
-}
 
 export interface IHotelDto{
     latestHotels: IHotel[]
 }
+
+export interface ISHotel {
+    data: IHotel
+}
+
+
 

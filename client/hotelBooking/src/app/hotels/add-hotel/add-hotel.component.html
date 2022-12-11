@@ -140,8 +140,8 @@
                                 src="/assets/icons/upload-solid.svg" alt="" />
                             Upload images
                         </button>
-                        <input multiple type="file" class="create-form-container-form-user-details-input-box-input"
-                            accept="/image*" #filePicker (change)="onImageUpload($event)" />
+                        <input type="file" class="create-form-container-form-user-details-input-box-input"
+                            accept="/image*" [multiple]="true" #filePicker (change)="onImageUpload($event)" />
                         <ul *ngIf="[uploadedFiles].length > 0">
                             <li *ngFor="let file of uploadedFiles">
                                 {{ file.name }} - {{ file.size }} bytes
