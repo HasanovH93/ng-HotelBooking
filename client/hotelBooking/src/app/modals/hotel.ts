@@ -9,6 +9,8 @@ price: number;
 imageUrls: string[];
 description:string;
 owner:string;
+ownerEmail: string;
+ownerImage: string;
 facilities: string[];
 }
 

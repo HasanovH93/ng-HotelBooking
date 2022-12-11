@@ -33,6 +33,7 @@ export class DetailsViewComponent implements OnInit {
 
   private getHotel(id: string) {
     this.hotelService.getHotelById(id).subscribe((hotel) => {
+      console.log(hotel)
       this.hotel = hotel;
     });
   }
