@@ -20,7 +20,9 @@ import {
   faKitchenSet,
   faMugSaucer,
   faPersonSwimming,
-  faVault
+  faVault,
+  faBath,
+  faDumbbell
 
 } from '@fortawesome/free-solid-svg-icons';
 import { HotelService } from 'src/app/services/hotel.service';
@@ -86,8 +88,8 @@ export class AddHotelComponent implements OnInit {
     { name: 'Kitchen', value: 'Kitchen', icon: faKitchenSet },
     { name: 'Breakfast', value: 'Breakfast', icon: faMugSaucer },
     { name: 'Pool', value: 'Pool', icon: faPersonSwimming },
-    { name: 'Safe', value: 'Safe', icon: faVault },
-    { name: 'Pool', value: 'Pool', icon: faPersonSwimming },
+    { name: 'Bath', value: 'Bath', icon: faBath },
+    { name: 'Fitness', value: 'Fitness', icon: faDumbbell },
     { name: 'Safe', value: 'Safe', icon: faVault },
   ];
 
