@@ -59,6 +59,11 @@
                     <input formControlName="address"
                         class="create-form-container-form-user-details-input-box-input-field" type="text"
                         placeholder="Enter Hotel Address" required />
+                    <ng-container *ngIf="addHotelForm.get('address')?.touched">
+                        <p class="error-block" *ngIf="addHotelForm.get('address')?.errors?.['required']">
+                            Address is required
+                        </p>
+                    </ng-container>
                 </div>
                 <div class="create-form-container-form-user-details-input-box">
                     <span class="create-form-container-form-user-details-input-box-details">Stars</span>
@@ -130,19 +135,19 @@
                             </p>
                         </ng-container>
                         <button type="button" class="create-form-container-form-user-details-input-box-uploadBtn"
-                        (click)="filePicker.click()">
-                        <img class="create-form-container-form-user-details-input-box-uploadBtn-upload"
-                            src="/assets/icons/upload-solid.svg" alt="" />
-                        Upload images
-                    </button>
-                    <input multiple type="file" class="create-form-container-form-user-details-input-box-input"
-                        accept="/image*" #filePicker (change)="onImageUpload($event)" />
-                    <ul *ngIf="[uploadedFiles].length > 0">
-                        <li *ngFor="let file of uploadedFiles">
-                            {{ file.name }} - {{ file.size }} bytes
-                        </li>
-                    </ul>
-                    <p *ngIf="imageErrorMessage">{{ imageErrorMessage }}</p>
+                            (click)="filePicker.click()">
+                            <img class="create-form-container-form-user-details-input-box-uploadBtn-upload"
+                                src="/assets/icons/upload-solid.svg" alt="" />
+                            Upload images
+                        </button>
+                        <input multiple type="file" class="create-form-container-form-user-details-input-box-input"
+                            accept="/image*" #filePicker (change)="onImageUpload($event)" />
+                        <ul *ngIf="[uploadedFiles].length > 0">
+                            <li *ngFor="let file of uploadedFiles">
+                                {{ file.name }} - {{ file.size }} bytes
+                            </li>
+                        </ul>
+                        <p class="error-block" *ngIf="imageErrorMessage">{{ imageErrorMessage }}</p>
 
                     </div>
                 </div>
