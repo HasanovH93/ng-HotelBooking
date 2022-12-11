@@ -14,7 +14,6 @@ dataController.post("/create", s3UploadImg(), async (req, res) => {
   try {
     req.body = JSON.parse(JSON.stringify(req.body));
 
-    console.log(req.user)
     req.body.imageUrls = req.files.map((img) => img.location);
 
     const data = {
@@ -35,15 +34,18 @@ dataController.post("/create", s3UploadImg(), async (req, res) => {
     if (Object.values(data).some((v) => !v)) {
       throw new Error(`All fields are required`);
     }
+    if (req.body.imageUrls.length < 1) {
+      throw new Error("At least one Image is required!");
+    }
 
-    const user = req.user._id
+    const user = req.user._id;
     const createdData = await create(data);
-    
+    console.log(createdData);
+
     res.status(201).send({
       message: "Successfully uploaded " + req.files.length + " files!",
       createdData,
-      user
-     
+      user,
     });
   } catch (error) {
     const message = parseError(error);
