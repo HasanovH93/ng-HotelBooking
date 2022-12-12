@@ -1,5 +1,8 @@
+$pink: #ff385c;
+$blue_bg: #241a71;
+
 .hotel-details {
-    padding: 0 12%;
+    padding: 0 6%;
 }
 .hotel-title{
     margin-top:50px;
@@ -81,6 +84,7 @@
     box-shadow: 0 0 30px rgba(0,0,0,0.3);
     border-radius: 8px;
     display: flex;
+    width: 1000px;
     flex-wrap: wrap;
     align-items: center;
     padding: 10px 50px;
@@ -126,7 +130,7 @@
     outline: none;
     color: #fff;
     padding: 18px;
-    width: 350px;
+    width: 200px;
     border-radius: 8px;
     font-size: 16px;
 
@@ -136,6 +140,8 @@
 }
 
 .details-list {
+    display:flex;
+    width: 1000px;
     list-style: none;
     margin: 50px 0
 }
@@ -157,7 +163,6 @@
 
 .facilities-icon {
     position: absolute;
-    top:5px;
     left: -40px;
 }
 
@@ -209,6 +214,9 @@
     border-radius: 8px;
     background: transparent;
 }
+
+
+
 
 
 @media screen and (max-width: 1024px) {

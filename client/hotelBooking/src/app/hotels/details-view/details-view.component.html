@@ -63,22 +63,11 @@
     <button type="button">Reserve</button>
   </form>
   <ul class="details-list">
-    <li>
-      <fa-icon [icon]="faHome" class="facilities-icon"></fa-icon>Entire House
-      <span>You will have the entire flat for you</span>
+    <li *ngFor="let facility of  facilitiesDataArray"> 
+      <fa-icon [icon]="facility.icon" class="facilities-icon"></fa-icon>
+      <span>{{facility.name}}</span>
     </li>
-    <li>
-      <fa-icon [icon]="faHome" class="facilities-icon"></fa-icon>Entire House
-      <span>You will have the entire flat for you</span>
-    </li>
-    <li>
-      <fa-icon [icon]="faHome" class="facilities-icon"></fa-icon>Entire House
-      <span>You will have the entire flat for you</span>
-    </li>
-    <li>
-      <fa-icon [icon]="faHome" class="facilities-icon"></fa-icon>Entire House
-      <span>You will have the entire flat for you</span>
-    </li>
+    
   </ul>
   <hr class="line" />
   <p class="description">

@@ -43,6 +43,7 @@ export class AddHotelComponent implements OnInit {
   roomTypes: ICity[];
   uploadedFiles!: File[];
   imageErrorMessage: string;
+  editedFacilities: Array<any>
 
   constructor(
     private formBuilder: FormBuilder,
@@ -157,7 +158,7 @@ export class AddHotelComponent implements OnInit {
       description,
       facilities,
     } = this.addHotelForm.value;
-
+   
     formData.append('hotelName', hotelName);
     formData.append('roomType', roomType);
     formData.append('location', location);
@@ -165,7 +166,7 @@ export class AddHotelComponent implements OnInit {
     formData.append('stars', stars);
     formData.append('price', price);
     formData.append('description', description);
-    formData.append('facilities', facilities);
+    formData.append('facilities',facilities);
 
     this.hotelService.createHotel(formData).subscribe({
       next: (res) => {
