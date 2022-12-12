@@ -1,8 +1,13 @@
 <div class="container">
     <div class="list-container">
         <div class="left-col">
+            <ng-container *ngIf="Data.length > 0">
             <p>200+ Options</p>
             <h1>Recommended Places in Bulgaria</h1>
+            </ng-container>
+            <ng-container *ngIf="Data.length === 0">
+                <h1>There are no Hotels to show!</h1>
+                </ng-container>
             <div class="search-results" infiniteScroll [infiniteScrollDistance]='2' [infiniteScrollThrottle]='100'
                 (scrolled)="onScroll()" [scrollWindow]="true">
                 <ng-container *ngFor="let hotel of Data; let i = index">

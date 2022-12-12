@@ -143,8 +143,8 @@
                         <input type="file" class="create-form-container-form-user-details-input-box-input"
                             accept="/image*" [multiple]="true" #filePicker (change)="onImageUpload($event)" />
                         <ul *ngIf="[uploadedFiles].length > 0">
-                            <li *ngFor="let file of uploadedFiles">
-                                {{ file.name }} - {{ file.size }} bytes
+                            <li *ngFor="let file of uploadedFiles; let i = index">
+                                {{ file.name }} - {{ file.size }} bytes <button  class="create-form-container-form-user-details-input-box-deleteBtn" type="button" (click)="onImageDelete(i)">X</button>
                             </li>
                         </ul>
                         <p class="error-block" *ngIf="imageErrorMessage">{{ imageErrorMessage }}</p>

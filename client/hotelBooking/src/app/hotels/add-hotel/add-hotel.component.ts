@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ComponentFactoryResolver, OnInit } from '@angular/core';
 import {
   FormArray,
   FormBuilder,
@@ -22,8 +22,7 @@ import {
   faPersonSwimming,
   faVault,
   faBath,
-  faDumbbell
-
+  faDumbbell,
 } from '@fortawesome/free-solid-svg-icons';
 import { HotelService } from 'src/app/services/hotel.service';
 import { MessageService, MessageType } from 'src/app/services/message.service';
@@ -71,10 +70,8 @@ export class AddHotelComponent implements OnInit {
       Validators.required,
       Validators.minLength(15),
     ]),
-    facilities: this.formBuilder.array([],Validators.required),
+    facilities: this.formBuilder.array([], Validators.required),
   });
-   
-
 
   facilities: Array<any> = [
     { name: 'TV', value: 'TV', icon: faTv },
@@ -82,7 +79,7 @@ export class AddHotelComponent implements OnInit {
     { name: 'Wi-Fi', value: 'Wi-Fi', icon: faWifi },
     { name: 'Elevator', value: 'Elevator', icon: faElevator },
     { name: 'Restaurant', value: 'Restaurant', icon: faUtensils },
-    { name: 'Parking', value: 'Parking', icon: faSquareParking},
+    { name: 'Parking', value: 'Parking', icon: faSquareParking },
     { name: 'Bar', value: 'Bar', icon: faMartiniGlass },
     { name: 'Pet Friendly', value: 'Pet Friendly', icon: faPaw },
     { name: 'Kitchen', value: 'Kitchen', icon: faKitchenSet },
@@ -133,6 +130,9 @@ export class AddHotelComponent implements OnInit {
     this.addHotelForm.patchValue({ image: this.uploadedFiles });
     this.addHotelForm.get('image')?.updateValueAndValidity();
   }
+  onImageDelete(i: any) {
+    this.uploadedFiles.splice(i, 1);
+  }
 
   onSubmit(event: Event) {
     const formData: FormData = new FormData();
@@ -161,7 +161,7 @@ export class AddHotelComponent implements OnInit {
     formData.append('hotelName', hotelName);
     formData.append('roomType', roomType);
     formData.append('location', location);
-    formData.append('address', address)
+    formData.append('address', address);
     formData.append('stars', stars);
     formData.append('price', price);
     formData.append('description', description);
@@ -169,7 +169,7 @@ export class AddHotelComponent implements OnInit {
 
     this.hotelService.createHotel(formData).subscribe({
       next: (res) => {
-        console.log(res)
+        console.log(res);
       },
       complete: () => {
         this.router.navigate(['/']);

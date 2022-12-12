@@ -83,6 +83,8 @@ $blue_bg: #241a71;
               height: 16px;
             }
 
+          
+
             
           }
           &-input {
@@ -99,6 +101,13 @@ $blue_bg: #241a71;
             border: 1px solid #ccc;
             border-bottom-width: 2px;
             transition: all 0.3s ease;
+          }
+          &-deleteBtn{
+            color:red;
+            padding: 2px 3px;
+            background: transparent;
+            cursor: pointer;
+            border: 1px solid #ccc
           }
         }
         

@@ -1,10 +1,17 @@
 <ng-container *ngIf="!isLoading">
 <div class="container">
   
-  <div class="container-heading">
+  <ng-container *ngIf="hotels.length > 0">
+  <div class="container-heading" >
     <h5 class="container-heading-title">BEST HOTELS </h5>
     <h3>Our Best Deals</h3>
   </div>
+</ng-container>
+<ng-container *ngIf="hotels.length === 0">
+  <div class="container-heading" >
+    <h5 class="container-heading-title">There are no hotels to show! </h5>
+  </div>
+</ng-container>
   
 
   <div class="container-card">
