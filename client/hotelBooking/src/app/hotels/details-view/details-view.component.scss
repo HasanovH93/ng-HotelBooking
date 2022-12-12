@@ -50,13 +50,16 @@
 	grid-row: span 2;
 }
 
+.small-details{
+    max-width: 1000px;
+}
 
 .small-details h2{
     font-weight: 500;
 
 }
 .small-details h4 {
-    text-align: right;
+    text-align: end;
     font-size: 22px;
 }
 .line{
@@ -64,7 +67,7 @@
     height: 1px;
     background: #ccc;
     width: 100%;
-    max-width: 800px;
+    max-width: 1000px;
     margin: 20;
     
 }
@@ -81,6 +84,27 @@
     flex-wrap: wrap;
     align-items: center;
     padding: 10px 50px;
+}
+
+.owner {
+    margin: 30px 0;
+    border-radius: 8px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    width: 700px;
+    padding: 10px 15px;
+}
+.owner button {
+    background-color: #ff5361 ;
+    border: 0;
+    outline: none;
+    color: #fff;
+    padding: 15px 20px;
+    margin:0px 10px;
+    width: 200px;
+    border-radius: 8px;
+    font-size: 16px;
 }
 
 .check-form label {

@@ -4,6 +4,7 @@ import { faStar } from '@fortawesome/free-regular-svg-icons';
 import {  faHome } from '@fortawesome/free-solid-svg-icons';
 import { IHotel } from 'src/app/modals/hotel';
 import { HotelService } from 'src/app/services/hotel.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-details-view',
@@ -14,12 +15,15 @@ export class DetailsViewComponent implements OnInit {
   faStar = faStar;
   faHome = faHome;
   hotel!: IHotel;
+  userId!: string | null;
+  isOwner: boolean = false;
 
 
 
   constructor(
     private hotelService: HotelService,
-    private actRoute: ActivatedRoute
+    private actRoute: ActivatedRoute,
+    private userService:UserService
   ) {}
 
   ngOnInit(): void {
@@ -33,8 +37,13 @@ export class DetailsViewComponent implements OnInit {
 
   private getHotel(id: string) {
     this.hotelService.getHotelById(id).subscribe((hotel) => {
-      console.log(hotel)
       this.hotel = hotel;
+       this.userId = this.userService.getUserId()
+       console.log(this.userId)
+       console.log(hotel.owner)
+       if(hotel.owner == this.userId){
+        this.isOwner = true
+       }
     });
   }
 }

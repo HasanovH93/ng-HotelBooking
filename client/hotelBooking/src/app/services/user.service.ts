@@ -41,6 +41,9 @@ export class UserService implements OnDestroy {
   getToken() {
     return this.userToken;
   }
+  getUserId() {
+    return this.userId
+  }
 
   getUser() {
     return this.http.get<IUser>(this.apiUrl + 'users/profile').pipe(
