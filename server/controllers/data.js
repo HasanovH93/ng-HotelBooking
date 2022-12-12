@@ -37,14 +37,12 @@ dataController.post("/create", s3UploadImg(), async (req, res) => {
     if (req.body.imageUrls.length < 1) {
       throw new Error("At least one Image is required!");
     }
-    if(req.body.imageUrl.length > 5){
-      throw new Error("Maximum images is 5");
-    }
+
     data.date = new Date().toDateString();
     data.owner = req.user._id;
 
    
-    const id = req.user._id;
+   const id = req.user._id;
    const user = await getById(id);
    data.ownerImage = user.imageUrl
    data.ownerEmail = user.email
