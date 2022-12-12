@@ -1,47 +1,57 @@
-const authController = require('express').Router();
-const {body, validationResult } = require('express-validator')
-const { register,login, createToken, getById, editUser } = require('../services/user');
-const { parseError } = require('../util/parser');
-const { s3UploadImg } = require('../middlewares/imagesUpload');
-const { getByUserId, changeImage } = require('../services/item');
+const authController = require("express").Router();
+const { body, validationResult } = require("express-validator");
+const {
+  register,
+  login,
+  createToken,
+  getById,
+  editUser,
+} = require("../services/user");
+const { parseError } = require("../util/parser");
+const { s3UploadImg } = require("../middlewares/imagesUpload");
+const { getByUserId, changeImage } = require("../services/item");
 
-
-authController.post('/register', 
-body('email').isEmail().withMessage('Invalid Email'),
-body('password').isLength({ min: 3}).withMessage('Password must be at least 6 characters long'),
- async (req, res) => {
- 
-  try {
-    const { errors } = validationResult(req);
-    if(errors.length > 0){
+authController.post(
+  "/register",
+  body("email").isEmail().withMessage("Invalid Email"),
+  body("password")
+    .isLength({ min: 3 })
+    .withMessage("Password must be at least 6 characters long"),
+  async (req, res) => {
+    try {
+      const { errors } = validationResult(req);
+      if (errors.length > 0) {
         throw errors;
+      }
+      const user = await register(
+        req.body.email,
+        req.body.username,
+        req.body.password
+      );
+      token = createToken(user);
+      const userData = removePassword(user);
+      res.json({ userData, token, expiresIn: 3600 });
+    } catch (error) {
+      const message = parseError(error);
+      res.status(400).json({ message });
     }
-   const user =  await register(req.body.email,req.body.username, req.body.password);
-    token = createToken(user)
-    const userData = removePassword(user)
-    res.json({userData,token, expiresIn: 3600})
+  }
+);
+
+authController.post("/login", async (req, res) => {
+  try {
+    const user = await login(req.body.email, req.body.password);
+    const token = createToken(user);
+    const userData = removePassword(user);
+
+    res.json({ userData, token, expiresIn: 3600 });
   } catch (error) {
-    const message = parseError(error)
-    res.status(400).json({ message })
+    const message = parseError(error);
+    res.status(401).json({ message });
   }
 });
 
-
-
-authController.post('/login',  async (req, res) => {
-    try {
-        const user =  await login(req.body.email, req.body.password);
-        const token = createToken(user);
-        const userData = removePassword(user)
-
-        res.json({userData, token, expiresIn: 3600})
-       } catch (error) {
-        const message = parseError(error)
-        res.status(401).json({ message })
-       }
-});
-
-authController.get('/profile',  async (req, res) => {
+authController.get("/profile", async (req, res) => {
   try {
     // console.log("GET")
     const id = req.user._id;
@@ -49,53 +59,40 @@ authController.get('/profile',  async (req, res) => {
     const user = await getById(id);
     // console.log(user)
     const userData = removePassword(user);
-    res.status(200).send({userData})
+    res.status(200).send({ userData });
   } catch (error) {
-    res.status(401).send({message: error.message})
+    res.status(401).send({ message: error.message });
   }
-})
-authController.put('/profile',  s3UploadImg(), async (req, res) => {
-  
+});
+authController.put("/profile", s3UploadImg(), async (req, res) => {
   try {
     const { username, email } = req.body;
-   if(req.files.length > 0){
-    req.body.imageUrl = req.files[0].location
-   }else if(req.body.img && req.files.length <= 0) {
-     req.body.imageUrl = req.body.img
-   }
+    if (req.files.length > 0) {
+      req.body.imageUrl = req.files[0].location;
+    } else if (req.body.img && req.files.length <= 0) {
+      req.body.imageUrl = req.body.img;
+    }
 
- 
- 
-   const imageUrl = req.body.imageUrl
+    const imageUrl = req.body.imageUrl;
 
+    const user = await editUser(req.user._id, username, email, imageUrl);
+    const token = createToken(user);
+    const userData = removePassword(user);
+    
+    const hotels = await getByUserId(req.user._id);
 
-   const user = await editUser(
-    req.user._id,
-    username,
-    email,
-    imageUrl
-   );
-   const token = createToken(user);
-   const userData = removePassword(user)
-   const hotels = await getByUserId(req.user._id);
-  console.log(hotels[0]._id)
-   
-  for(let hotel of hotels){
-    await changeImage(hotel._id, userData.imageUrl,userData.email);
-  }
-   
+    for (let hotel of hotels) {
+      await changeImage(hotel._id, userData.imageUrl, userData.email);
+    }
 
-   res.status(201).send({  userData, token, expiresIn: 3600 });
-
+    res.status(201).send({ userData, token, expiresIn: 3600 });
   } catch (err) {
     res.status(400).json({ message: err.message });
   }
-})
-
+});
 
 const removePassword = (data) => {
-  const { email, id, username, imageUrl } =
-    data;
+  const { email, id, username, imageUrl } = data;
 
   const userData = {
     email,
@@ -106,4 +103,4 @@ const removePassword = (data) => {
   return userData;
 };
 
-module.exports = authController
+module.exports = authController;

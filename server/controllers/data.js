@@ -31,11 +31,14 @@ dataController.post("/create", s3UploadImg(), async (req, res) => {
 
   
 
-    if (Object.values(data).some((v) => !v)) {
+    if (Object.values(data).some((v) => !v || v === null)) {
       throw new Error(`All fields are required`);
     }
     if (req.body.imageUrls.length < 1) {
       throw new Error("At least one Image is required!");
+    }
+    if(req.body.imageUrl.length > 5){
+      throw new Error("Maximum images is 5");
     }
     data.date = new Date().toDateString();
     data.owner = req.user._id;
