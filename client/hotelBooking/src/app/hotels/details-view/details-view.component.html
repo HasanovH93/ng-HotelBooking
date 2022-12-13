@@ -1,4 +1,5 @@
-<div class="hotel-details" *ngIf="hotel">
+<div id="content" class="hotel-details" #content  >
+  <ng-container *ngIf="hotel">
   <div class="hotel-title">
     <h1>{{ hotel.hotelName }}</h1>
     <div class="row">
@@ -37,7 +38,7 @@
   </div>
   <div class="small-details">
     <h2>{{hotel.roomType}}</h2>
-    <p>2 guest &nbsp; &nbsp; 2beds &nbsp; &nbsp; 1 bathroom</p>
+    <p>2 guest &nbsp; &nbsp; 2beds &nbsp; &nbsp; 1 bathroom <button type="button" (click)="exportAsPdf()">Download PDF</button></p>
     <h4>${{hotel.price}} / day</h4>
   </div>
   <hr class="line" />
@@ -98,4 +99,5 @@
   </div>
   <button class="contact-host">Contact Host</button>
   <hr class="line" />
+</ng-container>
 </div>

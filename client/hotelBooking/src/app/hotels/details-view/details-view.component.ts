@@ -1,26 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import html2canvas from 'html2canvas';
+import { jsPDF } from 'jspdf';
 import { faStar } from '@fortawesome/free-regular-svg-icons';
-import { faHome } from '@fortawesome/free-solid-svg-icons';
 import { IHotel } from 'src/app/modals/hotel';
 import { HotelService } from 'src/app/services/hotel.service';
 import { UserService } from 'src/app/services/user.service';
-import {
-  faTv,
-  faWifi,
-  faElevator,
-  faSpa,
-  faUtensils,
-  faSquareParking,
-  faMartiniGlass,
-  faPaw,
-  faKitchenSet,
-  faMugSaucer,
-  faPersonSwimming,
-  faVault,
-  faBath,
-  faDumbbell,
-} from '@fortawesome/free-solid-svg-icons';
+import { facilities } from '../facilities';
 
 @Component({
   selector: 'app-details-view',
@@ -28,13 +14,12 @@ import {
   styleUrls: ['./details-view.component.scss'],
 })
 export class DetailsViewComponent implements OnInit {
+  @ViewChild('content', { static: true }) el!: ElementRef<HTMLImageElement>;
+
   faStar = faStar;
-  faHome = faHome;
   hotel!: IHotel;
   userId!: string | null;
   isOwner: boolean = false;
-  facilitiesArray: Array<any>;
-  singleFacilityObject: any = {};
   facilitiesDataArray: Array<any> = [];
 
   constructor(
@@ -43,50 +28,44 @@ export class DetailsViewComponent implements OnInit {
     private userService: UserService
   ) {}
 
-  facilities: Array<any> = [
-    { name: 'TV', value: 'TV', icon: faTv },
-    { name: 'Spa', value: 'Spa', icon: faSpa },
-    { name: 'Wi-Fi', value: 'Wi-Fi', icon: faWifi },
-    { name: 'Elevator', value: 'Elevator', icon: faElevator },
-    { name: 'Restaurant', value: 'Restaurant', icon: faUtensils },
-    { name: 'Parking', value: 'Parking', icon: faSquareParking },
-    { name: 'Bar', value: 'Bar', icon: faMartiniGlass },
-    { name: 'Pet Friendly', value: 'Pet Friendly', icon: faPaw },
-    { name: 'Kitchen', value: 'Kitchen', icon: faKitchenSet },
-    { name: 'Breakfast', value: 'Breakfast', icon: faMugSaucer },
-    { name: 'Pool', value: 'Pool', icon: faPersonSwimming },
-    { name: 'Bath', value: 'Bath', icon: faBath },
-    { name: 'Fitness', value: 'Fitness', icon: faDumbbell },
-    { name: 'Safe', value: 'Safe', icon: faVault },
-  ];
-
   ngOnInit(): void {
     this.actRoute.params.subscribe(({ id }) => {
       this.getHotel(id);
     });
   }
 
-  getFacilityData(facility: any) {
-    return this.facilities.find((item: any) => item.name === facility);
-  }
-  getActualFacilityData() {
-    return this.facilitiesDataArray;
-  }
-
   private getHotel(id: string) {
     this.hotelService.getHotelById(id).subscribe((hotel) => {
       this.hotel = hotel;
-      this.facilitiesArray = hotel.facilities[0].split(',');
-      for (let facility of this.facilitiesArray) {
-        this.singleFacilityObject = this.getFacilityData(facility);
-        this.facilitiesDataArray.push(this.singleFacilityObject);
+      const facilitiesArray = hotel.facilities[0].split(',');
+      for (let facility of facilitiesArray) {
+        const singleFacilityObject = this.getFacilityData(facility);
+        this.facilitiesDataArray.push(singleFacilityObject);
       }
-      this.facilitiesDataArray = this.getActualFacilityData();
 
       this.userId = this.userService.getUserId();
       if (hotel.owner == this.userId) {
         this.isOwner = true;
       }
+    });
+  }
+
+  private getFacilityData(facility: any) {
+    return facilities().find((item: any) => item.name === facility);
+  }
+
+  exportAsPdf() {
+    html2canvas(this.el.nativeElement, { useCORS: true }).then((canvas) => {
+      const imgData = canvas.toDataURL('image/jpeg');
+      const pdf = new jsPDF({
+        orientation: 'portrait',
+      });
+      const imgProps = pdf.getImageProperties(imgData);
+      const pdfw = pdf.internal.pageSize.getWidth();
+      const pdfh = (imgProps.height * pdfw) / imgProps.width;
+
+      pdf.addImage(imgData, 'JPEG', 0, 0, pdfw, pdfh);
+      pdf.save('booking.pdf');
     });
   }
 }

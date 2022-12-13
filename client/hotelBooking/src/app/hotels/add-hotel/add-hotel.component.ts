@@ -1,4 +1,4 @@
-import { Component, ComponentFactoryResolver, OnInit } from '@angular/core';
+import { Component,OnInit } from '@angular/core';
 import {
   FormArray,
   FormBuilder,
@@ -7,30 +7,15 @@ import {
   Validators,
 } from '@angular/forms';
 import { Router } from '@angular/router';
-
-import {
-  faTv,
-  faWifi,
-  faElevator,
-  faSpa,
-  faUtensils,
-  faSquareParking,
-  faMartiniGlass,
-  faPaw,
-  faKitchenSet,
-  faMugSaucer,
-  faPersonSwimming,
-  faVault,
-  faBath,
-  faDumbbell,
-} from '@fortawesome/free-solid-svg-icons';
 import { HotelService } from 'src/app/services/hotel.service';
 import { MessageService, MessageType } from 'src/app/services/message.service';
 import { cities } from '../cities';
+import { facilities } from '../facilities';
 import { roomTypes } from '../roomTypes';
 export interface ICity {
   name: string;
 }
+
 @Component({
   selector: 'app-add-hotel',
   templateUrl: './add-hotel.component.html',
@@ -43,7 +28,7 @@ export class AddHotelComponent implements OnInit {
   roomTypes: ICity[];
   uploadedFiles!: File[];
   imageErrorMessage: string;
-  editedFacilities: Array<any>
+  facilities: any
 
   constructor(
     private formBuilder: FormBuilder,
@@ -54,6 +39,7 @@ export class AddHotelComponent implements OnInit {
     (this.cities = cities()),
       (this.roomTypes = roomTypes()),
       (this.uploadedFiles = []);
+      (this.facilities = facilities())
   }
 
   addHotelForm: FormGroup = this.formBuilder.group({
@@ -71,25 +57,9 @@ export class AddHotelComponent implements OnInit {
       Validators.required,
       Validators.minLength(15),
     ]),
-    facilities: this.formBuilder.array([], Validators.required),
+    facilities: this.formBuilder.array([]),
   });
 
-  facilities: Array<any> = [
-    { name: 'TV', value: 'TV', icon: faTv },
-    { name: 'Spa', value: 'Spa', icon: faSpa },
-    { name: 'Wi-Fi', value: 'Wi-Fi', icon: faWifi },
-    { name: 'Elevator', value: 'Elevator', icon: faElevator },
-    { name: 'Restaurant', value: 'Restaurant', icon: faUtensils },
-    { name: 'Parking', value: 'Parking', icon: faSquareParking },
-    { name: 'Bar', value: 'Bar', icon: faMartiniGlass },
-    { name: 'Pet Friendly', value: 'Pet Friendly', icon: faPaw },
-    { name: 'Kitchen', value: 'Kitchen', icon: faKitchenSet },
-    { name: 'Breakfast', value: 'Breakfast', icon: faMugSaucer },
-    { name: 'Pool', value: 'Pool', icon: faPersonSwimming },
-    { name: 'Bath', value: 'Bath', icon: faBath },
-    { name: 'Fitness', value: 'Fitness', icon: faDumbbell },
-    { name: 'Safe', value: 'Safe', icon: faVault },
-  ];
 
   onCheckBoxChange(event: any) {
     const facilities: FormArray = this.addHotelForm.get(
