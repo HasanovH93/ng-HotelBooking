@@ -1,5 +1,5 @@
 const { hasUser } = require("../middlewares/guards");
-const { create, getLastFour, getAll, getHotelById } = require("../services/item");
+const { create, getLastFour, getAll, getHotelById, deleteById } = require("../services/item");
 const { getById} = require('../services/user')
 const { parseError } = require("../util/parser");
 const { s3UploadImg } = require("../middlewares/imagesUpload");
@@ -84,7 +84,7 @@ dataController.delete('/details/:id', async (req,res) => {
   try {
     console.log('DELETE')
     const id = req.params.id;
-    const data = await getById(id)
+    const data = await deleteById(id)
     res.status(200).send({data})
   } catch (error) {
     const message = parseError(error)

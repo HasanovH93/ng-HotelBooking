@@ -39,7 +39,7 @@ async function changeImage(id, newImage, newEmail){
    return  existing.save()
 }
 
-async function deleteByOd(id){
+async function deleteById(id){
    const getHotel = await getById(id);
    const result = await Hotel.deleteOne(getHotel)
    return result
@@ -70,5 +70,6 @@ module.exports = {
     deleteItem,
     getByUserId,
     getLastFour,
-    changeImage
+    changeImage,
+    deleteById
 }
