@@ -80,6 +80,20 @@ try {
 }
 });
 
+dataController.delete('/details/:id', async (req,res) => {
+  try {
+    console.log('DELETE')
+    const id = req.params.id;
+    const data = await getById(id)
+    res.status(200).send({data})
+  } catch (error) {
+    const message = parseError(error)
+    res.status(400).json({message})
+  }
+})
+
+
+
 // dataController.put("/:id", hasUser(), async (req, res) => {
 //   const item = await getById(req.params.id);
 //   if (req.user._id != item._ownerId) {

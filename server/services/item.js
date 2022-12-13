@@ -1,4 +1,5 @@
 const Hotel = require("../models/Hotel");
+const { getById } = require("./user");
 
 
 async function getAll(skip,limit){
@@ -38,6 +39,12 @@ async function changeImage(id, newImage, newEmail){
    return  existing.save()
 }
 
+async function deleteByOd(id){
+   const getHotel = await getById(id);
+   const result = await Hotel.deleteOne(getHotel)
+   return result
+
+}
 async function edit(id,item){
    const existing = await Hotel.findById(id)
 
