@@ -29,7 +29,7 @@
           <fa-icon [icon]="faStar" class="container-card-content-right-icons-star"></fa-icon>
         </div>
         <h4 class="container-card-content-right-h4">{{hotel.roomType}}</h4>
-        <p class="container-card-content-right-description"> {{hotel.description}}</p>
+        <p class="container-card-content-right-description"> {{hotel.description | shorten:70}}</p>
         <p>From ${{hotel.price}}/night</p>
         <button class="container-card-content-right-detailsBtn" [routerLink]="'/hotels/details/' + hotel._id">
           View more
