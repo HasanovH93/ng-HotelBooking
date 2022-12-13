@@ -1,4 +1,4 @@
-import { Component,OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {
   FormArray,
   FormBuilder,
@@ -28,7 +28,7 @@ export class AddHotelComponent implements OnInit {
   roomTypes: ICity[];
   uploadedFiles!: File[];
   imageErrorMessage: string;
-  facilities: any
+  facilities: any;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -39,7 +39,7 @@ export class AddHotelComponent implements OnInit {
     (this.cities = cities()),
       (this.roomTypes = roomTypes()),
       (this.uploadedFiles = []);
-      (this.facilities = facilities())
+    this.facilities = facilities();
   }
 
   addHotelForm: FormGroup = this.formBuilder.group({
@@ -60,6 +60,17 @@ export class AddHotelComponent implements OnInit {
     facilities: this.formBuilder.array([]),
   });
 
+  ngOnInit(): void {
+    this.msgService.onMessage$.subscribe((message) => {
+      this.errorMessage = message.text;
+      this.isErrorType = message.type === MessageType.error;
+      if (this.errorMessage) {
+        setTimeout(() => {
+          this.errorMessage = '';
+        }, 3000);
+      }
+    });
+  }
 
   onCheckBoxChange(event: any) {
     const facilities: FormArray = this.addHotelForm.get(
@@ -77,20 +88,8 @@ export class AddHotelComponent implements OnInit {
       });
       i++;
     }
+  
   }
-
-  ngOnInit(): void {
-    this.msgService.onMessage$.subscribe((message) => {
-      this.errorMessage = message.text;
-      this.isErrorType = message.type === MessageType.error;
-      if (this.errorMessage) {
-        setTimeout(() => {
-          this.errorMessage = '';
-        }, 3000);
-      }
-    });
-  }
-
   onImageUpload(event: any) {
     this.imageErrorMessage = '';
 
@@ -128,7 +127,7 @@ export class AddHotelComponent implements OnInit {
       description,
       facilities,
     } = this.addHotelForm.value;
-   
+
     formData.append('hotelName', hotelName);
     formData.append('roomType', roomType);
     formData.append('location', location);
@@ -136,7 +135,7 @@ export class AddHotelComponent implements OnInit {
     formData.append('stars', stars);
     formData.append('price', price);
     formData.append('description', description);
-    formData.append('facilities',facilities);
+    formData.append('facilities', facilities);
 
     this.hotelService.createHotel(formData).subscribe({
       next: (res) => {

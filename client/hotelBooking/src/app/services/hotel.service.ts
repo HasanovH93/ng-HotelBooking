@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable, of, switchMap } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { IHotel, IHotelDto, ISHotel } from '../modals/hotel';
@@ -10,7 +11,7 @@ import { IHotel, IHotelDto, ISHotel } from '../modals/hotel';
 export class HotelService {
   private apiUrl = environment.apiUrl;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private router: Router) {}
 
   createHotel(body: {}) {
     return this.http.post(this.apiUrl + 'hotels/create', body);
@@ -30,6 +31,14 @@ export class HotelService {
         return of(res.data)
       })
     )
+  }
+
+  deleteHotelById(id:string){
+   this.http.delete(this.apiUrl + `hotels/details/${id}`).subscribe({
+    next: () => {
+      this.router.navigate(['/'])
+    }
+   })
   }
 
   

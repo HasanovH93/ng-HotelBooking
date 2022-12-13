@@ -1,5 +1,6 @@
 $pink: #ff385c;
 $blue_bg: #241a71;
+$grey-med: #ddd;
 
 .hotel-details {
     padding: 0 6%;
@@ -97,7 +98,7 @@ $blue_bg: #241a71;
     flex-wrap: wrap;
     align-items: center;
     width: 700px;
-    padding: 10px 15px;
+  
 }
 .owner button {
     background-color: #ff5361 ;
@@ -140,34 +141,52 @@ $blue_bg: #241a71;
 }
 
 .details-list {
-    display:flex;
-    width: 1000px;
-    list-style: none;
-    margin: 50px 0
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    
 }
 
-.details-list li {
-    margin-left: 50px;
-    font-size: 20px;
-    font-weight: 500;
-    margin-bottom: 20px;
-    color: #555;
+.facilities-group {
+
+    display: flex;
+    flex-wrap: wrap;
+    width: 66%;
+    margin-right: auto;
+    max-width: 1050px;
+    padding:10px 0;
+}
+
+.facilities-group > * {
+    margin: 0.5rem 0.5rem;
+  }
+
+  .facility-title{
+    font-size: 14px;
+    text-align: center;
+    justify-content: center;
+  }
+
+  .facilities-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 4.7rem;
+    min-height: 4.7rem;
+    border-radius: 0.5rem;
+    border:1px solid $grey-med;
+    background-color: #fff;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    transform: .15s ease;
     position: relative;
-}
+  }
 
-.details-list li span {
-    display: block;
-    font-weight: 400;
-    font-size: 16px;
-}
 
-.facilities-icon {
-    position: absolute;
-    left: -40px;
-}
+
+
 
 .description {
-  max-width: 700px;
   margin: 50px 0
 }
 .map {
@@ -175,7 +194,7 @@ $blue_bg: #241a71;
 }
 
 .map iframe {
-    width: 100%;
+    width: 60%;
     margin-bottom: 30px;
 }
 .map h3 {

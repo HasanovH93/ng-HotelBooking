@@ -22,11 +22,10 @@
       <div class="container-card-content-right">
         <h2>{{hotel.hotelName}}</h2>
         <div class="container-card-content-right-icons">
-          <fa-icon [icon]="faStar" class="container-card-content-right-icons-star"></fa-icon>
-          <fa-icon [icon]="faStar" class="container-card-content-right-icons-star"></fa-icon>
-          <fa-icon [icon]="faStar" class="container-card-content-right-icons-star"></fa-icon>
-          <fa-icon [icon]="faStar" class="container-card-content-right-icons-star"></fa-icon>
-          <fa-icon [icon]="faStar" class="container-card-content-right-icons-star"></fa-icon>
+         
+          <ng-container *ngFor="let stars of iconsArray(stars).fill(2)">
+            <fa-icon [icon]="faStar" class="stars-icon"></fa-icon>
+       </ng-container>
         </div>
         <h4 class="container-card-content-right-h4">{{hotel.roomType}}</h4>
         <p class="container-card-content-right-description"> {{hotel.description | shorten:70}}</p>

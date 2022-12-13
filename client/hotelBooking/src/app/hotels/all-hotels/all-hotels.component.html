@@ -2,41 +2,39 @@
     <div class="list-container">
         <div class="left-col">
             <ng-container *ngIf="Data.length > 0">
-            <p>200+ Options</p>
-            <h1>Recommended Places in Bulgaria</h1>
+                <h1>Recommended Places in Bulgaria</h1>
             </ng-container>
-            <ng-container *ngIf="Data.length === 0">
-                <h1>There are no Hotels to show!</h1>
-                </ng-container>
-            <div class="search-results" infiniteScroll [infiniteScrollDistance]='2' [infiniteScrollThrottle]='100'
+        
+            <div class="search-results" infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="100"
                 (scrolled)="onScroll()" [scrollWindow]="true">
                 <ng-container *ngFor="let hotel of Data; let i = index">
-
-                    <div class="house" *ngIf="!isLoading">
-
-
+                    <div class="house">
                         <div class="house-img">
-                            <img src="{{hotel.imageUrls[0]}}" alt="">
+                            <img src="{{ hotel.imageUrls[0] }}" alt="" />
                         </div>
                         <div class="house-info">
-                            <p>{{hotel.hotelName}}</p>
-                            <h3>{{hotel.roomType}}</h3>
-                            
-                            <img class="stars" src="/assets/icons/star-solid.svg" alt="">
-                            <p class="description">{{hotel.description}}</p>
+                            <p>{{ hotel.hotelName }}</p>
+                            <h3>{{ hotel.roomType }}</h3>
+
+                            <ng-container *ngFor="let stars of iconsArray(stars).fill(1)">
+                                <fa-icon [icon]="faStar" class="stars-icon"></fa-icon>
+                           </ng-container>
+                            <p class="description">{{ hotel.description }}</p>
                             <div class="house-price">
                                 <p>2 Guest</p>
-                                <h4>$ {{hotel.price}} / <span>day</span></h4>
-                                <button class="detailsBtn" [routerLink]="'/hotels/details/' + hotel._id">View Details</button>
+                                <h4>$ {{ hotel.price }} / <span>day</span></h4>
+                                <button class="detailsBtn" [routerLink]="'/hotels/details/' + hotel._id">
+                                    View Details
+                                </button>
                             </div>
                         </div>
                     </div>
-                    <ng-container *ngIf="isLoading"><app-spinner></app-spinner></ng-container>
                 </ng-container>
             </div>
         </div>
-        <div class="right-col">
-           
-        </div>
     </div>
 </div>
+<ng-container *ngIf="isLoading">Loading......</ng-container>
+<ng-container *ngIf="Data.length === 0">
+    <h1>There are no Hotels to show!</h1>
+</ng-container>

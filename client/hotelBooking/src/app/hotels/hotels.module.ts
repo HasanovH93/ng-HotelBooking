@@ -28,7 +28,8 @@ import { DetailsViewComponent } from './details-view/details-view.component';
     SharedModule,
     InfiniteScrollModule,
     MatProgressSpinnerModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    SharedModule
   ],
   exports: [
     AllHotelsComponent
