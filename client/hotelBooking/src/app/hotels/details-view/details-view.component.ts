@@ -2,7 +2,8 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import html2canvas from 'html2canvas';
 import { jsPDF } from 'jspdf';
-import { faStar } from '@fortawesome/free-regular-svg-icons';
+import { faStar,faHeart } from '@fortawesome/free-regular-svg-icons';
+import { faFilePdf,faShare  } from '@fortawesome/free-solid-svg-icons';
 import { IHotel } from 'src/app/modals/hotel';
 import { HotelService } from 'src/app/services/hotel.service';
 import { UserService } from 'src/app/services/user.service';
@@ -18,6 +19,9 @@ export class DetailsViewComponent implements OnInit {
   @ViewChild('content', { static: true }) el!: ElementRef<HTMLImageElement>;
 
   faStar = faStar;
+  faPdf = faFilePdf
+  faHeart = faHeart
+  faShare = faShare
   hotel!: IHotel;
   userId!: string | null;
   isOwner: boolean = false;
@@ -75,6 +79,8 @@ export class DetailsViewComponent implements OnInit {
       pdf.save('booking.pdf');
     });
   }
+
+
 
   confirm() {
     this.dialog

@@ -36,16 +36,21 @@
   </div>
   <div class="small-details">
     <h2>{{hotel.roomType}}</h2>
-    <p>2 guest &nbsp; &nbsp; 2beds &nbsp; &nbsp; 1 bathroom <button type="button" (click)="exportAsPdf()">Download PDF</button></p>
+    <button (click)="exportAsPdf()" type="button" class="uploadBtn">
+      <fa-icon [icon]="faPdf" class="icons-group"></fa-icon>
+      Download
+  </button>
+    <button  type="button" class="uploadBtn">
+      <fa-icon [icon]="faHeart" class="icons-group"></fa-icon>
+      Like
+  </button>
+    <button  type="button" class="uploadBtn">
+      <fa-icon [icon]="faShare" class="icons-group"></fa-icon>
+      Share
+  </button>
     <h4>${{hotel.price}} / day</h4>
   </div>
-  <hr class="line" />
-   <div class="owner" *ngIf="isOwner">
-    <button type="button">Edit</button>
-    <button (click)=" confirm()" type="button">Delete</button>
-    <button type="button">Check Reservations</button>
-   </div>
-
+  <hr *ngIf="!isOwner" class="line" />
   <form class="check-form" *ngIf="!isOwner">
     <div>
       <label>Check-in</label>
@@ -100,7 +105,12 @@
       </p>
     </div>
   </div>
-  <button class="contact-host">Contact Host</button>
+  <button class="contact-host" *ngIf="!isOwner">Contact Host</button>
+  <div class="owner" *ngIf="isOwner">
+    <button type="button">Edit Hotel</button>
+    <button (click)=" confirm()" type="button">Delete</button>
+    <button type="button">Check Reservations</button>
+   </div>
   <hr class="line" />
 </ng-container>
 </div>

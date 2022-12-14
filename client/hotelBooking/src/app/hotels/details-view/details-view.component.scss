@@ -58,10 +58,24 @@ $grey-med: #ddd;
     max-width: 1000px;
 }
 
-.small-details h2{
-    font-weight: 500;
+.uploadBtn {
+     
+    margin:10px 5px;
+    font-size: 16px;
+    outline: none;
+    padding: 10px 20px;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    color: $pink;
+    cursor: pointer;
+  }
+    .icons-group {
+      color:$pink
+      
+    }
 
-}
+
 .small-details h4 {
     text-align: end;
     font-size: 22px;
@@ -182,6 +196,7 @@ $grey-med: #ddd;
     position: relative;
   }
 
+  
 
 
 

@@ -41,5 +41,12 @@ export class HotelService {
    })
   }
 
+  updateHotel(files: {}, id:string){
+   return this.http.put(this.apiUrl, `/edit/${id}`, files).subscribe({
+    next:() => {
+      this.router.navigate(['/hotels/all-hotels'])
+    }
+   })
+  }
   
 }
