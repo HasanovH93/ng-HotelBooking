@@ -7,8 +7,7 @@ import { IHotel } from 'src/app/modals/hotel';
 import { HotelService } from 'src/app/services/hotel.service';
 import { UserService } from 'src/app/services/user.service';
 import { facilities } from '../facilities';
-import { MatDialog } from '@angular/material/dialog';
-import { ConfirmationDialog } from 'src/app/shared/confirmation-service/confirmation-service.component';
+import { DialogService } from 'src/app/services/confirmation.service';
 
 @Component({
   selector: 'app-details-view',
@@ -24,13 +23,13 @@ export class DetailsViewComponent implements OnInit {
   isOwner: boolean = false;
   facilitiesDataArray: Array<any> = [];
   iconsArray = Array;
-  stars:number;
+  stars: number;
 
   constructor(
     private hotelService: HotelService,
     private actRoute: ActivatedRoute,
     private userService: UserService,
-    private dialogRef: MatDialog,
+    private dialog: DialogService,
     private activatedRoute: ActivatedRoute
   ) {}
 
@@ -43,8 +42,8 @@ export class DetailsViewComponent implements OnInit {
   private getHotel(id: string) {
     this.hotelService.getHotelById(id).subscribe((hotel) => {
       this.hotel = hotel;
-      this.stars = hotel.stars
-      console.log(hotel.stars)
+      this.stars = hotel.stars;
+      console.log(hotel.stars);
       const facilitiesArray = hotel.facilities[0].split(',');
       for (let facility of facilitiesArray) {
         const singleFacilityObject = this.getFacilityData(facility);
@@ -77,14 +76,20 @@ export class DetailsViewComponent implements OnInit {
     });
   }
 
-  // confirm(){
-  //  this.dialogRef.open(ConfirmationDialog);
-  // }
-
-  onDelete(){
-    this.activatedRoute.params.subscribe(({ id }) => {
-      console.log(id)
-      this.hotelService.deleteHotelById(id);
-    });
+  confirm() {
+    this.dialog
+      .confirmDialog({
+        title: 'Are you sure?',
+        message: 'Are you sure you want to delete this hotel?',
+        confirmCaption: 'Yes',
+        cancelCaption: 'No',
+      })
+      .subscribe((yes) => {
+        if (yes) {
+          this.activatedRoute.params.subscribe(({ id }) => {
+            this.hotelService.deleteHotelById(id);
+          });
+        }
+      });
   }
 }

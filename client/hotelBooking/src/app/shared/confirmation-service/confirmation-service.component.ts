@@ -1,22 +1,12 @@
-import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { HotelService } from 'src/app/services/hotel.service';
-
+import { Component, Inject } from '@angular/core';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { ConfirmDialogData } from 'src/app/modals/confirm-dialog-data';
 
 @Component({
   selector: 'app-confirmation-service',
   templateUrl: './confirmation-service.component.html',
-  styleUrls: ['./confirmation-service.component.scss']
+  styleUrls: ['./confirmation-service.component.scss'],
 })
 export class ConfirmationDialog {
-  
-  constructor(private activatedRoute: ActivatedRoute, private hotelService: HotelService){}
-
-  onDelete(){
-    this.activatedRoute.params.subscribe(({ id }) => {
-      console.log(id)
-      this.hotelService.deleteHotelById(id);
-    });
-  }
-
+  constructor(@Inject(MAT_DIALOG_DATA) public data: ConfirmDialogData) {}
 }
