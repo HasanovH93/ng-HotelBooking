@@ -11,8 +11,6 @@ import { facilities } from '../facilities';
 import { DialogService } from 'src/app/services/confirmation.service';
 import { IUser } from 'src/app/modals/user';
 
-
-
 @Component({
   selector: 'app-details-view',
   templateUrl: './details-view.component.html',
@@ -26,7 +24,7 @@ export class DetailsViewComponent implements OnInit {
   faHeart = faHeart;
   faShare = faShare;
   liked: boolean = false;
-  currentUser : IUser | null
+  currentUser: IUser | null;
   hotel!: IHotel;
   userId!: string | null;
   isOwner: boolean = false;
@@ -48,26 +46,19 @@ export class DetailsViewComponent implements OnInit {
       this.getHotel(id);
     });
 
-     this.userService.refreshNeeds.subscribe(
-      (user) => {
-        this.currentUser = user;
-      }
-    );
-
+    this.userService.refreshNeeds.subscribe((user) => {
+      this.currentUser = user;
+    });
   }
-
-
 
   private getHotel(id: string) {
     this.hotelService.getHotelById(id).subscribe((hotel) => {
       this.hotel = hotel;
 
+      
 
-      console.log(this.liked = this.hotel.likedBy.some((id) => {
-        console.log(id)
-        console.log(this.currentUser?.userData.id)
-        id.toString() === this.currentUser?.userData.id.toString()
-      }))
+     
+
       const facilitiesArray = hotel.facilities[0].split(',');
       for (let facility of facilitiesArray) {
         const singleFacilityObject = this.getFacilityData(facility);
@@ -78,13 +69,14 @@ export class DetailsViewComponent implements OnInit {
       if (hotel.owner == this.userId) {
         this.isOwner = true;
       }
-     
 
+      for (let id of hotel.likedBy) {
+        if (id === this.userId) {
+          this.liked = true;
+        }
+      }
     });
   }
-
-
-
 
   private getFacilityData(facility: any) {
     return facilities().find((item: any) => item.name === facility);
