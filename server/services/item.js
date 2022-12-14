@@ -54,32 +54,44 @@ async function likeHotel(id,userId){
    currentHotel.likedUsers.push(userId);
    await currentHotel.save()
 }
-async function edit(id,item){
-   const existing = await Hotel.findById(id)
 
-   existing.name = item.make;
-   existing.location = item.model;
-   existing.description = item.description;
-   existing.price = item.price;
-   existing.img = item.img;
+async function updateById(id,userId,data){
+   let currentHotel = await Hotel.findById(id);
+
+   if(!currentHotel){
+      throw new Error('Cound not find Hotel in Database')
+   }
+   if(currentHotel.owner != userId){
+      throw new Error('Not Allowed!')
+   }
+   currentHotel = Object.assign(currentHotel,data)
+   return currentHotel.save()
+}
+
+
+
+// async function edit(id,item){
+//    const existing = await Hotel.findById(id)
+
+//    existing.name = item.make;
+//    existing.location = item.model;
+//    existing.description = item.description;
+//    existing.price = item.price;
+//    existing.img = item.img;
    
-   return existing.update();
-}
+//    return existing.update();
+// }
 
 
-async function deleteItem(id){
-   return Hotel.findByIdAndDelete(id)
-}
 
 module.exports = {
     getAll,
     getHotelById,
     create,
-    edit,
-    deleteItem,
     getByUserId,
     getLastFour,
     changeImage,
     deleteById,
-    likeHotel
+    likeHotel,
+    updateById
 }

@@ -6,6 +6,7 @@ const {
   getHotelById,
   deleteById,
   likeHotel,
+  updateById,
 } = require("../services/item");
 const { getById } = require("../services/user");
 const { parseError } = require("../util/parser");
@@ -104,7 +105,37 @@ dataController.get("/details/like/:id", async (req, res) => {
   } catch (error) {}
 });
 
+dataController.put('/edit/:id', s3UploadImg(), async (req, res) => {
+  try {
+     console.log('PUUUT')
+    if(req.files){
+      req.body.imageUrls = req.files.map((img) => img.location)
+    }
+    if(req.body.owner != req.user._id){
+      throw new Error('Unauthorized')
+    }
+    const data = {
+      hotelName: req.body.hotelName,
+      roomType: req.body.roomType,
+      location: req.body.location,
+      address: req.body.address,
+      stars: Number(req.body.stars),
+      description: req.body.description,
+      price: Number(req.body.price),
+      imageUrls: req.body.imageUrls,
+      facilities: req.body.facilities,
+    };
 
+    const id = req.params.id;
+    const userId = req.user._id;
+    const UpdateData = await updateById(id,userId,data)
+    res.status(200).send({message: "Successfully uploaded " + req.files.length + " files!",
+    UpdateData})
+  } catch (error) {
+    const message = parseError(error)
+    res.status(400).json({message})
+  }
+})
 
 
 
