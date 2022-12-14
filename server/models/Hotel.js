@@ -12,9 +12,9 @@ const hotelSchema = new Schema({
    facilities: [{type:String}],
    date: {type:String},
    owner: { type: Types.ObjectId, ref: "User", required: true },
+   likedBy: [{type: Types.ObjectId, ref: 'User'}],
    ownerEmail: {type: String},
    ownerImage: {type: String},
-   likedUsers: [{type: Types.ObjectId, ref: 'User'}]
 });
 
 const Hotel = model('hotel', hotelSchema);

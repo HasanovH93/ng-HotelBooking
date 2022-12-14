@@ -98,11 +98,15 @@ dataController.delete("/details/:id", async (req, res) => {
 });
 
 dataController.get("/details/like/:id", async (req, res) => {
+ try {
   console.log('GET')
-  const hotel = await getById(req.params.id);
-  try {
-    await likeHotel(req.params.id, req.user._id);
-  } catch (error) {}
+  const userId = req.user._id;
+  const hotelId = req.params.id;
+  await likeHotel(userId,hotelId);
+  res.status(200).json('success')
+ } catch (error) {
+  
+ }
 });
 
 dataController.put('/edit/:id', s3UploadImg(), async (req, res) => {

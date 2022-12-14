@@ -92,13 +92,14 @@ authController.put("/profile", s3UploadImg(), async (req, res) => {
 });
 
 const removePassword = (data) => {
-  const { email, id, username, imageUrl } = data;
+  const { email, id, username, imageUrl, likedHotels } = data;
 
   const userData = {
     email,
     id,
     username,
     imageUrl,
+    likedHotels
   };
   return userData;
 };

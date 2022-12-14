@@ -5,6 +5,7 @@ const userSchema = new Schema({
     username: {type : String, required: true},
     imageUrl: {type: String, default: ''},
     hashedPassword: {type : String, required: true},
+    likedHotels: [{type: Types.ObjectId, ref: 'Hotel'}]
 });
 
 userSchema.index({ email: 1}, {
