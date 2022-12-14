@@ -1,6 +1,13 @@
 const { hasUser } = require("../middlewares/guards");
-const { create, getLastFour, getAll, getHotelById, deleteById } = require("../services/item");
-const { getById} = require('../services/user')
+const {
+  create,
+  getLastFour,
+  getAll,
+  getHotelById,
+  deleteById,
+  likeHotel,
+} = require("../services/item");
+const { getById } = require("../services/user");
 const { parseError } = require("../util/parser");
 const { s3UploadImg } = require("../middlewares/imagesUpload");
 
@@ -29,8 +36,6 @@ dataController.post("/create", s3UploadImg(), async (req, res) => {
       facilities: req.body.facilities,
     };
 
-  
-
     if (Object.values(data).some((v) => !v || v === null)) {
       throw new Error(`All fields are required`);
     }
@@ -41,17 +46,16 @@ dataController.post("/create", s3UploadImg(), async (req, res) => {
     data.date = new Date().toDateString();
     data.owner = req.user._id;
 
-   
-   const id = req.user._id;
-   const user = await getById(id);
-   data.ownerImage = user.imageUrl
-   data.ownerEmail = user.email
+    const id = req.user._id;
+    const user = await getById(id);
+    data.ownerImage = user.imageUrl;
+    data.ownerEmail = user.email;
 
     const createdData = await create(data);
 
     res.status(201).send({
       message: "Successfully uploaded " + req.files.length + " files!",
-      createdData
+      createdData,
     });
   } catch (error) {
     const message = parseError(error);
@@ -70,57 +74,38 @@ dataController.get("/all-hotels", async (req, res) => {
 });
 
 dataController.get("/details/:id", async (req, res) => {
-try {
-  const id = req.params.id;
-  const data = await getHotelById(id)
-  res.status(200).send({data})
-} catch (error) {
-  const message = parseError(error);
- res.status(400).json({message})
-}
+  try {
+    const id = req.params.id;
+    const data = await getHotelById(id);
+    res.status(200).send({ data });
+  } catch (error) {
+    const message = parseError(error);
+    res.status(400).json({ message });
+  }
 });
 
-dataController.delete('/details/:id', async (req,res) => {
+dataController.delete("/details/:id", async (req, res) => {
   try {
-    console.log('DELETE')
+    console.log("DELETE");
     const id = req.params.id;
-    const data = await deleteById(id)
-    res.status(200).send({data})
+    const data = await deleteById(id);
+    res.status(200).send({ data });
   } catch (error) {
-    const message = parseError(error)
-    res.status(400).json({message})
+    const message = parseError(error);
+    res.status(400).json({ message });
   }
-})
+});
+
+dataController.get("/details/like/:id", async (req, res) => {
+  console.log('GET')
+  const hotel = await getById(req.params.id);
+  try {
+    await likeHotel(req.params.id, req.user._id);
+  } catch (error) {}
+});
 
 
 
-// dataController.put("/:id", hasUser(), async (req, res) => {
-//   const item = await getById(req.params.id);
-//   if (req.user._id != item._ownerId) {
-//     return res.status(403).json({ message: "You cannot modify this record" });
-//   }
-//   try {
-//     const result = await edit(req.params.id, req.body);
-//     res.json(result);
-//   } catch (error) {
-//     const message = parseError(error);
-//     res.status(400).json({ message });
-//   }
-// });
 
-// dataController.delete("/:id", hasUser(), async (req, res) => {
-//   const item = await getById(req.params.id);
-//   if (req.user._id != item._ownerId) {
-//     return res.status(403).json({ message: "You cannot modify this record" });
-//   }
-
-//   try {
-//     await deleteItem(item);
-//     res.status(204).end();
-//   } catch (error) {
-//     const message = parseError(error);
-//     res.status(400).json({ message });
-//   }
-// });
 
 module.exports = dataController;

@@ -1,5 +1,4 @@
 const Hotel = require("../models/Hotel");
-const { getById } = require("./user");
 
 
 async function getAll(skip,limit){
@@ -40,10 +39,20 @@ async function changeImage(id, newImage, newEmail){
 }
 
 async function deleteById(id){
-   const getHotel = await getById(id);
+   const getHotel = await getHotelById(id);
    const result = await Hotel.deleteOne(getHotel)
    return result
 
+}
+
+async function likeHotel(id,userId){
+   const currentHotel = await Hotel.findById(id);
+   
+   if(currentHotel.likedUsers.includes(userId)){
+      throw new Error('Cannot Like twice')
+   }
+   currentHotel.likedUsers.push(userId);
+   await currentHotel.save()
 }
 async function edit(id,item){
    const existing = await Hotel.findById(id)
@@ -71,5 +80,6 @@ module.exports = {
     getByUserId,
     getLastFour,
     changeImage,
-    deleteById
+    deleteById,
+    likeHotel
 }
