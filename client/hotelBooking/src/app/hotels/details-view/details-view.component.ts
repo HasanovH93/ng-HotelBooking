@@ -1,14 +1,17 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import html2canvas from 'html2canvas';
 import { jsPDF } from 'jspdf';
-import { faStar,faHeart } from '@fortawesome/free-regular-svg-icons';
-import { faFilePdf,faShare  } from '@fortawesome/free-solid-svg-icons';
+import { faStar, faHeart } from '@fortawesome/free-regular-svg-icons';
+import { faFilePdf, faShare } from '@fortawesome/free-solid-svg-icons';
 import { IHotel } from 'src/app/modals/hotel';
 import { HotelService } from 'src/app/services/hotel.service';
 import { UserService } from 'src/app/services/user.service';
 import { facilities } from '../facilities';
 import { DialogService } from 'src/app/services/confirmation.service';
+import { IUser } from 'src/app/modals/user';
+
+
 
 @Component({
   selector: 'app-details-view',
@@ -19,9 +22,11 @@ export class DetailsViewComponent implements OnInit {
   @ViewChild('content', { static: true }) el!: ElementRef<HTMLImageElement>;
 
   faStar = faStar;
-  faPdf = faFilePdf
-  faHeart = faHeart
-  faShare = faShare
+  faPdf = faFilePdf;
+  faHeart = faHeart;
+  faShare = faShare;
+  liked: boolean = false;
+  currentUser : IUser | null
   hotel!: IHotel;
   userId!: string | null;
   isOwner: boolean = false;
@@ -32,6 +37,7 @@ export class DetailsViewComponent implements OnInit {
   constructor(
     private hotelService: HotelService,
     private actRoute: ActivatedRoute,
+    private router: Router,
     private userService: UserService,
     private dialog: DialogService,
     private activatedRoute: ActivatedRoute
@@ -41,13 +47,27 @@ export class DetailsViewComponent implements OnInit {
     this.actRoute.params.subscribe(({ id }) => {
       this.getHotel(id);
     });
+
+     this.userService.refreshNeeds.subscribe(
+      (user) => {
+        this.currentUser = user;
+      }
+    );
+
   }
+
+
 
   private getHotel(id: string) {
     this.hotelService.getHotelById(id).subscribe((hotel) => {
       this.hotel = hotel;
-      this.stars = hotel.stars;
-      console.log(hotel.stars);
+
+
+      console.log(this.liked = this.hotel.likedBy.some((id) => {
+        console.log(id)
+        console.log(this.currentUser?.userData.id)
+        id.toString() === this.currentUser?.userData.id.toString()
+      }))
       const facilitiesArray = hotel.facilities[0].split(',');
       for (let facility of facilitiesArray) {
         const singleFacilityObject = this.getFacilityData(facility);
@@ -58,8 +78,13 @@ export class DetailsViewComponent implements OnInit {
       if (hotel.owner == this.userId) {
         this.isOwner = true;
       }
+     
+
     });
   }
+
+
+
 
   private getFacilityData(facility: any) {
     return facilities().find((item: any) => item.name === facility);
@@ -80,7 +105,11 @@ export class DetailsViewComponent implements OnInit {
     });
   }
 
-
+  onEdit() {
+    this.activatedRoute.params.subscribe(({ id }) => {
+      this.router.navigate([`hotels/edit/${id}`]);
+    });
+  }
 
   confirm() {
     this.dialog
@@ -97,5 +126,14 @@ export class DetailsViewComponent implements OnInit {
           });
         }
       });
+  }
+
+  likeHotel() {
+    const id = this.hotel._id;
+    this.hotelService.likeHotel(id).subscribe({
+      next: () => {
+        this.liked = true;
+      },
+    });
   }
 }

@@ -12,6 +12,7 @@ owner:string;
 ownerEmail: string;
 ownerImage: string;
 facilities: string[];
+likedBy: string[];
 date:string
 }
 

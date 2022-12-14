@@ -7,6 +7,7 @@ export interface IUser{
         username: string;
         imageUrl: string;
         password: string;
+        likedHotels:string[]
     };
    
 }

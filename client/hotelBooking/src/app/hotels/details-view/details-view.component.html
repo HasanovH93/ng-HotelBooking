@@ -1,3 +1,5 @@
+<ng-container *ngIf="!hotel"><app-spinner></app-spinner></ng-container>
+
 <div id="content" class="hotel-details" #content  >
   <ng-container *ngIf="hotel">
   <div class="hotel-title">
@@ -40,10 +42,18 @@
       <fa-icon [icon]="faPdf" class="icons-group"></fa-icon>
       Download
   </button>
-    <button  type="button" class="uploadBtn">
+  <ng-container *ngIf="!liked">
+    <button  type="button" class="uploadBtn" (click)="likeHotel()">
       <fa-icon [icon]="faHeart" class="icons-group"></fa-icon>
       Like
   </button>
+</ng-container>
+  <ng-container *ngIf="liked">
+    <button  type="button" class="uploadBtn">
+      <fa-icon [icon]="faHeart" class="icons-group"></fa-icon>
+      Liked
+  </button>
+  </ng-container>
     <button  type="button" class="uploadBtn">
       <fa-icon [icon]="faShare" class="icons-group"></fa-icon>
       Share
@@ -85,7 +95,7 @@
   <hr class="line" />
   <div class="map">
     <h3>Location on Map</h3>
-    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d186125.68115431405!2d27.802481707096558!3d43.20500549043367!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40a4538baaf3d7a1%3A0x5727941c71a58b7c!2z0JLQsNGA0L3QsCwg0JHRitC70LPQsNGA0LjRjw!5e0!3m2!1sbg!2sde!4v1670776635273!5m2!1sbg!2sde" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    <!-- <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d186125.68115431405!2d27.802481707096558!3d43.20500549043367!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40a4538baaf3d7a1%3A0x5727941c71a58b7c!2z0JLQsNGA0L3QsCwg0JHRitC70LPQsNGA0LjRjw!5e0!3m2!1sbg!2sde!4v1670776635273!5m2!1sbg!2sde" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe> -->
     <b>Varna,Bulgaria</b>
     <p>I'ts like a home away from home.</p>
   </div>
@@ -107,7 +117,7 @@
   </div>
   <button class="contact-host" *ngIf="!isOwner">Contact Host</button>
   <div class="owner" *ngIf="isOwner">
-    <button type="button">Edit Hotel</button>
+    <button (click)="onEdit()" type="button">Edit Hotel</button>
     <button (click)=" confirm()" type="button">Delete</button>
     <button type="button">Check Reservations</button>
    </div>

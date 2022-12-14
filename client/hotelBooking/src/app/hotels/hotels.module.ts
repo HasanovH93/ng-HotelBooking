@@ -5,11 +5,12 @@ import { HotelsRoutingModule } from './hotels-routing.module';
 import { AllHotelsComponent } from './all-hotels/all-hotels.component';
 import { RouterModule } from '@angular/router';
 import { AddHotelComponent } from './add-hotel/add-hotel.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
 import { MatProgressSpinnerModule} from '@angular/material/progress-spinner'
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { DetailsViewComponent } from './details-view/details-view.component';
+import { EditHotelComponent } from './edit-hotel/edit-hotel.component';
 
 
 @NgModule({
@@ -17,6 +18,7 @@ import { DetailsViewComponent } from './details-view/details-view.component';
     AllHotelsComponent,
     AddHotelComponent,
     DetailsViewComponent,
+    EditHotelComponent,
 
 
   ],
@@ -25,6 +27,7 @@ import { DetailsViewComponent } from './details-view/details-view.component';
     HotelsRoutingModule,
     RouterModule,
     ReactiveFormsModule,
+    FormsModule,
     SharedModule,
     InfiniteScrollModule,
     MatProgressSpinnerModule,
