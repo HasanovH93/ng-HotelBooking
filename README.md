@@ -95,11 +95,9 @@ The project is for creating and sharing Hotels.
 
 # TODO:
 - [ ] Unit/Integration testing
-- [ ] Confirm email
 - [ ] Change password
+- [ ] Reset password
+- [ ] Send messages between users
 - [ ] Admin panel
-- [ ] Register Broker
-- [ ] Property statistics
-- [ ] Register Brokers firm
 - [ ] Customer reviews
 - [ ] Reservations
