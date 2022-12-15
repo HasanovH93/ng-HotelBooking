@@ -34,17 +34,13 @@
 ----
 
 ## 🔗 **Links:** 
-### API-Vercel: (https://www.vectorlogo.zone/logos/heroku/heroku-icon.svg)](https://real-estate-angular-project.herokuapp.com/)
+### API-Vercel: (https://www.vectorlogo.zone/logos/heroku/heroku-icon.svg)](https://ng-hotel-booking-pabh.vercel.app/)
 
-### Client-Firebase:<a href="hotel-booking-a8662.web.app/"> *(website)*</a>
-[![Clien-Firebase](https://www.vectorlogo.zone/logos/firebase/firebase-icon.svg)](hotel-booking-a8662.web.app/)
+### Client-Firebase:<a href="https://hotel-booking-a8662.web.app/"> *(website)*</a>
+[![Clien-Firebase](https://www.vectorlogo.zone/logos/firebase/firebase-icon.svg)](https://hotel-booking-a8662.web.app/)
                                                                               
 
 ---
-
-
-
-
 
 # **About This Project:**
 
@@ -92,6 +88,7 @@ The project is for creating and sharing Hotels.
     * Custom pagination
     * Custom search
     * Custom image upload
+    * Html canvas
 
 # TODO:
 - [ ] Unit/Integration testing
