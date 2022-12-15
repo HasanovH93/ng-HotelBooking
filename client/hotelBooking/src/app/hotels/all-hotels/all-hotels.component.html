@@ -19,7 +19,7 @@
                             <ng-container *ngFor="let item of [].constructor(hotel.stars); let i = index">
                                 <fa-icon [icon]="faStar" class="stars-icon"></fa-icon>
                            </ng-container>
-                            <p class="description">{{ hotel.description }}</p>
+                            <p class="description">{{ hotel.description | shorten:150 }}</p>
                             <div class="house-price">
                                 <p>2 Guest</p>
                                 <h4>$ {{ hotel.price }} / <span>day</span></h4>

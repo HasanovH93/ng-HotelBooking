@@ -22,7 +22,7 @@ export class HotelViewComponent implements OnInit {
   ngOnInit(): void {
     this.hotelService.getLastHotels().subscribe((data) => {
       this.hotels = data.latestHotels;
-
+     console.log(this.hotels)
       this.isLoading = false;
     });
 

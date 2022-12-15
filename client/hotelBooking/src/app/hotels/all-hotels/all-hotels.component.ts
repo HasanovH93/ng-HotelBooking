@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { IHotel } from 'src/app/modals/hotel';
 import { HotelService } from 'src/app/services/hotel.service';
-import { faStar } from '@fortawesome/free-regular-svg-icons';
+import { faStar } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-all-hotels',
@@ -36,7 +36,6 @@ export class AllHotelsComponent implements OnInit {
         this.Data.push(element);
       });
       this.isLoading = false
-      console.log(res);
     });
   }
 }

@@ -1,6 +1,10 @@
-<div class="card-container">
+<div class="card-container" *ngIf="hotels">
+    <ng-container *ngIf="hotels.length === 0">
+        <h2>There are no liked hotels!</h2>
+    </ng-container>
 <div class="container">
     <div class="card" *ngFor="let hotel of hotels">
+       
       <div class="card-header">
         <img src="{{hotel.imageUrls[0]}}" alt="rover" />
       </div>
@@ -10,12 +14,18 @@
             <fa-icon [icon]="faStar" class="stars-icon"></fa-icon>
        </ng-container>
     </div>  
-        <h4>
+        <h4 class="title">
           {{hotel.hotelName}}
         </h4>
         <button class="detailsBtn" type="button" [routerLink]="'/hotels/details/' + hotel._id">Details</button>
         <div class="user">
-          <img src="{{hotel.ownerImage}}" alt="user" />
+          <ng-container *ngIf="hotel.ownerImage">
+
+              <img src="{{hotel.ownerImage}}" alt="user" />
+          </ng-container>
+          <ng-container *ngIf="!hotel.ownerImage">
+            <img src="{{defaultImg}}" alt="user" />
+          </ng-container>
           <div class="user-info">
             <h5>{{hotel.ownerEmail}}</h5>
             <small>{{hotel.date}}</small>
@@ -23,4 +33,5 @@
         </div>
       </div>
     </div>
+   
 </div>

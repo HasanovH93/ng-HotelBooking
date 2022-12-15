@@ -171,20 +171,5 @@ export class EditHotelComponent implements OnInit {
       this.hotelService.updateHotel(formData, id);
     }
 
-    // const body: IHotel = {
-    //   _id: this.hotelData._id,
-    //   owner: this.hotelData.owner,
-    //   ownerEmail: this.hotelData.ownerEmail,
-    //   ownerImage: this.hotelData.ownerImage,
-    //   hotelName: this.hotelData.hotelName,
-    //   roomType: this.hotelData.roomType,
-    //   location: this.hotelData.location,
-    //   address: this.hotelData.address,
-    //   stars: this.hotelData.stars,
-    //   price: this.hotelData.price,
-    //   description: this.hotelData.description,
-    //   facilities: this.hotelData.facilities,
-
-    // }
   }
 }

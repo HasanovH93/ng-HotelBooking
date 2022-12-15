@@ -61,15 +61,17 @@ $grey-med: #ddd;
     margin: 10px 0;
 }
 .stars {
-    height: 16px;
-    color: #ff5361;
     margin:10px 1px;
+}
+.stars-icon{
+    color: $pink;
 }
 
 .house-price {
     text-align: right;
 }
 .description {
+    margin-top:25px;
     width:70%;
 }
 .detailsBtn{
@@ -90,36 +92,6 @@ $grey-med: #ddd;
 .house-price h4 span{
     font-size: 16px;
     font-weight: 500;
-}
-
-.sidebar {
-    border:1px solid #999;
-    margin-top:80px;
-    padding: 40px 120px;
-    position: fixed;
-}
-.sidebar h2 {
-    font-weight: 500;
-}
-.sidebar h3 {
-    font-weight: 500;
-    margin: 20px 0 10px
-}
-
-.filter {
-    display: flex;
-    align-items: center;
-    color:#555;
-
-   
-}
-
-.filter p {
-    flex:1;
-}
-.filter input {
-    margin-right: 15px;
-    cursor:pointer
 }
 
 

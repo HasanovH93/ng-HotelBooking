@@ -2,6 +2,7 @@
 
 <div id="content" class="hotel-details" #content  >
   <ng-container *ngIf="hotel">
+    
   <div class="hotel-title">
     <h1>{{ hotel.hotelName }}</h1>
     <div class="row">
@@ -9,7 +10,7 @@
         <ng-container *ngFor="let item of [].constructor(hotel.stars); let i = index">
           <fa-icon [icon]="faStar" class="stars-icon"></fa-icon>
      </ng-container>
-        <span>245 Reviews</span>
+        <span>Likes: {{hotel.likedBy.length}}</span>
       </div>
       <div class="location">
         Location: {{hotel.location}}, {{hotel.address}}
@@ -38,23 +39,23 @@
   </div>
   <div class="small-details">
     <h2>{{hotel.roomType}}</h2>
-    <button (click)="exportAsPdf()" type="button" class="uploadBtn">
+    <button (click)="exportAsPdf()" type="button" class="userBtns">
       <fa-icon [icon]="faPdf" class="icons-group"></fa-icon>
       Download
   </button>
   <ng-container *ngIf="!liked && !isOwner">
-    <button  type="button" class="uploadBtn" (click)="likeHotel()">
+    <button  type="button" class="userBtns" (click)="likeHotel()">
       <fa-icon [icon]="farHeart" class="icons-group"></fa-icon>
       Like
   </button>
 </ng-container>
   <ng-container *ngIf="liked && !isOwner">
-    <button  type="button" class="uploadBtn">
+    <button  type="button" class="userBtns">
       <fa-icon [icon]="faHeart" class="icons-group"></fa-icon>
       Liked
   </button>
   </ng-container>
-    <button  type="button" class="uploadBtn">
+    <button  type="button" class="userBtns">
       <fa-icon [icon]="faShare" class="icons-group"></fa-icon>
       Share
   </button>

@@ -139,10 +139,10 @@ export class AddHotelComponent implements OnInit {
 
     this.hotelService.createHotel(formData).subscribe({
       next: (res) => {
-        console.log(res);
+        console.log(res)
       },
       complete: () => {
-        this.router.navigate(['/']);
+        this.router.navigate(['/hotels/all-hotels']);
       },
     });
   }
