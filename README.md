@@ -34,11 +34,11 @@
 ----
 
 ## 🔗 **Links:** 
-### API-Vercel :
-[![Heroku server API](https://www.iconbolt.com/preview/facebook/ionicons-regular/logo-vercel.svg)](https://ng-hotel-booking-pabh.vercel.app/)
+### API-Heroku : <a href="https://real-estate-upload-bucket.s3.eu-central-1.amazonaws.com/Server-Rest-Api-Endpoints.docx">*(web api endpoints)*</a>
+[![Heroku server API](https://www.vectorlogo.zone/logos/heroku/heroku-icon.svg)](https://real-estate-angular-project.herokuapp.com/)
 
 ### Client-Firebase:<a href="https://hotel-booking-a8662.web.app/"> *(website)*</a>
-[![Clien-Firebase](https://www.vectorlogo.zone/logos/firebase/firebase-icon.svg)](https://hotel-booking-a8662.web.app/)
+[![Clien-Firebase](https://global-uploads.webflow.com/604a2f667b2fcefbc095bfc8/626aad2845937246492f8963_vercel-customer-story-cover.svg)](https://hotel-booking-a8662.web.app/)
                                                                               
 
 ---
