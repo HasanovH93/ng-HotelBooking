@@ -49,7 +49,7 @@ export class HotelService {
   }
 
   likeHotel(id: string) {
-    return this.http.get(this.apiUrl + `hotels/details/like/${id}`);
+    return this.http.put(this.apiUrl + `hotels/details/like/${id}`, id);
   }
 
   getLikedHotels() {

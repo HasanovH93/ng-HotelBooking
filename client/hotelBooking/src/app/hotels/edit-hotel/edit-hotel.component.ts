@@ -85,7 +85,6 @@ export class EditHotelComponent implements OnInit {
   getHotel(id: string) {
     this.hotelService.getHotelById(id).subscribe((res) => {
       this.hotelData = res;
-      console.log(res.imageUrls)
       this.facilityOptions = res.facilities[0].split(',');
       const facilities: FormArray = this.addHotelForm.get(
         'facilities'
@@ -93,6 +92,7 @@ export class EditHotelComponent implements OnInit {
       for (const option of this.facilityOptions) {
         facilities.push(new FormControl(option));
       }
+     
     });
   }
 
@@ -112,6 +112,7 @@ export class EditHotelComponent implements OnInit {
       });
       i++;
     }
+    console.log(facilities)
   }
   onImageUpload(event: any) {
     this.imageErrorMessage = '';

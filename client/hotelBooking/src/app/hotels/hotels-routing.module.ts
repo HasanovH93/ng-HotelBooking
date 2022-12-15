@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from '../user/auth.guard';
 import { AddHotelComponent } from './add-hotel/add-hotel.component';
 import { AllHotelsComponent } from './all-hotels/all-hotels.component';
 import { DetailsViewComponent } from './details-view/details-view.component';
@@ -12,7 +13,8 @@ const routes: Routes = [
   },
   {
     path: 'add-hotel',
-    component: AddHotelComponent
+    component: AddHotelComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'details/:id',
@@ -20,7 +22,8 @@ const routes: Routes = [
   },
   {
     path: 'edit/:id',
-    component:EditHotelComponent
+    component:EditHotelComponent,
+    canActivate: [AuthGuard]
   }
 ];
 

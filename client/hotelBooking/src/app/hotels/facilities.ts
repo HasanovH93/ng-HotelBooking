@@ -20,7 +20,7 @@ import {
 
 
 export const facilities = () => { 
-    return [
+    return  [
         { name: 'TV', value: 'TV', icon: faTv },
         { name: 'Spa', value: 'Spa', icon: faSpa },
         { name: 'Wi-Fi', value: 'Wi-Fi', icon: faWifi },
@@ -28,7 +28,7 @@ export const facilities = () => {
         { name: 'Restaurant', value: 'Restaurant', icon: faUtensils },
         { name: 'Parking', value: 'Parking', icon: faSquareParking },
         { name: 'Bar', value: 'Bar', icon: faMartiniGlass },
-        { name: 'Pet Friendly', value: 'Pet Friendly', icon: faPaw },
+        { name: 'Pets', value: 'Pets', icon: faPaw },
         { name: 'Kitchen', value: 'Kitchen', icon: faKitchenSet },
         { name: 'Breakfast', value: 'Breakfast', icon: faMugSaucer },
         { name: 'Pool', value: 'Pool', icon: faPersonSwimming },

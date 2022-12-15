@@ -1,6 +1,7 @@
 $pink: #ff385c;
 
 $blue_bg: #241a71;
+
 .card-container {
   display: flex;
   justify-content: center;
@@ -16,6 +17,7 @@ $blue_bg: #241a71;
   justify-content: space-evenly;
   flex-wrap: wrap;
 }
+
 .card {
   margin: 10px;
   background-color: #fff;
@@ -27,7 +29,7 @@ $blue_bg: #241a71;
 .card-header img {
   width: 100%;
 
-  max-height:200px;
+  max-height: 200px;
   object-fit: cover;
 }
 .card-body {
@@ -52,9 +54,9 @@ $blue_bg: #241a71;
   color: white;
   border: none;
 }
-.title{
-    margin-top:5px;
-    color:$pink;
+.title {
+  margin-top: 5px;
+  color: $pink;
 }
 
 .detailsBtn:hover {
