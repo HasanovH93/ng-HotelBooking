@@ -13,8 +13,6 @@ export class AllHotelsComponent implements OnInit {
   Data: IHotel[] = [];
   isLoading: boolean = true
   faStar = faStar
-  iconsArray = Array;
-  stars:number;
 
   constructor(private hotelService: HotelService) {}
 
@@ -35,7 +33,6 @@ export class AllHotelsComponent implements OnInit {
     this.hotelService.getHotels({ page: this.page }).subscribe((res) => {
       res.forEach((element: IHotel) => {
         this.isLoading = false  
-         this.stars = element.stars
         this.Data.push(element);
       });
       this.isLoading = false

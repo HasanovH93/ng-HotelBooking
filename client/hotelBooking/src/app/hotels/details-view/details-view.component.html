@@ -6,7 +6,7 @@
     <h1>{{ hotel.hotelName }}</h1>
     <div class="row">
       <div class="stars">
-        <ng-container *ngFor="let stars of iconsArray(stars).fill(1)">
+        <ng-container *ngFor="let item of [].constructor(hotel.stars); let i = index">
           <fa-icon [icon]="faStar" class="stars-icon"></fa-icon>
      </ng-container>
         <span>245 Reviews</span>
@@ -42,13 +42,13 @@
       <fa-icon [icon]="faPdf" class="icons-group"></fa-icon>
       Download
   </button>
-  <ng-container *ngIf="!liked">
+  <ng-container *ngIf="!liked && !isOwner">
     <button  type="button" class="uploadBtn" (click)="likeHotel()">
-      <fa-icon [icon]="faHeart" class="icons-group"></fa-icon>
+      <fa-icon [icon]="farHeart" class="icons-group"></fa-icon>
       Like
   </button>
 </ng-container>
-  <ng-container *ngIf="liked">
+  <ng-container *ngIf="liked && !isOwner">
     <button  type="button" class="uploadBtn">
       <fa-icon [icon]="faHeart" class="icons-group"></fa-icon>
       Liked
@@ -95,13 +95,18 @@
   <hr class="line" />
   <div class="map">
     <h3>Location on Map</h3>
-    <!-- <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d186125.68115431405!2d27.802481707096558!3d43.20500549043367!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40a4538baaf3d7a1%3A0x5727941c71a58b7c!2z0JLQsNGA0L3QsCwg0JHRitC70LPQsNGA0LjRjw!5e0!3m2!1sbg!2sde!4v1670776635273!5m2!1sbg!2sde" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe> -->
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d186125.68115431405!2d27.802481707096558!3d43.20500549043367!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40a4538baaf3d7a1%3A0x5727941c71a58b7c!2z0JLQsNGA0L3QsCwg0JHRitC70LPQsNGA0LjRjw!5e0!3m2!1sbg!2sde!4v1670776635273!5m2!1sbg!2sde" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
     <b>Varna,Bulgaria</b>
     <p>I'ts like a home away from home.</p>
   </div>
   <hr class="line" />
   <div class="host">
+    <ng-container *ngIf="hotel.ownerImage">
     <img src="{{hotel.ownerImage}}" alt="" />
+  </ng-container>
+    <ng-container *ngIf="!hotel.ownerImage">
+    <img src="{{defaultImg}}" alt="" />
+  </ng-container>
     <div>
       <h2>Hosted By {{hotel.ownerEmail}}</h2>
       <p>

@@ -5,17 +5,13 @@
   box-sizing: border-box;
 }
 body {
-  margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
   overflow-x: hidden;
-
-}
-
-html,
-body {
-    min-width: 100%;
+  min-width: 100%;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+
 }
+
+

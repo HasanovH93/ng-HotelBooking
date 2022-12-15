@@ -23,7 +23,7 @@
         <h2>{{hotel.hotelName}}</h2>
         <div class="container-card-content-right-icons">
          
-          <ng-container *ngFor="let stars of iconsArray(stars).fill(2)">
+          <ng-container *ngFor="let item of [].constructor(hotel.stars); let i = index">
             <fa-icon [icon]="faStar" class="stars-icon"></fa-icon>
        </ng-container>
         </div>

@@ -109,9 +109,16 @@
                     <fieldset class="checkbox_group">
                         <legend class="checkbox_group_title">Choose Facilities</legend>
                         <div class="checkbox" *ngFor="let facility of facilities; let i = index">
+                    
                             <label class="checkbox_wrapper">
-                                <input type="checkbox" ng-checked="true" class="checkbox_input" [value]="facility.value"
+                                <ng-container *ngIf="facilityOptions.includes(facility.value)">
+                                    <input type="checkbox" checked class="checkbox_input" [value]="facility.value"
                                     (change)="onCheckBoxChange($event)" />
+                                </ng-container>
+                                <ng-container *ngIf="!facilityOptions.includes(facility.value)">
+                                        <input type="checkbox"  class="checkbox_input" [value]="facility.value"
+                                        (change)="onCheckBoxChange($event)" />
+                                </ng-container>
                                 <span class="checkbox_content">
                                     <span class="checkbox-icon">
                                         <fa-icon [icon]="facility.icon"
@@ -119,7 +126,9 @@
                                     </span>
                                     <span class="checkbox_title">{{ facility.name }}</span>
                                 </span>
+                          
                             </label>
+            
                         </div>
                     </fieldset>
 

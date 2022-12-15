@@ -2,15 +2,13 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import html2canvas from 'html2canvas';
 import { jsPDF } from 'jspdf';
-import { faStar, faHeart } from '@fortawesome/free-regular-svg-icons';
-import { faFilePdf, faShare } from '@fortawesome/free-solid-svg-icons';
+import { faStar,faHeart as farHeart } from '@fortawesome/free-regular-svg-icons';
+import { faFilePdf, faShare, faHeart, } from '@fortawesome/free-solid-svg-icons';
 import { IHotel } from 'src/app/modals/hotel';
 import { HotelService } from 'src/app/services/hotel.service';
 import { UserService } from 'src/app/services/user.service';
 import { facilities } from '../facilities';
 import { DialogService } from 'src/app/services/confirmation.service';
-import { IUser } from 'src/app/modals/user';
-
 @Component({
   selector: 'app-details-view',
   templateUrl: './details-view.component.html',
@@ -18,13 +16,13 @@ import { IUser } from 'src/app/modals/user';
 })
 export class DetailsViewComponent implements OnInit {
   @ViewChild('content', { static: true }) el!: ElementRef<HTMLImageElement>;
-
+  defaultImg: string = '../../../assets/icons/user-profile.png';
   faStar = faStar;
   faPdf = faFilePdf;
   faHeart = faHeart;
+  farHeart = farHeart
   faShare = faShare;
   liked: boolean = false;
-  currentUser: IUser | null;
   hotel!: IHotel;
   userId!: string | null;
   isOwner: boolean = false;
@@ -45,23 +43,15 @@ export class DetailsViewComponent implements OnInit {
     this.actRoute.params.subscribe(({ id }) => {
       this.getHotel(id);
     });
-
-    this.userService.refreshNeeds.subscribe((user) => {
-      this.currentUser = user;
-    });
   }
 
   private getHotel(id: string) {
     this.hotelService.getHotelById(id).subscribe((hotel) => {
       this.hotel = hotel;
 
-      
-
-     
-
       const facilitiesArray = hotel.facilities[0].split(',');
       for (let facility of facilitiesArray) {
-        const singleFacilityObject = this.getFacilityData(facility);
+        const singleFacilityObject = this.getFacilityData(facility);  
         this.facilitiesDataArray.push(singleFacilityObject);
       }
 

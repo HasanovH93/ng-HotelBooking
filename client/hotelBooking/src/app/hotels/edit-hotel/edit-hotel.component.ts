@@ -20,7 +20,7 @@ export interface ICity {
 @Component({
   selector: 'app-edit-hotel',
   templateUrl: './edit-hotel.component.html',
-  styleUrls: ['./edit-hotel.component.scss']
+  styleUrls: ['./edit-hotel.component.scss'],
 })
 export class EditHotelComponent implements OnInit {
   errorMessage: string;
@@ -31,8 +31,9 @@ export class EditHotelComponent implements OnInit {
   roomTypes: ICity[];
   uploadedFiles!: File[];
   imageErrorMessage: string;
-  hotelData : IHotel
+  hotelData: IHotel;
   facilities: any;
+  facilityOptions: string[] = [];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -82,10 +83,16 @@ export class EditHotelComponent implements OnInit {
   }
 
   getHotel(id: string) {
-   this.hotelService.getHotelById(id).subscribe((res) => {
-    
+    this.hotelService.getHotelById(id).subscribe((res) => {
       this.hotelData = res;
-
+      console.log(res.imageUrls)
+      this.facilityOptions = res.facilities[0].split(',');
+      const facilities: FormArray = this.addHotelForm.get(
+        'facilities'
+      ) as FormArray;
+      for (const option of this.facilityOptions) {
+        facilities.push(new FormControl(option));
+      }
     });
   }
 
@@ -104,10 +111,7 @@ export class EditHotelComponent implements OnInit {
         }
       });
       i++;
-
     }
-    
-
   }
   onImageUpload(event: any) {
     this.imageErrorMessage = '';
@@ -124,7 +128,7 @@ export class EditHotelComponent implements OnInit {
   }
 
   onSubmit(event: Event) {
-    this.loading= true;
+    this.loading = true;
     this.isUpload = false;
     const formData: FormData = new FormData();
 
@@ -157,14 +161,14 @@ export class EditHotelComponent implements OnInit {
     formData.append('price', price);
     formData.append('description', description);
     formData.append('facilities', facilities);
-    formData.append('owner', this.hotelData.owner)
-    formData.append('_id', this.hotelData._id)
-    formData.append('ownerEmail', this.hotelData.ownerEmail)
-    formData.append('ownerImage', this.hotelData.ownerImage)
+    formData.append('owner', this.hotelData.owner);
+    formData.append('_id', this.hotelData._id);
+    formData.append('ownerEmail', this.hotelData.ownerEmail);
+    formData.append('ownerImage', this.hotelData.ownerImage);
 
     const id = this.hotelData._id;
-    if(this.uploadedFiles != undefined && this.uploadedFiles.length > 0){
-      this.hotelService.updateHotel(formData,id)
+    if (this.uploadedFiles != undefined && this.uploadedFiles.length > 0) {
+      this.hotelService.updateHotel(formData, id);
     }
 
     // const body: IHotel = {
@@ -182,6 +186,5 @@ export class EditHotelComponent implements OnInit {
     //   facilities: this.hotelData.facilities,
 
     // }
-
   }
 }

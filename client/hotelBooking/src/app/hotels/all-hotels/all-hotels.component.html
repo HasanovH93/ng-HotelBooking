@@ -16,7 +16,7 @@
                             <p>{{ hotel.hotelName }}</p>
                             <h3>{{ hotel.roomType }}</h3>
 
-                            <ng-container *ngFor="let stars of iconsArray(stars).fill(1)">
+                            <ng-container *ngFor="let item of [].constructor(hotel.stars); let i = index">
                                 <fa-icon [icon]="faStar" class="stars-icon"></fa-icon>
                            </ng-container>
                             <p class="description">{{ hotel.description }}</p>
