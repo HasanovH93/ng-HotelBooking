@@ -56,6 +56,9 @@
             <li routerLink="/auth/profile" class="dropdown-item" *ngIf="userLoggedIn">
               Profile
             </li>
+            <li routerLink="/auth/liked-hotels" class="dropdown-item" *ngIf="userLoggedIn">
+              Favorite Hotels
+            </li>
 
             <li class="dropdown-item" *ngIf="userLoggedIn" (click)="onLogout()">
               Logout

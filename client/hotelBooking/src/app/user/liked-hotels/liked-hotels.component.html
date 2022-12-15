@@ -1,0 +1,26 @@
+<div class="card-container">
+<div class="container">
+    <div class="card" *ngFor="let hotel of hotels">
+      <div class="card-header">
+        <img src="{{hotel.imageUrls[0]}}" alt="rover" />
+      </div>
+      <div class="card-body">
+        <div class="stars">
+        <ng-container *ngFor="let item of [].constructor(hotel.stars); let i = index">
+            <fa-icon [icon]="faStar" class="stars-icon"></fa-icon>
+       </ng-container>
+    </div>  
+        <h4>
+          {{hotel.hotelName}}
+        </h4>
+        <button class="detailsBtn" type="button" [routerLink]="'/hotels/details/' + hotel._id">Details</button>
+        <div class="user">
+          <img src="{{hotel.ownerImage}}" alt="user" />
+          <div class="user-info">
+            <h5>{{hotel.ownerEmail}}</h5>
+            <small>{{hotel.date}}</small>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>

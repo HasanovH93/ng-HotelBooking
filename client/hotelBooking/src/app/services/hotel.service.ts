@@ -59,4 +59,8 @@ export class HotelService {
     return this.http.get(this.apiUrl + `hotels/details/like/${id}`)
   }
   
+
+  getLikedHotels(){
+    return this.http.get<IHotel>(this.apiUrl + 'hotels/likes')
+  }
 }

@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './auth.guard';
 import { EditUserComponent } from './edit-user/edit-user.component';
+import { LikedHotelsComponent } from './liked-hotels/liked-hotels.component';
 import { ProfileComponent } from './profile/profile.component';
 
 const routes: Routes = [
@@ -13,6 +14,11 @@ const routes: Routes = [
   {
     path: 'edit-profile',
     component: EditUserComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'liked-hotels',
+    component: LikedHotelsComponent,
     canActivate: [AuthGuard]
   }
 ];

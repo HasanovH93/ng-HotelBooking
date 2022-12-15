@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { IHotel } from '../../modals/hotel';
 
-import {faStar} from '@fortawesome/free-regular-svg-icons';
+import { faStar } from '@fortawesome/free-regular-svg-icons';
 import { HotelService } from 'src/app/services/hotel.service';
-
 
 @Component({
   selector: 'app-hotel-view',
@@ -14,7 +13,7 @@ export class HotelViewComponent implements OnInit {
   faStar = faStar;
   isLoading: boolean = true;
   iconsArray = Array;
-  stars:number;
+  stars: number;
 
   hotels: IHotel[] = [];
 
@@ -23,9 +22,10 @@ export class HotelViewComponent implements OnInit {
   ngOnInit(): void {
     this.hotelService.getLastHotels().subscribe((data) => {
       this.hotels = data.latestHotels;
- 
-      
+
       this.isLoading = false;
     });
+
+   
   }
 }
