@@ -34,7 +34,7 @@
 ----
 
 ## 🔗 **Links:** 
-[![Heroku server API](https://cdn.cdnlogo.com/logos/v/78/vercel.svg)](https://ng-hotel-booking-pabh.vercel.app/)
+[![Heroku server API](<svg width="76" height="65" viewBox="0 0 76 65"fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M37.5274 0L75.0548 65H0L37.5274 0Z" fill="#ffffff"/></svg>)](https://ng-hotel-booking-pabh.vercel.app/)
 
 ### Client-Firebase:<a href="https://hotel-booking-a8662.web.app/"> *(website)*</a>
 [![Clien-Firebase](https://www.vectorlogo.zone/logos/firebase/firebase-icon.svg)](https://hotel-booking-a8662.web.app/)
