@@ -7,6 +7,7 @@ const {
   deleteById,
   likeHotel,
   updateById,
+  getByIdHotels,
 } = require("../services/item");
 const { getById } = require("../services/user");
 const { parseError } = require("../util/parser");
@@ -15,6 +16,7 @@ const { s3UploadImg } = require("../middlewares/imagesUpload");
 const dataController = require("express").Router();
 
 dataController.get("/last-hotels", async (req, res) => {
+  
   const hotels = await getLastFour();
   res.status(200).send({ latestHotels: hotels });
 });
@@ -24,6 +26,7 @@ dataController.post("/create", s3UploadImg(), async (req, res) => {
     req.body = JSON.parse(JSON.stringify(req.body));
 
     req.body.imageUrls = req.files.map((img) => img.location);
+ 
 
     const data = {
       hotelName: req.body.hotelName,
@@ -78,6 +81,7 @@ dataController.get("/details/:id", async (req, res) => {
   try {
     const id = req.params.id;
     const data = await getHotelById(id);
+    console.log(data.stars)
     res.status(200).send({ data });
   } catch (error) {
     const message = parseError(error);
@@ -109,9 +113,23 @@ dataController.get("/details/like/:id", async (req, res) => {
  }
 });
 
+dataController.get("/likes", async (req, res) => {
+  try {
+   const userId = req.user._id;
+   
+   const hotels = await getByIdHotels(userId)
+   console.log(hotels.likedHotels.owner)
+   res.status(200).send(hotels.likedHotels)
+  } catch (error) {
+    
+  }
+})
+
 dataController.put('/edit/:id', s3UploadImg(), async (req, res) => {
   try {
-     console.log('PUUUT')
+  //  if(req.body.imageUrls !== undefined && req.body.deleteUrl){
+  //   s3Delete(req.body.deleteUrl)
+  //  }
     if(req.files){
       req.body.imageUrls = req.files.map((img) => img.location)
     }

@@ -18,7 +18,11 @@ authController.post(
     .isLength({ min: 3 })
     .withMessage("Password must be at least 6 characters long"),
   async (req, res) => {
+   
     try {
+      if(req.body.password != req.body.rePass){
+        throw new Error('Passwords don\'t match!')
+      }
       const { errors } = validationResult(req);
       if (errors.length > 0) {
         throw errors;

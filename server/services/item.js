@@ -62,6 +62,13 @@ async function updateById(id, userId, data) {
 }
 
 
+async function getByIdHotels(id){
+   const user = await User.findById(id).populate('likedHotels')
+   return user;
+}
+
+
+
 
 module.exports = {
   getAll,
@@ -73,4 +80,5 @@ module.exports = {
   deleteById,
   likeHotel,
   updateById,
+  getByIdHotels
 };
