@@ -25,7 +25,7 @@
 ---
  <h3 align="center">Services:</h3>
  <p  align="center">
-  <a href="https://heroku.com" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/heroku/heroku-icon.svg" alt="heroku" width="40" height="40"/> </a>  <a href="https://aws.amazon.com" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" alt="aws" width="40" height="40"/> </a> <a href="https://postman.com" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/getpostman/getpostman-icon.svg" alt="postman" width="40" height="40"/> </a>
+  <a href="https://vercel.com" target="_blank" rel="noreferrer"> <img src="https://cdn.cdnlogo.com/logos/v/78/vercel.svg" alt="heroku" width="40" height="40"/> </a>  <a href="https://aws.amazon.com" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" alt="aws" width="40" height="40"/> </a> <a href="https://postman.com" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/getpostman/getpostman-icon.svg" alt="postman" width="40" height="40"/> </a>
 <a href="https://real-estate-real-prop.web.app" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/firebase/firebase-icon.svg" alt="postman" width="40" height="40"/> </a>
 </p>
   
@@ -34,39 +34,22 @@
 ----
 
 ## 🔗 **Links:** 
-### API-Heroku : <a href="https://real-estate-upload-bucket.s3.eu-central-1.amazonaws.com/Server-Rest-Api-Endpoints.docx">*(web api endpoints)*</a>
-[![Heroku server API](https://www.vectorlogo.zone/logos/heroku/heroku-icon.svg)](https://real-estate-angular-project.herokuapp.com/)
+### API-Vercel: (https://www.vectorlogo.zone/logos/heroku/heroku-icon.svg)](https://real-estate-angular-project.herokuapp.com/)
 
-### Client-Firebase:<a href="https://real-estate-real-prop.web.app/"> *(website)*</a>
-[![Clien-Firebase](https://www.vectorlogo.zone/logos/firebase/firebase-icon.svg)](https://real-estate-real-prop.web.app/)
+### Client-Firebase:<a href="hotel-booking-a8662.web.app/"> *(website)*</a>
+[![Clien-Firebase](https://www.vectorlogo.zone/logos/firebase/firebase-icon.svg)](hotel-booking-a8662.web.app/)
                                                                               
 
 ---
 
-# Permissions:
 
-| **Permissions**          | Logged in User | Guest | 
-| ------------------------ | -------------- | ----- | 
-| Home page                | ✅            | ✅    | 
-| All posts(properties)    | ✅            | ✅    | 
-| Detail property          | ✅            | ✅    | 
-| Login/ Register          | ❌            | ✅    |
-| Search                   | ✅            | ❌    | 
-| Create property          | ✅            | ❌    | 
-| Profile                  | ✅(owner)     | ❌    | 
-| Profile edit(upload img) | ✅(owner)     | ❌    | 
-| Property edit            | ✅(owner)     | ❌    | 
-| Property delete          | ✅(owner)     | ❌    | 
 
 
 
 # **About This Project:**
 
-The project is for creating and sharing real estate ads. Тhis project is for my exam which is in SoftUni, but I think to continue to develop my project, as I think there are many things that could be improved.Which would help many people find the right property.
+The project is for creating and sharing Hotels.
 
-I used almost all the knowledge I acquired in SoftUni
-and many different new technologies and services for me (which was quite difficult), but I think that only in this way we can improve and progress.
-I didn't want to do just one app and pass the exam, what is more important for me is what I learn.
 
 ---
 
@@ -78,7 +61,7 @@ I didn't want to do just one app and pass the exam, what is more important for m
   * User authentication:
     * JWT token
     * Bcrypt
-    * ExpressJWT
+    * Custom session
     
    * User authorization:
         * Custom authorization
@@ -90,11 +73,11 @@ I didn't want to do just one app and pass the exam, what is more important for m
 * Angular
     * Error handling(with interseptor)
     * Authentication:
-        * Local Storage *(it was very difficult)*
     * Lazy loading
     * RxJS
     * Handling Forms
         * Reactive forms
+        * Template forms
     * Router Guards *(isAuthenticated)*
     * Router Module *(link,redirect,query params)*
     * Subjects
@@ -102,8 +85,8 @@ I didn't want to do just one app and pass the exam, what is more important for m
     * Pipe
     * Angular Animation
     * Helpers:
-        * Bootstrap
-        * Prime NG
+        * Angular Material
+        * Fontawesome
     * Custom loader spinner
     * Custom validation alerts
     * Custom pagination
@@ -118,6 +101,5 @@ I didn't want to do just one app and pass the exam, what is more important for m
 - [ ] Register Broker
 - [ ] Property statistics
 - [ ] Register Brokers firm
-- [ ] Customer reviews(brokers)
-- [ ] Customer reviews(brokers firm)
-- [ ] Payment
+- [ ] Customer reviews
+- [ ] Reservations
