@@ -21,7 +21,7 @@ dataController.get("/last-hotels", async (req, res) => {
   res.status(200).send({ latestHotels: hotels });
 });
 
-dataController.post("/create", s3UploadImg(), async (req, res) => {
+dataController.post("/create", s3UploadImg(), hasUser(), async (req, res) => {
   try {
     req.body = JSON.parse(JSON.stringify(req.body));
 
@@ -73,8 +73,11 @@ dataController.get("/all-hotels", async (req, res) => {
     const limit = 3;
     const skip = parseInt(page * limit);
     const data = await getAll(skip, limit);
-    res.json(data);
-  } catch (error) {}
+    res.status(200).json(data);
+  } catch (error) {
+    const message = parseError(message)
+    res.status(400).json({message})
+  }
 });
 
 dataController.get("/details/:id", async (req, res) => {
@@ -101,7 +104,7 @@ dataController.delete("/details/:id", async (req, res) => {
   }
 });
 
-dataController.get("/details/like/:id", async (req, res) => {
+dataController.put("/details/like/:id", hasUser(), async (req, res) => {
  try {
   console.log('GET')
   const userId = req.user._id;
@@ -109,7 +112,8 @@ dataController.get("/details/like/:id", async (req, res) => {
   await likeHotel(userId,hotelId);
   res.status(200).json('success')
  } catch (error) {
-  
+  const message = parseError(error);
+  res.status(400).json({message})
  }
 });
 
@@ -118,18 +122,15 @@ dataController.get("/likes", async (req, res) => {
    const userId = req.user._id;
    
    const hotels = await getByIdHotels(userId)
-   console.log(hotels.likedHotels.owner)
    res.status(200).send(hotels.likedHotels)
   } catch (error) {
-    
+    const message = parseError(message);
+    res.status(400).json({message})
   }
 })
 
 dataController.put('/edit/:id', s3UploadImg(), async (req, res) => {
   try {
-  //  if(req.body.imageUrls !== undefined && req.body.deleteUrl){
-  //   s3Delete(req.body.deleteUrl)
-  //  }
     if(req.files){
       req.body.imageUrls = req.files.map((img) => img.location)
     }

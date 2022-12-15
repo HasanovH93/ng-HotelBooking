@@ -10,6 +10,7 @@ const {
 const { parseError } = require("../util/parser");
 const { s3UploadImg } = require("../middlewares/imagesUpload");
 const { getByUserId, changeImage } = require("../services/item");
+const { hasUser } = require("../middlewares/guards");
 
 authController.post(
   "/register",
@@ -18,10 +19,9 @@ authController.post(
     .isLength({ min: 3 })
     .withMessage("Password must be at least 6 characters long"),
   async (req, res) => {
-   
     try {
-      if(req.body.password != req.body.rePass){
-        throw new Error('Passwords don\'t match!')
+      if (req.body.password != req.body.rePass) {
+        throw new Error("Passwords don't match!");
       }
       const { errors } = validationResult(req);
       if (errors.length > 0) {
@@ -55,20 +55,17 @@ authController.post("/login", async (req, res) => {
   }
 });
 
-authController.get("/profile", async (req, res) => {
+authController.get("/profile", hasUser(), async (req, res) => {
   try {
-    // console.log("GET")
     const id = req.user._id;
-    // console.log(id)
     const user = await getById(id);
-    // console.log(user)
     const userData = removePassword(user);
     res.status(200).send({ userData });
   } catch (error) {
     res.status(401).send({ message: error.message });
   }
 });
-authController.put("/profile", s3UploadImg(), async (req, res) => {
+authController.put("/profile", s3UploadImg(),hasUser(), async (req, res) => {
   try {
     const { username, email } = req.body;
     if (req.files.length > 0) {
@@ -82,7 +79,7 @@ authController.put("/profile", s3UploadImg(), async (req, res) => {
     const user = await editUser(req.user._id, username, email, imageUrl);
     const token = createToken(user);
     const userData = removePassword(user);
-    
+
     const hotels = await getByUserId(req.user._id);
 
     for (let hotel of hotels) {
@@ -103,7 +100,7 @@ const removePassword = (data) => {
     id,
     username,
     imageUrl,
-    likedHotels
+    likedHotels,
   };
   return userData;
 };

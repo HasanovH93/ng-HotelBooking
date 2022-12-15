@@ -23,7 +23,7 @@ const hotelSchema = new Schema({
   imageUrls: [
     { type: String, required: [true, "At least one image is required!"] },
   ],
-  facilities: [{ type: String }],
+  facilities: [{ type: String, required: [true, "At least one facility is required!"] }],
   date: { type: String },
   owner: { type: Types.ObjectId, ref: "User", required: true },
   likedBy: [{ type: Types.ObjectId, ref: "User" }],
