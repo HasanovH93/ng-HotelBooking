@@ -26,7 +26,7 @@
 ---
  <h3 align="center">Services:</h3>
  <p  align="center">
-  <a href="https://vercel.com" target="_blank" rel="noreferrer"> <img src="https://logovtor.com/wp-content/uploads/2020/10/vercel-inc-logo-vector.png" alt="heroku" width="40" height="40"/> </a>  <a href="https://aws.amazon.com" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" alt="aws" width="40" height="40"/> </a> <a href="https://postman.com" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/getpostman/getpostman-icon.svg" alt="postman" width="40" height="40"/> </a>
+  <a href="https://vercel.com" target="_blank" rel="noreferrer"> <img src="https://logovtor.com/wp-content/uploads/2020/10/vercel-inc-logo-vector.png" alt="heroku" width="50" height="50"/> </a>  <a href="https://aws.amazon.com" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" alt="aws" width="40" height="40"/> </a> <a href="https://postman.com" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/getpostman/getpostman-icon.svg" alt="postman" width="40" height="40"/> </a>
 <a href="https://real-estate-real-prop.web.app" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/firebase/firebase-icon.svg" alt="postman" width="40" height="40"/> </a>
 </p>
   
@@ -36,13 +36,8 @@
 
 ## 🔗 **Links:** 
 ### API-Vercel : 
-<a href="https://vercel.com" target="_blank" rel="noreferrer"> <img src="https://logovtor.com/wp-content/uploads/2020/10/vercel-inc-logo-vector.png" alt="heroku" width="40" height="40"/> </a>  <a href="https://aws.amazon.com" target="_blank" rel="noreferrer">
+<a href="https://vercel.com" target="_blank" rel="noreferrer"> <img src="https://logovtor.com/wp-content/uploads/2020/10/vercel-inc-logo-vector.png" alt="heroku" width="50" height="50"/> </a>  <a href="https://aws.amazon.com" target="_blank" rel="noreferrer">
 
-
-
-
-<a href="https://real-estate-upload-bucket.s3.eu-central-1.amazonaws.com/Server-Rest-Api-Endpoints.docx">*(web api endpoints)*</a>
-[![Heroku server API](https://www.vectorlogo.zone/logos/heroku/heroku-icon.svg)](https://real-estate-angular-project.herokuapp.com/)
 
 ### Client-Firebase:<a href="https://hotel-booking-a8662.web.app/"> *(website)*</a>
 [![Clien-Firebase](https://www.vectorlogo.zone/logos/firebase/firebase-icon.svg)
