@@ -175,6 +175,11 @@ $grey-light: #f7f7f7;
   }
 }
 
+::ng-deep .mat-slide-toggle.mat-checked:not(.mat-disabled) .mat-slide-toggle-thumb {
+  background-color: $pink; 
+}
+
+
 @media screen and (max-width: 720px) {
   .search {
     display: none;

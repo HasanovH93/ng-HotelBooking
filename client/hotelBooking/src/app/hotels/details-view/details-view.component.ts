@@ -28,8 +28,6 @@ export class DetailsViewComponent implements OnInit, OnDestroy {
   userId!: string | null;
   isOwner: boolean = false;
   facilitiesDataArray: Array<any> = [];
-  iconsArray = Array;
-  stars: number;
   hotelDataSubscription!:Subscription;
 
   constructor(

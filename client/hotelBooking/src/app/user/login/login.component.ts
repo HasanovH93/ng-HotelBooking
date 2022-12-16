@@ -21,7 +21,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   errorMessage: string;
   isErrorType: boolean;
   showPassword = false;
-  authStatusSubscription!: Subscription;
+  isLoading: boolean = false;
   msgServiceSubscription!: Subscription;
 
   loginForm: FormGroup = this.formBuilder.group({
@@ -52,6 +52,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   onLogin(): void {
+    this.isLoading = true;
     this.userService.loginUser(this.loginForm.value);
   }
 
@@ -65,7 +66,6 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.authStatusSubscription.unsubscribe();
     this.msgServiceSubscription.unsubscribe();
   }
 }

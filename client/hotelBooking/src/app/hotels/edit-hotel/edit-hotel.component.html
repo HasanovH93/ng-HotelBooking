@@ -168,6 +168,7 @@
             </div>
 
             <div class="create-form-container-form-button">
+                <div class="loader"  *ngIf="isLoading"><mat-spinner strokeWidth="3" [diameter]="30"></mat-spinner></div>
                 <button class="create-form-container-form-button-actionBtn" type="button" (click)="onSubmit($event)">
                     Edit Hotel
                 </button>

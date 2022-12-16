@@ -10,7 +10,8 @@ import { EditUserComponent } from './edit-user/edit-user.component';
 import { SharedModule } from '../shared/shared.module';
 import { LikedHotelsComponent } from './liked-hotels/liked-hotels.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-
+import { MatPasswordStrengthModule } from "@angular-material-extensions/password-strength";
+import { MatProgressSpinnerModule} from '@angular/material/progress-spinner'
 @NgModule({
   declarations: [
     RegisterComponent,
@@ -27,6 +28,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     userRoutingModule,
     SharedModule,
     FontAwesomeModule,
+    MatPasswordStrengthModule,
+    MatProgressSpinnerModule
   ],
   exports: [
     LoginComponent,

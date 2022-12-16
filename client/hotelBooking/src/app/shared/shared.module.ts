@@ -8,7 +8,6 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { SocialShareComponent } from './social-share/social-share.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 
@@ -20,15 +19,14 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     SpinnerComponent,
     ShortenPipe,
     ConfirmationDialog,
-    SocialShareComponent
     ],
   imports: [
     CommonModule,
     MatDialogModule,
+    FontAwesomeModule,
     MatIconModule,
     MatButtonModule,
-    MatToolbarModule,
-    FontAwesomeModule,
+    MatToolbarModule
     
   ],
   exports: [

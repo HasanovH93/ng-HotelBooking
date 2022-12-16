@@ -6,6 +6,7 @@ import { ThemeService } from 'src/app/services/theme.service';
 import { UserService } from 'src/app/services/user.service';
 import { LoginComponent } from 'src/app/user/login/login.component';
 import { RegisterComponent } from 'src/app/user/register/register.component';
+import { faBars } from '@fortawesome/free-solid-svg-icons'
 
 @Component({
   selector: 'app-header',
@@ -15,6 +16,7 @@ import { RegisterComponent } from 'src/app/user/register/register.component';
 
 
 export class HeaderComponent implements OnInit, OnDestroy {
+  faBars = faBars
   defaultImg: string = '../../../assets/icons/account.svg';
   userLoggedIn: boolean = false;
   userServiceSub!: Subscription;

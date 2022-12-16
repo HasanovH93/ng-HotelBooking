@@ -30,6 +30,7 @@ export class AddHotelComponent implements OnInit, OnDestroy {
   uploadedFiles!: File[];
   imageErrorMessage: string;
   facilities: any;
+  isLoading: boolean = false;
   msgServiceSubscription!: Subscription;
   hotelDataSubscription!:Subscription
 
@@ -112,6 +113,7 @@ export class AddHotelComponent implements OnInit, OnDestroy {
   }
 
   onSubmit(event: Event) {
+    this.isLoading = true;
     const formData: FormData = new FormData();
 
     if (this.uploadedFiles.length != undefined) {

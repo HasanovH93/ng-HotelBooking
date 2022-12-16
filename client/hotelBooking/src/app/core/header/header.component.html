@@ -14,12 +14,14 @@
       <a  routerLink="/hotels/add-hotel" class="right-menu-menu" *ngIf="userLoggedIn">Become a host</a>
       <button class="right-menu-mode">
 
-        <mat-slide-toggle (click)="toggleDarkMode()" [(ngModel)]="isDarkMode"><p *ngIf="isDarkMode ? 'Light Mode' : 'Dark Mode'">Light Mode</p></mat-slide-toggle>
+        <mat-slide-toggle (click)="toggleDarkMode()" [(ngModel)]="isDarkMode">
+          <p *ngIf="isDarkMode">Dark Mode</p>
+          <p *ngIf="!isDarkMode">Light Mode</p>
+        </mat-slide-toggle>
       </button>
 
       <div class="right-menu-icons" appDropdown>
-        <img class="right-menu-icons-dropdown" src="/assets/icons/hamburger.svg" alt="Hamburger" />
-
+        <fa-icon [icon]="faBars" class="right-menu-icons-dropdown"></fa-icon>
         <div class="right-menu-icons-imgBox" *ngIf="userLoggedIn && currentUser">
           <ng-container *ngIf="currentUser.userData.imageUrl">
             <img class="right-menu-icons-user" src="{{ currentUser.userData.imageUrl }}" />

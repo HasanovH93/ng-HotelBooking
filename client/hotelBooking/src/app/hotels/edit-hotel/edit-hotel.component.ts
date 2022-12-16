@@ -27,7 +27,6 @@ export class EditHotelComponent implements OnInit, OnDestroy {
   errorMessage: string;
   isErrorType: boolean;
   isUpload: boolean = true;
-  loading: boolean = false;
   cities: ICity[];
   roomTypes: ICity[];
   uploadedFiles!: File[];
@@ -35,6 +34,7 @@ export class EditHotelComponent implements OnInit, OnDestroy {
   hotelData: IHotel;
   facilities: any;
   facilityOptions: string[] = [];
+  isLoading: boolean=false;
   msgServiceSubscription!: Subscription;
   hotelDataSubscription!: Subscription;
 
@@ -135,7 +135,7 @@ export class EditHotelComponent implements OnInit, OnDestroy {
   }
 
   onSubmit(event: Event) {
-    this.loading = true;
+    this.isLoading = true;
     this.isUpload = false;
     const formData: FormData = new FormData();
 

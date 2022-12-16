@@ -10,6 +10,7 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./liked-hotels.component.scss'],
 })
 export class LikedHotelsComponent implements OnInit, OnDestroy {
+  isLoading : boolean = true;
   defaultImg: string = '../../../assets/icons/user-profile.png';
   hotels: IHotel[] | any;
   faStar = faStar;
@@ -20,6 +21,7 @@ export class LikedHotelsComponent implements OnInit, OnDestroy {
    this.likedHotelsDataSubscription = this.hotelService.getLikedHotels().subscribe((res) => {
       console.log(res);
       this.hotels = res;
+      this.isLoading = false
     });
   }
 

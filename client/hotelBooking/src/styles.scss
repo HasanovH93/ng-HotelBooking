@@ -58,5 +58,30 @@ $app-dark-theme: mat-dark-theme($mat-primary-palette, $mat-accent-palette);
   h1,h2,h3,h4,h5,h6,p{
     color:white;
   }
+  .right-menu-icons-dropdown{
+    color:white;
+  }
+  .right-menu-menu{
+    color:white;
+  }
+ .search-button {
+  color:white;
+ }
+ .price::placeholder {
+  color:white;
+ }
+.price {
+  color:white;
+}
+ li {
+  color:white;
+ }
+
+ .dropdown-item{
+  color:black;
+ }
+ .mat-dialog-container {
+  background: white;
+ }
 }
 

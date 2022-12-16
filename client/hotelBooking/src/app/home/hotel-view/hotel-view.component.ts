@@ -13,8 +13,6 @@ import { Subscription } from 'rxjs';
 export class HotelViewComponent implements OnInit, OnDestroy {
   faStar = faStar;
   isLoading: boolean = true;
-  iconsArray = Array;
-  stars: number;
 
   hotels: IHotel[] = [];
   hotelDataSubscription!: Subscription;

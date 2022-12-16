@@ -83,3 +83,13 @@ $grey-med: #ddd;
   font-size: 12px;
   color: red;
 }
+
+.loader {
+  display: flex;
+  justify-content: center;
+
+::ng-deep .mat-progress-spinner circle, .mat-spinner circle {
+  height: 20px;
+  stroke: #000000;
+}
+}

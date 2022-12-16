@@ -69,6 +69,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
     this.msgServiceSubscription.unsubscribe();
   }
   onRegister() {
+    this.isLoading = true;
     this._auth.registerUser(this.signUpForm.value);
   }
 

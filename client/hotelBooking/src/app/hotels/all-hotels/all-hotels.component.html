@@ -37,4 +37,5 @@
         <h1 class="noHotels">There are no Hotels to show!</h1>
     </ng-container>
 </div>
-<ng-container *ngIf="isLoading">Loading......</ng-container>
+<div class="loading" *ngIf="isLoading">	<mat-spinner strokeWidth="3" [diameter]="60"></mat-spinner></div>
+
