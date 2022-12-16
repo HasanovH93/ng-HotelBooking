@@ -165,7 +165,7 @@ dataController.post("/search", async (req, res) => {
   try {
     const query = Object.entries(req.body).reduce((accObj, [key, value]) => {
       if (value !== undefined && value !== null) {
-        if (key == "price" && key == "stars") {
+        if (key == "price" || key == "stars") {
           accObj[key] = { $lte: Number(value) };
         } else {
           accObj[key] = value;
