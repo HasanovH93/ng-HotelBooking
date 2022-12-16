@@ -11,7 +11,8 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { DropdownDirective } from '../shared/directives/dropdown.directive';
 import { StickyMenuDirective } from '../shared/directives/sticky-menu.directive';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SearchComponent } from './search/search.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     HeaderComponent,
     FooterComponent,
     DropdownDirective,
-    StickyMenuDirective
+    StickyMenuDirective,
+    SearchComponent,
   ],
   imports: [
     CommonModule,

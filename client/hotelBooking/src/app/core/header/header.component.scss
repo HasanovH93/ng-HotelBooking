@@ -3,8 +3,6 @@
   src: url(/assets/fonts/circular/circular-medium.ttf);
 }
 
-
-
 $Raleway: "Raleway", sans-serif;
 $red: #f6685e;
 $blue_bg: #241a71;
@@ -34,9 +32,6 @@ $grey-light: #f7f7f7;
   top: -50px;
 }
 
-
-
-
 .header {
   @extend .dFlex;
   width: 100%;
@@ -61,9 +56,9 @@ $grey-light: #f7f7f7;
         font-weight: bold;
         margin-right: 50px;
         text-transform: uppercase;
-      
+
         color: $blue_bg;
-        &-link{
+        &-link {
           text-decoration: none;
         }
         &-title {
@@ -87,65 +82,10 @@ $grey-light: #f7f7f7;
       }
     }
 
-    .search {
-      border-radius: 24px;
-      display: inline-flex;
-      border: 1px solid $grey-med;
-      overflow: hidden;
-      align-items: center;
-      box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.18);
-
-      &-button,
-      &-button-guests {
-        font-size: 14px;
-        font-weight: 600;
-        line-height: 18px;
-        font-family: Arial, Helvetica, sans-serif;
-        background: transparent;
-        height: 48px;
-        padding: 0 16px;
-        display: flex;
-        align-items: center;
-        border: none;
-        cursor: pointer;
-
-        &:first-of-type {
-          padding-left: 24px;
-        }
-
-        &:last-of-type {
-          padding-right: 7px;
-        }
-      }
-
-      &-button-guests {
-        font-weight: normal;
-        color: $grey;
-
-        &-icon {
-          width: 32px;
-          height: 32px;
-          border-radius: 50%;
-          background: $pink;
-          @extend .dFlex;
-          margin-left: 16px;
-
-          &-icon {
-            width: 12px;
-            height: 12px;
-          }
-        }
-      }
-
-      &-divider {
-        width: 1px;
-        height: 24px;
-        background: $grey-med;
-      }
-    }
+    
 
     .right-menu {
-       @extend .dFlex;
+      @extend .dFlex;
       &-menu {
         @extend .dFlex;
         text-decoration: none;
@@ -161,7 +101,7 @@ $grey-light: #f7f7f7;
       &-icons {
         @extend .dFlex;
         border: 1px solid $grey-med;
-        transition:  box-shadow 0.2s ease;
+        transition: box-shadow 0.2s ease;
         height: 42px;
         border-radius: 22px;
         padding: 15px 15px 15px 15px;
@@ -172,12 +112,11 @@ $grey-light: #f7f7f7;
           box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.4);
         }
 
-
         &-dropdown {
           height: 18px;
           margin-right: 10px;
         }
-        &-imgBox{
+        &-imgBox {
           width: 30px;
           height: 30px;
         }
@@ -194,11 +133,10 @@ $grey-light: #f7f7f7;
       }
       &-default {
         width: 30px;
-          height: 30px;
+        height: 30px;
       }
     }
     .open {
-      
       .dropdown-menu {
         display: inline-block;
         position: absolute;
@@ -207,19 +145,17 @@ $grey-light: #f7f7f7;
         padding: 13px 8px;
         width: 230px;
         background-color: white;
-        color:black;
+        color: black;
         border-radius: 7px;
         box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
         list-style-type: none;
         z-index: 1;
-        
-        
-          
+
         .dropdown-item {
           font-family: Arial, Helvetica, sans-serif;
           font-size: 14px;
           font-weight: 400;
-          margin:0 5px;
+          margin: 0 5px;
           padding: 10px 0;
           line-height: 18px;
           width: 100%;
@@ -228,23 +164,18 @@ $grey-light: #f7f7f7;
           background-color: $grey-light;
         }
 
-        .divider{
-          left:0;
+        .divider {
+          left: 0;
           width: 100%;
           border-top: 1px solid $grey-med;
           position: absolute;
         }
-
-        
       }
     }
   }
 }
 
-
 @media screen and (max-width: 720px) {
-
-
   .search {
     display: none;
   }

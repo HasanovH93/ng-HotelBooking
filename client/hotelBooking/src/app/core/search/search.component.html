@@ -1,0 +1,24 @@
+<form class="search" [formGroup]="searchForm">
+    <select name="" id="" class="search-button" formControlName="city">
+     <option disabled value="null">Select City</option>
+     <option *ngFor="let item of cities" [value]="item.name">
+         {{ item.name }}
+     </option>
+    </select>
+     <span class="search-divider"></span>
+     <select name="" id="" class="search-button" formControlName="stars">
+       <option disabled value="null">Select Stars</option>
+                       <option [value]="1">1</option>
+                       <option [value]="2">2</option>
+                       <option [value]="3">3</option>
+                       <option [value]="4">4</option>
+                       <option [value]="5">5</option>
+     </select>
+     <span class="search-divider"></span>
+     <input type="text" class="search-button-guests" placeholder="price" formControlName="price">
+
+       <button class="search-button-guests-icon">
+         <img class="search-button-guests-icon-icon" src="/assets/icons/searchIcon.svg" alt="Search Icon" />
+       </button>
+     
+     </form>

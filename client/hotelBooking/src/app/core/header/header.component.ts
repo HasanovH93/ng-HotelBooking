@@ -1,15 +1,19 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Subscription } from 'rxjs';
+import { cities } from 'src/app/hotels/cities';
 import { IUser } from 'src/app/modals/user';
 import { UserService } from 'src/app/services/user.service';
 import { LoginComponent } from 'src/app/user/login/login.component';
 import { RegisterComponent } from 'src/app/user/register/register.component';
+
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
 })
+
+
 export class HeaderComponent implements OnInit, OnDestroy {
   defaultImg: string = '../../../assets/icons/account.svg';
   userLoggedIn: boolean = false;
@@ -17,6 +21,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
   userDataSubscription: Subscription;
   getUserSubscription: Subscription;
   currentUser: IUser | null;
+
+
 
   constructor(private dialogRef: MatDialog, private userService: UserService) {}
 

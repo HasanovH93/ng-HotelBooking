@@ -9,18 +9,7 @@
         <li class="nav-menu-links-items">Flights</li>
       </ul>
     </div>
-    <div class="search">
-      <button class="search-button">Anywhere</button>
-      <span class="search-divider"></span>
-      <button class="search-button">Any week</button>
-      <span class="search-divider"></span>
-      <button class="search-button-guests">
-        Add guests
-        <div class="search-button-guests-icon">
-          <img class="search-button-guests-icon-icon" src="/assets/icons/searchIcon.svg" alt="Search Icon" />
-        </div>
-      </button>
-    </div>
+    <app-search></app-search>
     <div class="right-menu">
       <a  routerLink="/hotels/add-hotel" class="right-menu-menu" *ngIf="userLoggedIn">Become a host</a>
       <button class="right-menu-mode">
