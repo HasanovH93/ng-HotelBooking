@@ -1,15 +1,18 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable, of, switchMap } from 'rxjs';
+import { BehaviorSubject, Observable, of, switchMap } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { IHotel, IHotelDto, ISHotel } from '../modals/hotel';
+import { IHotel, IHotelDto, ISearch, ISHotel } from '../modals/hotel';
 
 @Injectable({
   providedIn: 'root',
 })
 export class HotelService {
   private apiUrl = environment.apiUrl;
+  private _searchData = new BehaviorSubject<any>(undefined);
+
+  currentSearchData$ = this._searchData.asObservable();
   constructor(private http: HttpClient, private router: Router) {}
 
   createHotel(body: {}) {
@@ -54,5 +57,14 @@ export class HotelService {
 
   getLikedHotels() {
     return this.http.get<IHotel>(this.apiUrl + 'hotels/likes');
+  }
+
+  search(searchData: ISearch) {
+    this.http.post(this.apiUrl +'hotels/search', searchData).subscribe({
+      next: (data) => {
+        this._searchData.next(data);
+        this.router.navigate(['/hotels/search'])
+      }
+    });
   }
 }

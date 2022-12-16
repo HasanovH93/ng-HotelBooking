@@ -28,3 +28,8 @@ export interface ISHotel {
 
 
 
+export interface ISearch {
+    location:string;
+    stars: number;
+    price: number;
+}

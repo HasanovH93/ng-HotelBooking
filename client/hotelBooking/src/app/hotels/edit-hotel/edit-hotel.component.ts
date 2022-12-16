@@ -173,4 +173,8 @@ export class EditHotelComponent implements OnInit {
     }
 
   }
+
+  onCancel() {
+    this.router.navigate([`/hotels/details/${this.hotelData._id}`]);
+  }
 }

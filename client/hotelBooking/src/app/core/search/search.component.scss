@@ -25,6 +25,7 @@ $grey-light: #f7f7f7;
     &-button,
     &-button-guests {
       font-size: 14px;
+      max-width: 103px;
       font-weight: 600;
       line-height: 18px;
       font-family: Arial, Helvetica, sans-serif;
@@ -39,6 +40,7 @@ $grey-light: #f7f7f7;
 
       &:first-of-type {
         padding-left: 24px;
+        text-overflow: ellipsis;
       }
 
       &:last-of-type {
@@ -57,6 +59,8 @@ $grey-light: #f7f7f7;
         background: $pink;
         @extend .dFlex;
         margin-right: 20px;
+        border:none;
+        cursor:pointer;
 
         &-icon {
           height: 12px;
@@ -69,4 +73,21 @@ $grey-light: #f7f7f7;
       height: 24px;
       background: $grey-med;
     }
+  }
+
+
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+  }
+  
+  /* For firefox: */
+  input[type=number]{
+      -moz-appearance: textfield;
+  }
+ 
+
+  .price{
+    color:black
   }

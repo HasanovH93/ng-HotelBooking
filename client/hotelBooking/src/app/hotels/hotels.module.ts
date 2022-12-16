@@ -11,6 +11,7 @@ import { MatProgressSpinnerModule} from '@angular/material/progress-spinner'
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { DetailsViewComponent } from './details-view/details-view.component';
 import { EditHotelComponent } from './edit-hotel/edit-hotel.component';
+import { SearchDataComponent } from './search-data/search-data.component';
 
 
 @NgModule({
@@ -19,6 +20,7 @@ import { EditHotelComponent } from './edit-hotel/edit-hotel.component';
     AddHotelComponent,
     DetailsViewComponent,
     EditHotelComponent,
+    SearchDataComponent,
 
 
   ],

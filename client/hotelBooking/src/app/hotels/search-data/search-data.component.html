@@ -1,0 +1,39 @@
+<div class="container" *ngIf="hotels">
+    <div class="list-container">
+        <div class="left-col">
+            <ng-container *ngIf="hotels.length > 0">
+                <h1>Search Results:</h1>
+            </ng-container>
+        
+            <div class="search-results">
+                <ng-container *ngFor="let hotel of hotels; let i = index">
+                    <div class="house">
+                        <div class="house-img">
+                            <img src="{{ hotel.imageUrls[0] }}" alt="" />
+                        </div>
+                        <div class="house-info">
+                            <p>{{ hotel.hotelName }}</p>
+                            <h3>{{ hotel.roomType }}</h3>
+
+                            <ng-container *ngFor="let item of [].constructor(hotel.stars); let i = index">
+                                <fa-icon [icon]="faStar" class="stars-icon"></fa-icon>
+                           </ng-container>
+                            <p class="description">{{ hotel.description | shorten:150 }}</p>
+                            <div class="house-price">
+                                <p>2 Guest</p>
+                                <h4>$ {{ hotel.price }} / <span>day</span></h4>
+                                <button class="detailsBtn" [routerLink]="'/hotels/details/' + hotel._id">
+                                    View Details
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </ng-container>
+            </div>
+        </div>
+    </div>
+    <ng-container *ngIf="hotels.length === 0">
+        <h1 class="noHotels">There are no Hotels to show!</h1>
+    </ng-container>
+</div>
+<ng-container *ngIf="isLoading">Loading......</ng-container>

@@ -5,30 +5,32 @@ import { AddHotelComponent } from './add-hotel/add-hotel.component';
 import { AllHotelsComponent } from './all-hotels/all-hotels.component';
 import { DetailsViewComponent } from './details-view/details-view.component';
 import { EditHotelComponent } from './edit-hotel/edit-hotel.component';
+import { SearchDataComponent } from './search-data/search-data.component';
 
 const routes: Routes = [
   {
     path: 'all-hotels',
-    component: AllHotelsComponent
+    component: AllHotelsComponent,
   },
   {
     path: 'add-hotel',
     component: AddHotelComponent,
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard],
   },
   {
     path: 'details/:id',
-    component: DetailsViewComponent
+    component: DetailsViewComponent,
   },
   {
     path: 'edit/:id',
-    component:EditHotelComponent,
-    canActivate: [AuthGuard]
-  }
+    component: EditHotelComponent,
+    canActivate: [AuthGuard],
+  },
+  { path: 'search', component: SearchDataComponent },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class HotelsRoutingModule { }
+export class HotelsRoutingModule {}
