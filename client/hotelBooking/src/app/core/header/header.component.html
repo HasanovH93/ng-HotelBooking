@@ -13,7 +13,8 @@
     <div class="right-menu">
       <a  routerLink="/hotels/add-hotel" class="right-menu-menu" *ngIf="userLoggedIn">Become a host</a>
       <button class="right-menu-mode">
-        <mat-slide-toggle>Light Mode</mat-slide-toggle>
+
+        <mat-slide-toggle (click)="toggleDarkMode()" [(ngModel)]="isDarkMode"><p *ngIf="isDarkMode ? 'Light Mode' : 'Dark Mode'">Light Mode</p></mat-slide-toggle>
       </button>
 
       <div class="right-menu-icons" appDropdown>

@@ -8,6 +8,14 @@ import { HomeComponent } from './home/home.component'
 import { homeRoutingModule } from './home-routing.module';
 import { SharedModule } from '../shared/shared.module';
 
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatButtonModule } from '@angular/material/button';
+
+
+
 
 
 
@@ -15,6 +23,7 @@ import { SharedModule } from '../shared/shared.module';
   declarations: [
     HotelViewComponent,
     HomeComponent,
+
   ],
   imports: [
     
@@ -23,7 +32,10 @@ import { SharedModule } from '../shared/shared.module';
     FontAwesomeModule,
     FormsModule,
     homeRoutingModule,
-    SharedModule
+    SharedModule,
+    MatToolbarModule,
+    MatSlideToggleModule,
+    MatButtonModule
   ],
   exports: [
     HotelViewComponent,

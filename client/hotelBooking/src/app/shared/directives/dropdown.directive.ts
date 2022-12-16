@@ -1,16 +1,4 @@
-// import { Directive, HostBinding, HostListener } from '@angular/core';
 
-// @Directive({
-//   selector: '[appDropdown]'
-// })
-// export class DropdownDirective {
-//   @HostBinding('click') isOpen = false
-//   @HostListener('click') toggleOpen(){
-//     this.isOpen = !this.isOpen
-//   }
-//   constructor() { }
-
-// }
 
 import {Directive, ElementRef, HostBinding, HostListener} from '@angular/core';
  

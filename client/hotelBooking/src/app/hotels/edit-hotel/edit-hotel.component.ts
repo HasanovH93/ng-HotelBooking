@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import {
   FormArray,
   FormBuilder,
@@ -7,6 +7,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { IHotel } from 'src/app/modals/hotel';
 import { HotelService } from 'src/app/services/hotel.service';
 import { MessageService, MessageType } from 'src/app/services/message.service';
@@ -22,7 +23,7 @@ export interface ICity {
   templateUrl: './edit-hotel.component.html',
   styleUrls: ['./edit-hotel.component.scss'],
 })
-export class EditHotelComponent implements OnInit {
+export class EditHotelComponent implements OnInit, OnDestroy {
   errorMessage: string;
   isErrorType: boolean;
   isUpload: boolean = true;
@@ -34,6 +35,8 @@ export class EditHotelComponent implements OnInit {
   hotelData: IHotel;
   facilities: any;
   facilityOptions: string[] = [];
+  msgServiceSubscription!: Subscription;
+  hotelDataSubscription!: Subscription;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -67,15 +70,17 @@ export class EditHotelComponent implements OnInit {
   });
 
   ngOnInit(): void {
-    this.msgService.onMessage$.subscribe((message) => {
-      this.errorMessage = message.text;
-      this.isErrorType = message.type === MessageType.error;
-      if (this.errorMessage) {
-        setTimeout(() => {
-          this.errorMessage = '';
-        }, 3000);
+    this.msgServiceSubscription = this.msgService.onMessage$.subscribe(
+      (message) => {
+        this.errorMessage = message.text;
+        this.isErrorType = message.type === MessageType.error;
+        if (this.errorMessage) {
+          setTimeout(() => {
+            this.errorMessage = '';
+          }, 3000);
+        }
       }
-    });
+    );
 
     this.activatedRoute.params.subscribe(({ id }) => {
       this.getHotel(id);
@@ -83,17 +88,18 @@ export class EditHotelComponent implements OnInit {
   }
 
   getHotel(id: string) {
-    this.hotelService.getHotelById(id).subscribe((res) => {
-      this.hotelData = res;
-      this.facilityOptions = res.facilities[0].split(',');
-      const facilities: FormArray = this.addHotelForm.get(
-        'facilities'
-      ) as FormArray;
-      for (const option of this.facilityOptions) {
-        facilities.push(new FormControl(option));
-      }
-     
-    });
+    this.hotelDataSubscription = this.hotelService
+      .getHotelById(id)
+      .subscribe((res) => {
+        this.hotelData = res;
+        this.facilityOptions = res.facilities[0].split(',');
+        const facilities: FormArray = this.addHotelForm.get(
+          'facilities'
+        ) as FormArray;
+        for (const option of this.facilityOptions) {
+          facilities.push(new FormControl(option));
+        }
+      });
   }
 
   onCheckBoxChange(event: any) {
@@ -112,7 +118,7 @@ export class EditHotelComponent implements OnInit {
       });
       i++;
     }
-    console.log(facilities)
+    console.log(facilities);
   }
   onImageUpload(event: any) {
     this.imageErrorMessage = '';
@@ -171,10 +177,14 @@ export class EditHotelComponent implements OnInit {
     if (this.uploadedFiles != undefined && this.uploadedFiles.length > 0) {
       this.hotelService.updateHotel(formData, id);
     }
-
   }
 
   onCancel() {
     this.router.navigate([`/hotels/details/${this.hotelData._id}`]);
+  }
+
+  ngOnDestroy(): void {
+    this.msgServiceSubscription.unsubscribe();
+    this.hotelDataSubscription.unsubscribe();
   }
 }

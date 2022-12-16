@@ -26,6 +26,7 @@ import { SearchComponent } from './search/search.component';
   imports: [
     CommonModule,
     MatDialogModule,
+    FormsModule,
     BrowserAnimationsModule,
     RouterModule,
     MatSlideToggleModule,

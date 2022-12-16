@@ -1,16 +1,19 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
-import { BehaviorSubject, Observable, of, switchMap } from 'rxjs';
+import { BehaviorSubject, Observable, of, Subscription, switchMap } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { IHotel, IHotelDto, ISearch, ISHotel } from '../modals/hotel';
 
 @Injectable({
   providedIn: 'root',
 })
-export class HotelService {
+export class HotelService implements OnDestroy {
   private apiUrl = environment.apiUrl;
   private _searchData = new BehaviorSubject<any>(undefined);
+  searchDataSubscription!: Subscription;
+  editDataSubscription!: Subscription;
+  deleteHotelSubscription!: Subscription;
 
   currentSearchData$ = this._searchData.asObservable();
   constructor(private http: HttpClient, private router: Router) {}
@@ -36,19 +39,23 @@ export class HotelService {
   }
 
   deleteHotelById(id: string) {
-    this.http.delete(this.apiUrl + `hotels/details/${id}`).subscribe({
-      next: () => {
-        this.router.navigate(['/']);
-      },
-    });
+    this.deleteHotelSubscription = this.http
+      .delete(this.apiUrl + `hotels/details/${id}`)
+      .subscribe({
+        next: () => {
+          this.router.navigate(['/']);
+        },
+      });
   }
 
   updateHotel(files: {}, id: string) {
-    return this.http.put(this.apiUrl + `hotels/edit/${id}`, files).subscribe({
-      next: () => {
-        this.router.navigate([`/hotels/details/${id}`]);
-      },
-    });
+    this.editDataSubscription = this.http
+      .put(this.apiUrl + `hotels/edit/${id}`, files)
+      .subscribe({
+        next: () => {
+          this.router.navigate([`/hotels/details/${id}`]);
+        },
+      });
   }
 
   likeHotel(id: string) {
@@ -60,11 +67,19 @@ export class HotelService {
   }
 
   search(searchData: ISearch) {
-    this.http.post(this.apiUrl +'hotels/search', searchData).subscribe({
-      next: (data) => {
-        this._searchData.next(data);
-        this.router.navigate(['/hotels/search'])
-      }
-    });
+    this.searchDataSubscription = this.http
+      .post(this.apiUrl + 'hotels/search', searchData)
+      .subscribe({
+        next: (data) => {
+          this._searchData.next(data);
+          this.router.navigate(['/hotels/search']);
+        },
+      });
+  }
+
+  ngOnDestroy(): void {
+    this.searchDataSubscription.unsubscribe();
+    this.editDataSubscription.unsubscribe();
+    this.deleteHotelSubscription.unsubscribe();
   }
 }

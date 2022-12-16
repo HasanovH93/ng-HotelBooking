@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import html2canvas from 'html2canvas';
 import { jsPDF } from 'jspdf';
@@ -9,12 +9,13 @@ import { HotelService } from 'src/app/services/hotel.service';
 import { UserService } from 'src/app/services/user.service';
 import { facilities } from '../facilities';
 import { DialogService } from 'src/app/services/confirmation.service';
+import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-details-view',
   templateUrl: './details-view.component.html',
   styleUrls: ['./details-view.component.scss'],
 })
-export class DetailsViewComponent implements OnInit {
+export class DetailsViewComponent implements OnInit, OnDestroy {
   @ViewChild('content', { static: true }) el!: ElementRef<HTMLImageElement>;
   defaultImg: string = '../../../assets/icons/user-profile.png';
   faStar = faStar;
@@ -29,6 +30,7 @@ export class DetailsViewComponent implements OnInit {
   facilitiesDataArray: Array<any> = [];
   iconsArray = Array;
   stars: number;
+  hotelDataSubscription!:Subscription;
 
   constructor(
     private hotelService: HotelService,
@@ -44,9 +46,12 @@ export class DetailsViewComponent implements OnInit {
       this.getHotel(id);
     });
   }
+  ngOnDestroy(): void {
+    this.hotelDataSubscription.unsubscribe();
+  }
 
   private getHotel(id: string) {
-    this.hotelService.getHotelById(id).subscribe((hotel) => {
+   this.hotelDataSubscription = this.hotelService.getHotelById(id).subscribe((hotel) => {
       this.hotel = hotel;
 
       const facilitiesArray = hotel.facilities[0].split(',');

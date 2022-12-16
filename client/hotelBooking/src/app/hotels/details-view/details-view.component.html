@@ -43,13 +43,13 @@
       <fa-icon [icon]="faPdf" class="icons-group"></fa-icon>
       Download
   </button>
-  <ng-container *ngIf="!liked && !isOwner">
+  <ng-container *ngIf="!liked && !isOwner && userId">
     <button  type="button" class="userBtns" (click)="likeHotel()">
       <fa-icon [icon]="farHeart" class="icons-group"></fa-icon>
       Like
   </button>
 </ng-container>
-  <ng-container *ngIf="liked && !isOwner">
+  <ng-container *ngIf="liked && !isOwner && userId">
     <button  type="button" class="userBtns">
       <fa-icon [icon]="faHeart" class="icons-group"></fa-icon>
       Liked

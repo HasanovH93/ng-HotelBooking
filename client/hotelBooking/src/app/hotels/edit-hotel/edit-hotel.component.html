@@ -1,7 +1,7 @@
 <div class="create-form" *ngIf="hotelData">
     <div class="create-form-container">
         <div class="create-form-container-title">Edit Hotel</div>
-        <form [formGroup]="addHotelForm" class="create-form-container-form" (ngSubmit)="onSubmit($event)">
+        <form [formGroup]="addHotelForm" class="create-form-container-form">
             <div class="create-form-container-form-user-details">
                 <div class="create-form-container-form-user-details-input-box">
                     <span class="create-form-container-form-user-details-input-box-details">Hotel Name</span>
@@ -168,7 +168,7 @@
             </div>
 
             <div class="create-form-container-form-button">
-                <button class="create-form-container-form-button-actionBtn" type="button">
+                <button class="create-form-container-form-button-actionBtn" type="button" (click)="onSubmit($event)">
                     Edit Hotel
                 </button>
                 <button class="create-form-container-form-button-actionBtn" type="button" (click)="onCancel()">

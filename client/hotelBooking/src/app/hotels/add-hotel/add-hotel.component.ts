@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import {
   FormArray,
   FormBuilder,
@@ -7,6 +7,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { HotelService } from 'src/app/services/hotel.service';
 import { MessageService, MessageType } from 'src/app/services/message.service';
 import { cities } from '../cities';
@@ -21,7 +22,7 @@ export interface ICity {
   templateUrl: './add-hotel.component.html',
   styleUrls: ['./add-hotel.component.scss'],
 })
-export class AddHotelComponent implements OnInit {
+export class AddHotelComponent implements OnInit, OnDestroy {
   errorMessage: string;
   isErrorType: boolean;
   cities: ICity[];
@@ -29,6 +30,8 @@ export class AddHotelComponent implements OnInit {
   uploadedFiles!: File[];
   imageErrorMessage: string;
   facilities: any;
+  msgServiceSubscription!: Subscription;
+  hotelDataSubscription!:Subscription
 
   constructor(
     private formBuilder: FormBuilder,
@@ -61,7 +64,7 @@ export class AddHotelComponent implements OnInit {
   });
 
   ngOnInit(): void {
-    this.msgService.onMessage$.subscribe((message) => {
+   this.msgServiceSubscription = this.msgService.onMessage$.subscribe((message) => {
       this.errorMessage = message.text;
       this.isErrorType = message.type === MessageType.error;
       if (this.errorMessage) {
@@ -70,6 +73,10 @@ export class AddHotelComponent implements OnInit {
         }, 3000);
       }
     });
+  }
+  ngOnDestroy(): void {
+    this.msgServiceSubscription.unsubscribe();
+    this.hotelDataSubscription.unsubscribe();
   }
 
   onCheckBoxChange(event: any) {
@@ -137,7 +144,7 @@ export class AddHotelComponent implements OnInit {
     formData.append('description', description);
     formData.append('facilities', facilities);
 
-    this.hotelService.createHotel(formData).subscribe({
+   this.hotelDataSubscription = this.hotelService.createHotel(formData).subscribe({
       next: (res) => {
         console.log(res)
       },

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 
 import {
   FormBuilder,
@@ -17,11 +17,12 @@ import { MessageService, MessageType } from 'src/app/services/message.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy {
   errorMessage: string;
   isErrorType: boolean;
-  authStatusSubscription!: Subscription;
   showPassword = false;
+  authStatusSubscription!: Subscription;
+  msgServiceSubscription!: Subscription;
 
   loginForm: FormGroup = this.formBuilder.group({
     email: new FormControl(null, [Validators.required, Validators.email]),
@@ -39,7 +40,7 @@ export class LoginComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.msgService.onMessage$.subscribe((message) => {
+   this.msgServiceSubscription = this.msgService.onMessage$.subscribe((message) => {
       this.errorMessage = message.text;
       this.isErrorType = message.type === MessageType.error;
       if (this.errorMessage) {
@@ -61,5 +62,10 @@ export class LoginComponent implements OnInit {
   openDialogRegister() {
     this.dialogRef.closeAll();
     this.dialogRef.open(RegisterComponent,{autoFocus:false});
+  }
+
+  ngOnDestroy(): void {
+    this.authStatusSubscription.unsubscribe();
+    this.msgServiceSubscription.unsubscribe();
   }
 }
