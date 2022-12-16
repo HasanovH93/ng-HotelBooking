@@ -67,6 +67,11 @@ async function getByIdHotels(id) {
   return user;
 }
 
+async function search(query){
+  const data = await Hotel.find(query);
+  return data;
+}
+
 module.exports = {
   getAll,
   getHotelById,
@@ -78,4 +83,5 @@ module.exports = {
   likeHotel,
   updateById,
   getByIdHotels,
+  search
 };

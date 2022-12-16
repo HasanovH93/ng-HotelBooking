@@ -8,6 +8,7 @@ const {
   likeHotel,
   updateById,
   getByIdHotels,
+  search,
 } = require("../services/item");
 const { getById } = require("../services/user");
 const { parseError } = require("../util/parser");
@@ -16,7 +17,6 @@ const { s3UploadImg } = require("../middlewares/imagesUpload");
 const dataController = require("express").Router();
 
 dataController.get("/last-hotels", async (req, res) => {
-  
   const hotels = await getLastFour();
   res.status(200).send({ latestHotels: hotels });
 });
@@ -26,7 +26,6 @@ dataController.post("/create", s3UploadImg(), hasUser(), async (req, res) => {
     req.body = JSON.parse(JSON.stringify(req.body));
 
     req.body.imageUrls = req.files.map((img) => img.location);
- 
 
     const data = {
       hotelName: req.body.hotelName,
@@ -75,8 +74,8 @@ dataController.get("/all-hotels", async (req, res) => {
     const data = await getAll(skip, limit);
     res.status(200).json(data);
   } catch (error) {
-    const message = parseError(message)
-    res.status(400).json({message})
+    const message = parseError(message);
+    res.status(400).json({ message });
   }
 });
 
@@ -84,7 +83,7 @@ dataController.get("/details/:id", async (req, res) => {
   try {
     const id = req.params.id;
     const data = await getHotelById(id);
-    console.log(data.stars)
+    console.log(data.stars);
     res.status(200).send({ data });
   } catch (error) {
     const message = parseError(error);
@@ -105,37 +104,37 @@ dataController.delete("/details/:id", async (req, res) => {
 });
 
 dataController.put("/details/like/:id", hasUser(), async (req, res) => {
- try {
-  console.log('GET')
-  const userId = req.user._id;
-  const hotelId = req.params.id;
-  await likeHotel(userId,hotelId);
-  res.status(200).json('success')
- } catch (error) {
-  const message = parseError(error);
-  res.status(400).json({message})
- }
+  try {
+    console.log("GET");
+    const userId = req.user._id;
+    const hotelId = req.params.id;
+    await likeHotel(userId, hotelId);
+    res.status(200).json("success");
+  } catch (error) {
+    const message = parseError(error);
+    res.status(400).json({ message });
+  }
 });
 
 dataController.get("/likes", async (req, res) => {
   try {
-   const userId = req.user._id;
-   
-   const hotels = await getByIdHotels(userId)
-   res.status(200).send(hotels.likedHotels)
+    const userId = req.user._id;
+
+    const hotels = await getByIdHotels(userId);
+    res.status(200).send(hotels.likedHotels);
   } catch (error) {
     const message = parseError(message);
-    res.status(400).json({message})
+    res.status(400).json({ message });
   }
-})
+});
 
-dataController.put('/edit/:id', s3UploadImg(), async (req, res) => {
+dataController.put("/edit/:id", s3UploadImg(), async (req, res) => {
   try {
-    if(req.files){
-      req.body.imageUrls = req.files.map((img) => img.location)
+    if (req.files) {
+      req.body.imageUrls = req.files.map((img) => img.location);
     }
-    if(req.body.owner != req.user._id){
-      throw new Error('Unauthorized')
+    if (req.body.owner != req.user._id) {
+      throw new Error("Unauthorized");
     }
     const data = {
       hotelName: req.body.hotelName,
@@ -151,15 +150,35 @@ dataController.put('/edit/:id', s3UploadImg(), async (req, res) => {
 
     const id = req.params.id;
     const userId = req.user._id;
-    const UpdateData = await updateById(id,userId,data)
-    res.status(200).send({message: "Successfully uploaded " + req.files.length + " files!",
-    UpdateData})
+    const UpdateData = await updateById(id, userId, data);
+    res.status(200).send({
+      message: "Successfully uploaded " + req.files.length + " files!",
+      UpdateData,
+    });
   } catch (error) {
-    const message = parseError(error)
-    res.status(400).json({message})
+    const message = parseError(error);
+    res.status(400).json({ message });
   }
-})
+});
 
-
+dataController.post("/search", async (req, res) => {
+  try {
+    const query = Object.entries(req.body).reduce((accObj, [key, value]) => {
+      if (value !== undefined && value !== null) {
+        if (key == "price" && key == "stars") {
+          accObj[key] = { $lte: Number(value) };
+        } else {
+          accObj[key] = value;
+        }
+      }
+      return accObj;
+    }, {});
+    const data = await search(query);
+    res.status(200).send(data);
+  } catch (error) {
+    const message = parseError(error);
+    res.status(400).send({ message });
+  }
+});
 
 module.exports = dataController;
