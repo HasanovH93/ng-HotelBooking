@@ -147,6 +147,9 @@ dataController.put("/edit/:id", s3UploadImg(), async (req, res) => {
       imageUrls: req.body.imageUrls,
       facilities: req.body.facilities,
     };
+    if (Object.values(data).some((v) => !v || v === null)) {
+      throw new Error(`All fields are required`);
+    }
 
     const id = req.params.id;
     const userId = req.user._id;
@@ -183,21 +186,25 @@ dataController.post("/search", async (req, res) => {
 
 dataController.post('/reservation', async (req,res) => {
   try {
-    console.log(req.body)
+
     const data = {
       checkIn : req.body.checkIn,
       checkOut: req.body.checkOut,
       guests : req.body.guests
     }
-    console.log(req.body.hotel)
+    if (Object.values(data).some((v) => !v || v === '')) {
+      throw new Error(`All fields are required`);
+    }
+
     data.hotel = req.body.hotel
 
     const createdReservation = await createBooking(data,req.user._id);
     console.log(createdReservation)
     res.status(200).send({message: "Successfully booked this hotel. " ,createdReservation})
   } catch (error) {
+    console.log(error)
     const message = parseError(error);
-    res.status(200).json({message})
+    res.status(400).send({message})
   }
 })
 
@@ -209,7 +216,7 @@ dataController.get("/reservations", async (req, res) => {
     res.status(200).send(hotels.reservations);
   } catch (error) {
     const message = parseError(error);
-    res.status(400).json({ message });
+    res.status(400).send({ message });
   }
 });
 
