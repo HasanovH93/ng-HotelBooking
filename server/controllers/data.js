@@ -171,7 +171,7 @@ dataController.post("/search", async (req, res) => {
         if (key == "price") {
           accObj[key] = { $lte: Number(value) };
         }else if(key == "stars"){
-          accObj[key] = { gte: Number(value) };
+          accObj[key] = { $gte: Number(value) };
         } else {
           accObj[key] = value;
         }
