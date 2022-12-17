@@ -11,7 +11,8 @@ import { SharedModule } from '../shared/shared.module';
 import { LikedHotelsComponent } from './liked-hotels/liked-hotels.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { MatPasswordStrengthModule } from "@angular-material-extensions/password-strength";
-import { MatProgressSpinnerModule} from '@angular/material/progress-spinner'
+import { MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { ReservationsComponent } from './reservations/reservations.component'
 @NgModule({
   declarations: [
     RegisterComponent,
@@ -19,6 +20,7 @@ import { MatProgressSpinnerModule} from '@angular/material/progress-spinner'
     ProfileComponent,
     EditUserComponent,
     LikedHotelsComponent,
+    ReservationsComponent,
   ],
   imports: [
     CommonModule,

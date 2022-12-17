@@ -32,6 +32,7 @@ export class BookingHotelComponent implements OnInit {
     this.actRoute.params.subscribe(({ id }) => {
       this.getHotel(id);
     });
+
   }
 
   private getHotel(id: string) {
@@ -50,7 +51,7 @@ export class BookingHotelComponent implements OnInit {
       checkOut: this.bookingForm.controls['checkOut'].value,
       guests: this.bookingForm.controls['guests'].value,
 
-      hotel: this.hotel._id,
+      hotel: this.hotel,
     };
     this.hotelService.bookHotel(body);
   }

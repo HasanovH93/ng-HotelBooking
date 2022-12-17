@@ -83,7 +83,9 @@ export class HotelService implements OnDestroy {
         console.log(res)
        });
     }
-  
+    getReservations() {
+      return this.http.get(this.apiUrl + 'hotels/reservations')
+    }
 
   ngOnDestroy(): void {
     this.searchDataSubscription.unsubscribe();

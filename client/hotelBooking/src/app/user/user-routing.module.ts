@@ -4,6 +4,7 @@ import { AuthGuard } from './auth.guard';
 import { EditUserComponent } from './edit-user/edit-user.component';
 import { LikedHotelsComponent } from './liked-hotels/liked-hotels.component';
 import { ProfileComponent } from './profile/profile.component';
+import { ReservationsComponent } from './reservations/reservations.component';
 
 const routes: Routes = [
   {
@@ -19,6 +20,11 @@ const routes: Routes = [
   {
     path: 'liked-hotels',
     component: LikedHotelsComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'reservations',
+    component: ReservationsComponent,
     canActivate: [AuthGuard]
   }
 ];

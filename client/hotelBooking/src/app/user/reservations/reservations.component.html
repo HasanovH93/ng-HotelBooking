@@ -1,0 +1,40 @@
+<div class="card-container" *ngIf="reservations">
+    <ng-container *ngIf="reservations.length === 0">
+        <h2>There are no Bookings</h2>
+    </ng-container>
+    <div class="container">
+        <div class="card" *ngFor="let reservation of reservations">
+
+            <div class="card-header">
+                <img src="{{reservation['hotel'].imageUrls[0]}}" alt="rover" />
+            </div>
+            <div class="card-body">
+                <div class="stars">
+                    <ng-container *ngFor="let item of [].constructor(reservation.hotel.stars); let i = index">
+                        <fa-icon [icon]="faStar" class="stars-icon"></fa-icon>
+                    </ng-container>
+                </div>
+                <h4 class="title">
+                    {{reservation.hotel.hotelName}}
+                </h4>
+                <p>{{reservation.checkIn}}</p>
+                <p>{{reservation.checkOut}}</p>
+                <p>{{reservation.guests}}</p>
+                <button class="detailsBtn" type="button" [routerLink]="'/hotels/details/' + reservation.hotel._id">Details</button>
+                <div class="user">
+                    <ng-container *ngIf="reservation.hotel.ownerImage">
+
+                        <img src="{{reservation.hotel.ownerImage}}" alt="user" />
+                    </ng-container>
+                    <ng-container *ngIf="!reservation.hotel.ownerImage">
+                        <img src="{{defaultImg}}" alt="user" />
+                    </ng-container>
+                    <div class="user-info">
+                        <h5>{{reservation.hotel.ownerEmail}}</h5>
+                        <small>{{reservation.hotel.date}}</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <ng-container *ngIf="isLoading"><app-spinner></app-spinner></ng-container>
+    </div>
