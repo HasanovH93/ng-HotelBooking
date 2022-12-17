@@ -7,7 +7,7 @@
     width: 1000px;
     flex-wrap: wrap;
     align-items: center;
-    padding: 10px 50px;
+    padding: 10px 80px;
 }
 
 .check-form label {
@@ -37,3 +37,30 @@
 .guest-field {
     flex: 1;
 }
+
+.check-form .messages {
+    margin-top:10px;
+}
+
+.message {
+margin: 0 auto;
+
+}
+.error {
+   
+    color:red;
+}
+.success {
+    color: green;
+}
+
+.loader {
+    display: flex;
+    justify-content: center;
+  
+  ::ng-deep .mat-progress-spinner circle, .mat-spinner circle {
+    height: 20px;
+    stroke: #000000;
+  }
+  }
+  

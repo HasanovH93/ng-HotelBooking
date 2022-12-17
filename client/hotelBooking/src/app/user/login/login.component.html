@@ -35,7 +35,7 @@
       *ngIf="showPassword" alt="" />
 
     <input type="checkbox" class="login-inputGroup-check-box" /><span>Remember password</span>
-    <div class="loader"  *ngIf="isLoading"><mat-spinner strokeWidth="3" [diameter]="30"></mat-spinner></div>
+    <div class="loader"  *ngIf="isLoading && !errorMessage"><mat-spinner strokeWidth="3" [diameter]="30"></mat-spinner></div>
     <button type="button" class="login-inputGroup-submit-btn" (click)="onLogin()" [disabled]="loginForm.invalid">
       Sign In
     </button>

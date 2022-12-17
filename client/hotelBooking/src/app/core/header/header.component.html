@@ -34,7 +34,7 @@
           <img class="right-menu-default" src="{{ defaultImg }}" />
         </ng-container>
 
-        <ul class="dropdown-menu">
+        <ul class="dropdown-menu" [ngClass]="userLoggedIn ? '' : 'dropdown-menu-guest'">
           <ng-container *ngIf="!userLoggedIn">
             <li class="dropdown-item" (click)="openDialogRegister()" style="font-weight: 600">
               Register

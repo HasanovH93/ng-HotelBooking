@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { BehaviorSubject, Observable, of, Subscription, switchMap } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { IHotel, IHotelDto, ISearch, ISHotel } from '../modals/hotel';
+import { MessageService, MessageType } from './message.service';
 
 @Injectable({
   providedIn: 'root',
@@ -16,7 +17,7 @@ export class HotelService implements OnDestroy {
   deleteHotelSubscription!: Subscription;
 
   currentSearchData$ = this._searchData.asObservable();
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(private http: HttpClient, private router: Router, private msgService:MessageService) {}
 
   createHotel(body: {}) {
     return this.http.post(this.apiUrl + 'hotels/create', body);
@@ -78,10 +79,12 @@ export class HotelService implements OnDestroy {
   }
 
   bookHotel(body: {}){
-    console.log(body)
-       this.http.post(this.apiUrl + 'hotels/reservation', body).subscribe((res) => {
-        console.log(res)
-       });
+     this.http.post(this.apiUrl + 'hotels/reservation', body).subscribe({
+      next:() => {
+        this.msgService.notifyForMessage({ text: `Successfully booked this hotel.`, type: MessageType.success });
+        this.router.navigate(['/auth/reservations'])
+      }
+     })
     }
     getReservations() {
       return this.http.get(this.apiUrl + 'hotels/reservations')

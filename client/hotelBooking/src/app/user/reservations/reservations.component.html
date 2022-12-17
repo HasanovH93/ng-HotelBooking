@@ -17,10 +17,12 @@
                 <h4 class="title">
                     {{reservation.hotel.hotelName}}
                 </h4>
-                <p>{{reservation.checkIn}}</p>
-                <p>{{reservation.checkOut}}</p>
-                <p>{{reservation.guests}}</p>
-                <button class="detailsBtn" type="button" [routerLink]="'/hotels/details/' + reservation.hotel._id">Details</button>
+                <div class="booking-info">
+                <div class="label">Check in: <p class="info"> &nbsp; &nbsp; {{reservation.checkIn}}</p></div>
+                <div class="label">Check out: <p class="info">  &nbsp; &nbsp;{{reservation.checkOut}}</p></div>
+                <div class="label">Guests: <p class="info"> &nbsp; &nbsp; {{reservation.guests}}</p></div>
+            </div>
+                <button class="detailsBtn" type="button" [routerLink]="'/hotels/details/' + reservation.hotel._id">Hotel details</button>
                 <div class="user">
                     <ng-container *ngIf="reservation.hotel.ownerImage">
 

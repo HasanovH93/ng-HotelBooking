@@ -1,4 +1,4 @@
-<form class="check-form" [formGroup]="bookingForm" *ngIf="!isOwner">
+<form class="check-form" [formGroup]="bookingForm" *ngIf="!isOwner && userId">
     <div>
       <label>Check-in</label>
       <mat-form-field>
@@ -6,6 +6,9 @@
         <mat-hint>MM/DD/YYYY</mat-hint>
         <mat-datepicker-toggle matSuffix [for]="checkIn"></mat-datepicker-toggle>
         <mat-datepicker #checkIn></mat-datepicker>
+        <mat-error *ngIf="bookingForm.get('checkIn')?.hasError('required')">
+            Valid date required!
+         </mat-error>    
       </mat-form-field>
       
       
@@ -14,18 +17,38 @@
     <div>
       <label>Check-out</label>
       <mat-form-field>
-        <input matInput formControlName="checkOut" [matDatepicker]="checkOut" placeholder="Choose a date">
+        <input matInput formControlName="checkOut" [min]="checkIn" [matDatepicker]="checkOut" placeholder="Choose a date">
         <mat-hint>MM/DD/YYYY</mat-hint>
         <mat-datepicker-toggle matSuffix [for]="checkOut"></mat-datepicker-toggle>
         <mat-datepicker #checkOut></mat-datepicker>
+        <mat-error *ngIf="bookingForm.get('checkOut')?.hasError('required')">
+          Valid date required!
+       </mat-error>    
       </mat-form-field>
       
     </div>
+
     <div class="guest-field">
       <label>Guest</label>
         <mat-form-field class="example-full-width">
           <input matInput placeholder="2" value=2 formControlName="guests">
+          <mat-error *ngIf="bookingForm.get('guests')?.hasError('required')">
+            Guests are required!
+         </mat-error>    
         </mat-form-field>
+        
     </div>
-    <button type="button" (click)="onBook()">Reserve</button>
+    <button type="button" (click)="onBook()">Book</button>
+    <div class="message">
+      <div class="loader"  *ngIf="isLoading"><mat-spinner strokeWidth="3" [diameter]="20"></mat-spinner></div>
+    <ng-container *ngIf="!!errorMessage">
+      <p class="error" *ngIf="isErrorType">{{ errorMessage }}</p>
+      <p class="success" *ngIf="!isErrorType">{{ errorMessage }}</p>
+    </ng-container>
+  </div>
   </form>
+
+  <ng-container *ngIf="!userId">
+    <p>Log in to book hotel</p>
+  </ng-container>
+

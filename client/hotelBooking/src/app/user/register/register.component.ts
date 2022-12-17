@@ -53,12 +53,15 @@ export class RegisterComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.msgServiceSubscription = this.msgService.onMessage$.subscribe(
+      
       (message) => {
+        this.isLoading = false;
         this.errorMessage = message.text;
         this.isErrorType = message.type === MessageType.error;
         if (this.errorMessage) {
           setTimeout(() => {
             this.errorMessage = '';
+          
           }, 3000);
         }
       }
