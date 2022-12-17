@@ -1,9 +1,9 @@
 const {Schema , model, Types} = require('mongoose');
 
 const bookingSchema = new Schema({
-    checkIn: {type : Date},
-    checkOut: {type : Date},
-    guests: {type : Number},
+    checkIn: {type : String,required: true},
+    checkOut: {type : String,required:true},
+    guests: {type : Number,required: true},
     user: { type: Types.ObjectId, ref: "User" },
     hotel: { type: {}},
 });
