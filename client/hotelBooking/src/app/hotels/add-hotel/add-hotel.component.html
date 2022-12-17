@@ -152,6 +152,10 @@
                     </div>
                 </div>
             </div>
+            <div class="message" *ngIf="!!errorMessage">
+                <p class="error-block" *ngIf="isErrorType">{{ errorMessage }}</p>
+                <p class="error-block" *ngIf="!isErrorType">{{ errorMessage }}</p>
+            </div>
               <div class="loader"  *ngIf="isLoading"><mat-spinner strokeWidth="3" [diameter]="30"></mat-spinner></div>
             <div class="create-form-container-form-button">
                 <button class="create-form-container-form-button-actionBtn" type="submit">
@@ -159,9 +163,5 @@
                 </button>
             </div>
         </form>
-        <ng-container *ngIf="!!errorMessage">
-            <p class="error-block" *ngIf="isErrorType">{{ errorMessage }}</p>
-            <p class="error-block" *ngIf="!isErrorType">{{ errorMessage }}</p>
-        </ng-container>
     </div>
 </div>

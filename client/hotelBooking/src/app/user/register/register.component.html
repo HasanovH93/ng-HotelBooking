@@ -60,14 +60,15 @@
     <button (click)="onRegister()" type="submit" class="register-inputGroup-submit-btn">
       Sign Up
     </button>
+    <ng-container *ngIf="!!errorMessage">
+      <p class="register-errorMessage" *ngIf="isErrorType">{{ errorMessage }}</p>
+      <p class="register-errorMessage" *ngIf="!isErrorType">{{ errorMessage }}</p>
+    </ng-container>
   </form>
   <p class="register-signin">
     Already registered?
     <span class="register-signin-click"  (click)="openDialogRegister()">Sign In!</span>
   </p>
 
-  <ng-container *ngIf="!!errorMessage">
-    <p class="register-errorMessage" *ngIf="isErrorType">{{ errorMessage }}</p>
-    <p class="register-errorMessage" *ngIf="!isErrorType">{{ errorMessage }}</p>
-  </ng-container>
+
 </div>

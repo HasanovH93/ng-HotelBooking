@@ -89,6 +89,7 @@ $grey-light: #f7f7f7;
       &-menu {
         @extend .dFlex;
         text-decoration: none;
+        color:black;
       }
       &-mode {
         background: transparent;

@@ -22,6 +22,7 @@
                 <div class="label">Check out: <p class="info">  &nbsp; &nbsp;{{reservation.checkOut}}</p></div>
                 <div class="label">Guests: <p class="info"> &nbsp; &nbsp; {{reservation.guests}}</p></div>
             </div>
+               <p class="price">Price: ${{reservation.hotel.price}}</p>
                 <button class="detailsBtn" type="button" [routerLink]="'/hotels/details/' + reservation.hotel._id">Hotel details</button>
                 <div class="user">
                     <ng-container *ngIf="reservation.hotel.ownerImage">

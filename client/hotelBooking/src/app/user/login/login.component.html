@@ -36,16 +36,17 @@
 
     <input type="checkbox" class="login-inputGroup-check-box" /><span>Remember password</span>
     <div class="loader"  *ngIf="isLoading && !errorMessage"><mat-spinner strokeWidth="3" [diameter]="30"></mat-spinner></div>
-    <button type="button" class="login-inputGroup-submit-btn" (click)="onLogin()" [disabled]="loginForm.invalid">
+    <button type="button" class="login-inputGroup-submit-btn" (click)="onLogin()">
       Sign In
     </button>
+    <ng-container *ngIf="!!errorMessage">
+      <p class="login-errorMessage" *ngIf="isErrorType">{{ errorMessage }}</p>
+      <p class="login-errorMessage" *ngIf="!isErrorType">{{ errorMessage }}</p>
+    </ng-container>
   </form>
   <p class="login-signin">
     Don't have an account?
     <span class="login-signin-click" (click)="openDialogRegister()">Sign up!</span>
   </p>
-  <ng-container *ngIf="!!errorMessage">
-    <p class="login-errorMessage" *ngIf="isErrorType">{{ errorMessage }}</p>
-    <p class="login-errorMessage" *ngIf="!isErrorType">{{ errorMessage }}</p>
-  </ng-container>
+ 
 </div>

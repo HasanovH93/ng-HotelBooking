@@ -166,20 +166,23 @@
                     </div>
                 </div>
             </div>
-
+            <div class="message" *ngIf="!!errorMessage">
+                <p class="error-block" *ngIf="isErrorType">{{ errorMessage }}</p>
+                <p class="error-block" *ngIf="!isErrorType">{{ errorMessage }}</p>
+            </div>
             <div class="create-form-container-form-button">
+                
                 <div class="loader"  *ngIf="isLoading"><mat-spinner strokeWidth="3" [diameter]="30"></mat-spinner></div>
                 <button class="create-form-container-form-button-actionBtn" type="button" (click)="onSubmit($event)">
                     Edit Hotel
                 </button>
+             
                 <button class="create-form-container-form-button-actionBtn" type="button" (click)="onCancel()">
                    Cancel
                 </button>
             </div>
         </form>
-        <ng-container *ngIf="!!errorMessage">
-            <p class="error-block" *ngIf="isErrorType">{{ errorMessage }}</p>
-            <p class="error-block" *ngIf="!isErrorType">{{ errorMessage }}</p>
-        </ng-container>
+  
     </div>
+   
 </div>

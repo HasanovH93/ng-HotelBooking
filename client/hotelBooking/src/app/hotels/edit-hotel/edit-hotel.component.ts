@@ -144,6 +144,7 @@ export class EditHotelComponent implements OnInit, OnDestroy {
     if (this.uploadedFiles.length != undefined) {
       if (!this.addHotelForm.controls['image'].value) {
         this.imageErrorMessage = 'At least one image is required';
+        this.isLoading = false
       } else {
         for (const file of this.addHotelForm.controls['image'].value) {
           formData.append('img', file);
