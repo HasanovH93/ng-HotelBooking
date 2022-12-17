@@ -13,6 +13,7 @@ const {
 const { getById } = require("../services/user");
 const { parseError } = require("../util/parser");
 const { s3UploadImg } = require("../middlewares/imagesUpload");
+const { createBooking, getByIdHReservations } = require("../services/booking");
 
 const dataController = require("express").Router();
 
@@ -83,7 +84,6 @@ dataController.get("/details/:id", async (req, res) => {
   try {
     const id = req.params.id;
     const data = await getHotelById(id);
-    console.log(data.stars);
     res.status(200).send({ data });
   } catch (error) {
     const message = parseError(error);
@@ -123,7 +123,7 @@ dataController.get("/likes", async (req, res) => {
     const hotels = await getByIdHotels(userId);
     res.status(200).send(hotels.likedHotels);
   } catch (error) {
-    const message = parseError(message);
+    const message = parseError(error);
     res.status(400).json({ message });
   }
 });
@@ -178,6 +178,38 @@ dataController.post("/search", async (req, res) => {
   } catch (error) {
     const message = parseError(error);
     res.status(400).send({ message });
+  }
+});
+
+dataController.post('/reservation', async (req,res) => {
+  try {
+    console.log(req.body)
+    const data = {
+      checkIn : req.body.checkIn,
+      checkOut: req.body.checkOut,
+      guests : req.body.guests
+    }
+    console.log(req.body.hotel)
+    data.hotel = req.body.hotel
+
+    const createdReservation = await createBooking(data,req.user._id);
+    console.log(createdReservation)
+    res.status(200).send({message: "Successfully booked this hotel. " ,createdReservation})
+  } catch (error) {
+    const message = parseError(error);
+    res.status(200).json({message})
+  }
+})
+
+dataController.get("/reservations", async (req, res) => {
+  try {
+    const userId = req.user._id;
+
+    const hotels = await getByIdHReservations(userId);
+    res.status(200).send(hotels.reservations);
+  } catch (error) {
+    const message = parseError(error);
+    res.status(400).json({ message });
   }
 });
 
