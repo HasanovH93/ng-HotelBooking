@@ -1,3 +1,4 @@
+<ng-container *ngIf="!hotels"><app-spinner></app-spinner></ng-container>
 <div class="container" *ngIf="hotels">
     <div class="list-container">
         <div class="left-col">
@@ -36,4 +37,3 @@
         <h1 class="noHotels">There are no Hotels to show!</h1>
     </ng-container>
 </div>
-<ng-container *ngIf="isLoading"><app-spinner></app-spinner></ng-container>

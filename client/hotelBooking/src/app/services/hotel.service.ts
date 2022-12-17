@@ -77,6 +77,14 @@ export class HotelService implements OnDestroy {
       });
   }
 
+  bookHotel(body: {}){
+    console.log(body)
+       this.http.post(this.apiUrl + 'hotels/reservation', body).subscribe((res) => {
+        console.log(res)
+       });
+    }
+  
+
   ngOnDestroy(): void {
     this.searchDataSubscription.unsubscribe();
     this.editDataSubscription.unsubscribe();

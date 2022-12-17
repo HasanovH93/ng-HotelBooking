@@ -36,8 +36,11 @@ export class DetailsViewComponent implements OnInit, OnDestroy {
     private router: Router,
     private userService: UserService,
     private dialog: DialogService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
   ) {}
+
+
+
 
   ngOnInit(): void {
     this.actRoute.params.subscribe(({ id }) => {
@@ -47,6 +50,8 @@ export class DetailsViewComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.hotelDataSubscription.unsubscribe();
   }
+
+  
 
   private getHotel(id: string) {
    this.hotelDataSubscription = this.hotelService.getHotelById(id).subscribe((hotel) => {

@@ -1,0 +1,31 @@
+<form class="check-form" [formGroup]="bookingForm" *ngIf="!isOwner">
+    <div>
+      <label>Check-in</label>
+      <mat-form-field>
+        <input matInput formControlName="checkIn" [matDatepicker]="checkIn" placeholder="Choose a date">
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matSuffix [for]="checkIn"></mat-datepicker-toggle>
+        <mat-datepicker #checkIn></mat-datepicker>
+      </mat-form-field>
+      
+      
+    
+    </div>
+    <div>
+      <label>Check-out</label>
+      <mat-form-field>
+        <input matInput formControlName="checkOut" [matDatepicker]="checkOut" placeholder="Choose a date">
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matSuffix [for]="checkOut"></mat-datepicker-toggle>
+        <mat-datepicker #checkOut></mat-datepicker>
+      </mat-form-field>
+      
+    </div>
+    <div class="guest-field">
+      <label>Guest</label>
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="2" value=2 formControlName="guests">
+        </mat-form-field>
+    </div>
+    <button type="button" (click)="onBook()">Reserve</button>
+  </form>

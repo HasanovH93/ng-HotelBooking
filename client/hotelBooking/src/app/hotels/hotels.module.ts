@@ -12,6 +12,11 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { DetailsViewComponent } from './details-view/details-view.component';
 import { EditHotelComponent } from './edit-hotel/edit-hotel.component';
 import { SearchDataComponent } from './search-data/search-data.component';
+import {MatDatepickerModule} from '@angular/material/datepicker'; 
+import {MatInputModule} from '@angular/material/input'
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatNativeDateModule } from '@angular/material/core';
+import { BookingHotelComponent } from './booking-hotel/booking-hotel.component';
 
 
 @NgModule({
@@ -21,6 +26,7 @@ import { SearchDataComponent } from './search-data/search-data.component';
     DetailsViewComponent,
     EditHotelComponent,
     SearchDataComponent,
+    BookingHotelComponent,
 
 
   ],
@@ -34,7 +40,11 @@ import { SearchDataComponent } from './search-data/search-data.component';
     InfiniteScrollModule,
     MatProgressSpinnerModule,
     FontAwesomeModule,
-    SharedModule
+    SharedModule,
+    MatDatepickerModule,
+    MatInputModule,
+    MatFormFieldModule,
+    MatNativeDateModule
   ],
   exports: [
     AllHotelsComponent
