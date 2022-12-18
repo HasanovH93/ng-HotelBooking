@@ -70,19 +70,18 @@ The project is for creating and sharing Hotels.
 
 -Client side:
 * Angular
-    * Error handling(with interseptor)
+    * Error handling(Interceptor)
     * Authentication:
     * Lazy loading
     * RxJS
     * Handling Forms
         * Reactive forms
-        * Template forms
     * Router Guards *(isAuthenticated)*
     * Router Module *(link,redirect,query params)*
     * Subjects
     * Observables
     * Custom Directives
-    * Pipe
+    * Custom  Pipe
     * Angular Animation
     * Helpers:
         * Angular Material
